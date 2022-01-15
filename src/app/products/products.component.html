@@ -1,0 +1,23 @@
+
+  <div class="filter">
+    <mat-form-field class="example-full-width">
+      <input name="Filter"  matInput [(ngModel)]='word' placeholder="Filter" (ngModelChange)="filterByTitle(word)">
+    </mat-form-field>
+  </div>
+
+  
+  <app-product *ngFor="let product of filterByTitle(word)" [product]="product"
+  (likeEmitter) = "incrementLikes($event)"
+    (dislikeEmitter) = "incrementDislikes($event)"
+    (shoppingCartEmitter) = "sendProduct($event)">
+    
+    
+  </app-product>
+  <a routerLink="/about" routerLinkActive="active">About</a>
+
+
+  <app-shoppingCart></app-shoppingCart> 
+
+
+ 
+  

@@ -1,0 +1,44 @@
+
+<mat-card>
+<mat-card class="Product"
+*ngFor="let s of shoppingCart">
+<mat-grid-list cols="3" rowHeight="1:1">
+  <mat-grid-tile>
+   {{s.quantity}},{{s.title}}
+  </mat-grid-tile>
+  <mat-grid-tile>
+    {{s.price}}
+   </mat-grid-tile>
+   <mat-grid-tile>
+    <mat-card-actions>
+      <button mat-button (click)="incrementProduct(s)" type="button"
+          style="background-color:rgb(151, 236, 24); color:black">
+          Add
+      </button>
+
+      <button mat-button (click)="decrementProduct(s)" type="button"
+          style="background-color:rgb(151, 236, 24); color:black">
+          Decrease
+      </button>
+
+     
+  </mat-card-actions>
+   </mat-grid-tile>
+   
+
+</mat-grid-list>
+  
+
+
+
+
+
+
+
+
+
+</mat-card>
+</mat-card>
+
+  
+

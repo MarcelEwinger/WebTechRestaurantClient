@@ -1,0 +1,28 @@
+[
+	{
+		"userID" : 1,
+		"name"  : "Giovanni",
+		"role"	 : ["Kitchen"],
+		"password" : ""
+	},
+	{
+		"userID" : 2,
+		"name"  : "Stefano",
+		"role"	 : ["Waiter"],
+		"password" : ""
+	},
+	{
+		"userID" : 3,
+		"name"  : "Franco",
+		"role"	 : ["backoffice"],
+		"password" : ""
+	},
+	{
+		"userID" : 4,
+		"name"  : "Guest",
+		"role"	 : ["guest"],
+		"password" : ""
+	}
+
+	
+]

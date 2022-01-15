@@ -1,0 +1,21 @@
+.form {
+  min-width: 150px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 20%;
+}
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+  margin-bottom: 16px;
+}
+
+.filter{
+  max-width: 430px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
+  margin: 5px;
+
+}
