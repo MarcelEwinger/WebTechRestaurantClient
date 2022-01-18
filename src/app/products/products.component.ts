@@ -52,10 +52,6 @@ export class ProductsComponent {
     this.productListService.sendProduct(product);
   }
 
-
-  
- 
-
   incrementLikes(product : Product): void{
     this.message = this.productListService.likeProduct(product)
    }

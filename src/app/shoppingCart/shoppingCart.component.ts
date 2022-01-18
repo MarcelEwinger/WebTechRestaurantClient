@@ -33,52 +33,63 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit() {
     
+    
   }
 
   incrementProduct(shoppingCart : ShoppingCart){
     shoppingCart.quantity++;
     console.log(this.shoppingCart)
   }
-  /*
+  
   decrementProduct(shoppingCart : ShoppingCart){
-    console.log("Test " + shoppingCart.quantity)
-    if(shoppingCart.quantity === 1){
-      this.shoppingCart.forEach((element, index)=>{
-        if(element.itemid === shoppingCart.itemid) 
-        delete this.shoppingCart[index]
-      });
-      
+    this.shoppingCart.forEach((element, index)=>{
+     if(element.itemid === shoppingCart.itemid){
+       if(shoppingCart.quantity > 1){
+        shoppingCart.quantity--;
+        console.log(this.shoppingCart)
+
+       }else{
+         this.shoppingCart.splice(index, 1);
+         this.loadShoppingCart;
+         console.log(this.shoppingCart)
+       }
+     }
+       
+    });
+  }
+  addProduct(product : Product){
+    let status:boolean = false
+    //if list is empty
+    if(this.shoppingCart.length === 0){
+       //console.log("List empty")
+       this.shoppingCart.push(new ShoppingCart(product.itemid, product.title, 1, product.price))
+       //console.log(this.shoppingCart)
 
     }else{
-      shoppingCart.quantity--;
-      console.log(this.shoppingCart)
-    }
+      this.shoppingCart.forEach((element, index)=>{
+        if(element.itemid === product.itemid){
+          this.incrementProduct(element);
+          status = true;
+        }
+      }); 
 
-  }
-  */
+      if(status === false){
+        this.shoppingCart.push(new ShoppingCart(product.itemid, product.title, 1, product.price))
+         //console.log(this.shoppingCart)
+      }
+     
+    }
+  
+    }
+  
 
   loadShoppingCart(){
-
+    return this.shoppingCart
   }
 
    
-  decrementProduct(shoppingCart : ShoppingCart){
-    if(shoppingCart.quantity === 1){
-      this.shoppingCart.forEach((element, index)=>{
-        if(element.itemid === shoppingCart.itemid) 
-        delete this.shoppingCart[index]
-        
-      });
-      
-
-    }else{
-      shoppingCart.quantity--;
-      console.log(this.shoppingCart)
-    }
-
-  }
   
-
+  /*
   addProduct(product : Product){
     if(this.shoppingCart.length == 0){
       //console.log("List empty")
@@ -101,8 +112,10 @@ export class ShoppingCartComponent implements OnInit {
 
       }
     }
-
   }
+  */
+ 
+
 
   
 

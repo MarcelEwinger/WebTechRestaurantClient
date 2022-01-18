@@ -1,7 +1,7 @@
 
 <mat-card>
 <mat-card class="Product"
-*ngFor="let s of shoppingCart">
+*ngFor="let s of loadShoppingCart()">
 <mat-grid-list cols="3" rowHeight="1:1">
   <mat-grid-tile>
    {{s.quantity}},{{s.title}}
