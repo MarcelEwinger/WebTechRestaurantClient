@@ -87,36 +87,6 @@ export class ShoppingCartComponent implements OnInit {
     return this.shoppingCart
   }
 
-   
-  
-  /*
-  addProduct(product : Product){
-    if(this.shoppingCart.length == 0){
-      //console.log("List empty")
-      this.shoppingCart.unshift(new ShoppingCart(product.itemid, product.title, 1, product.price))
-      console.log(this.shoppingCart)
-    }else{
-      //console.log("List is not empty");
-      for(let s of this.shoppingCart){
-        if(s.itemid === product.itemid){
-          s.quantity++;
-          console.log(this.shoppingCart)
-          break;
-
-        }if(s.itemid != product.itemid){
-          this.shoppingCart.unshift(new ShoppingCart(product.itemid, product.title, 1, product.price))
-          console.log(this.shoppingCart)
-          break;
-
-        }
-
-      }
-    }
-  }
-  */
- 
-
-
   
 
 }
