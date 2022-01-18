@@ -22,7 +22,7 @@ export class ShoppingCartComponent implements OnInit {
 
 
   constructor(private productListService :ProductListService ) {
-    this.subscription = this.productListService.getNumber().subscribe(Product =>{
+    this.subscription = this.productListService.getProduct().subscribe(Product =>{
       this.product = Product
       this.addProduct(this.product);
 
@@ -39,7 +39,7 @@ export class ShoppingCartComponent implements OnInit {
     shoppingCart.quantity++;
     console.log(this.shoppingCart)
   }
-
+  /*
   decrementProduct(shoppingCart : ShoppingCart){
     console.log("Test " + shoppingCart.quantity)
     if(shoppingCart.quantity === 1){
@@ -55,6 +55,29 @@ export class ShoppingCartComponent implements OnInit {
     }
 
   }
+  */
+
+  loadShoppingCart(){
+
+  }
+
+   
+  decrementProduct(shoppingCart : ShoppingCart){
+    if(shoppingCart.quantity === 1){
+      this.shoppingCart.forEach((element, index)=>{
+        if(element.itemid === shoppingCart.itemid) 
+        delete this.shoppingCart[index]
+        
+      });
+      
+
+    }else{
+      shoppingCart.quantity--;
+      console.log(this.shoppingCart)
+    }
+
+  }
+  
 
   addProduct(product : Product){
     if(this.shoppingCart.length == 0){
@@ -64,7 +87,6 @@ export class ShoppingCartComponent implements OnInit {
     }else{
       //console.log("List is not empty");
       for(let s of this.shoppingCart){
-
         if(s.itemid === product.itemid){
           s.quantity++;
           console.log(this.shoppingCart)

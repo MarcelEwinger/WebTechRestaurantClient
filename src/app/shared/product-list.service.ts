@@ -17,12 +17,7 @@ export class ProductListService {
 
   private subject = new Subject<any>();
 
-  sendNumber(number: number){
-    this.subject.next({text: number})
-  }
-  getNumber():Observable<any>{
-    return this.subject.asObservable();
-  }
+  
 
   sendProduct(product: Product){
     this.subject.next(product);
@@ -33,9 +28,6 @@ export class ProductListService {
 
   }
   
-
-  
-
   constructor(private http: HttpClient) { 
     this.productList = globalProductList;
   }
@@ -62,13 +54,6 @@ export class ProductListService {
   }
 
  
-
-  
-
-
-  
-
-
 getProductById(id : string): Product[]{
     return this.productList.filter((p) => p.itemid.toString() === id);
 }

@@ -45,15 +45,7 @@ export class ProductsComponent {
     })
 
   }
-  sendNumber(){
-    this.productListService.sendNumber(this.increament())
-  }
-
-  increament(){
-    this.count +=1;
-    console.log("done");
-    return this.count;
-  }
+ 
 
 
   sendProduct(product: Product){
