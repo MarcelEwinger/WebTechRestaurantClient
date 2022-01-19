@@ -1,12 +1,18 @@
 <mat-card class="Product">
     <mat-card-header>
-        <mat-card-title>{{product.itemid}}</mat-card-title>
+        <!--
+             <mat-card-title>{{product.itemid}}</mat-card-title>
+        -->
+       
         <mat-card-subtitle>{{product.title}}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content class="ProductContent">
-        <p *ngIf="product.description">Description: {{product.description}}</p>
+        <!--
+             <p *ngIf="product.description">Description: {{product.description}}</p>
 
+        -->
+       
         <p *ngIf="product.price">Price: {{product.price}}</p>
 
         <p ngDefaultControl [(ngModel)]="product.likes" *ngIf="product.likes">Likes: {{product.likes}}
@@ -17,23 +23,21 @@
         </p>
        
            
-
-
-
         <div *ngIf="product.likes&&product.dislikes">
             <p>{{calcStarRatio(product.likes, product.dislikes)}} <img src="../assets/star.png" width="20" alt=""> ({{product.likes+product.dislikes}})</p>
         </div>
 
-
+    <!--
         <p 
             *ngIf="product.allergen">Allergen/s: {{product.allergen}}
         </p> 
+    -->
 
 
         
 
     </mat-card-content>
-    
+    <!--
     <mat-card-actions>
         <button mat-button (click)="incrementLikes()" type="button"
             style="background-color:rgb(151, 236, 24); color:black">
@@ -45,6 +49,7 @@
             DISLIKE
         </button>
     </mat-card-actions>
+    -->
 
     <mat-card-actions>
         <button mat-button (click)="addProduct()" type="button"
@@ -54,7 +59,7 @@
 
     </mat-card-actions>
 
-    <a [routerLink]="['/product', product.itemid]" routerLinkActive="active">Detail</a>
+    <button mat-raised-button (click)="openDialog()">View Datails</button>
 
     
     

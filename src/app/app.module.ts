@@ -1,3 +1,4 @@
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,31 +18,31 @@ import {ProductsComponent } from './products/products.component';
 import {ProductComponent } from './product/product.component';
 
 import { ProductListService } from './shared/product-list.service';
-import { DetailComponent } from './detail/detail.component';
+
 
 import { HttpClientModule } from '@angular/common/http';
 import {ShoppingCartComponent } from './shoppingCart/shoppingCart.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { DialogProductComponent } from './dialogProduct/dialogProduct.component';
 
 
 
 export const appRoutes: Routes = [
   { path: '', component: ProductsComponent},
   { path: 'about', component: AboutComponent},
-  { path: 'product/:id', component: DetailComponent},
+  
   
 ];
 
 @NgModule({
-  declarations: [		
+  declarations: [			
     AppComponent,
     ProductsComponent,
     ProductComponent,
     AboutComponent,
-    DetailComponent,
     ShoppingCartComponent,
-    
+      DialogProductComponent
    ],
   imports: [
     BrowserModule,
@@ -57,6 +58,7 @@ export const appRoutes: Routes = [
     HttpClientModule,
     MatGridListModule,
     MatSidenavModule,
+    MatDialogModule,
 
     RouterModule.forRoot(
       appRoutes)],

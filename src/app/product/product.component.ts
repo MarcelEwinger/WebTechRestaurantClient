@@ -1,5 +1,8 @@
+import { DialogProductComponent } from './../dialogProduct/dialogProduct.component';
 import { Product } from './../model/product';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
 
 
 
@@ -14,11 +17,17 @@ export class ProductComponent {
   product!: Product; 
   
   
-  
-
   @Output() likeEmitter: EventEmitter<Product> = new EventEmitter();
   @Output() dislikeEmitter: EventEmitter<Product> =  new EventEmitter();
   @Output() shoppingCartEmitter: EventEmitter<Product> =  new EventEmitter();
+
+  constructor(public dialog: MatDialog){
+
+  }
+
+  openDialog() {
+    this.dialog.open(DialogProductComponent, {data: {title: this.product.title, description: this.product.description, allergens: this.product.allergen}});
+  }
 
 
   incrementLikes(){
@@ -52,3 +61,7 @@ export class ProductComponent {
   }
 
 }
+
+
+
+
