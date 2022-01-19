@@ -20,8 +20,9 @@ import { ProductListService } from './shared/product-list.service';
 import { DetailComponent } from './detail/detail.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { ShoppingCartComponent } from './shoppingCart/shoppingCart.component';
+import {ShoppingCartComponent } from './shoppingCart/shoppingCart.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 
@@ -39,7 +40,8 @@ export const appRoutes: Routes = [
     ProductComponent,
     AboutComponent,
     DetailComponent,
-      ShoppingCartComponent
+    ShoppingCartComponent,
+    
    ],
   imports: [
     BrowserModule,
@@ -54,6 +56,7 @@ export const appRoutes: Routes = [
     MatRadioModule,
     HttpClientModule,
     MatGridListModule,
+    MatSidenavModule,
 
     RouterModule.forRoot(
       appRoutes)],

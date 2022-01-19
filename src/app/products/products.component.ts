@@ -38,7 +38,6 @@ export class ProductsComponent {
   
 
   constructor(private productListService :ProductListService) {
-    //this.products = productListService.getProductList();
     this.productListService.getProductList().subscribe((p : Product[]) =>{
     this.products = p;
     console.log(this.products);
@@ -52,6 +51,7 @@ export class ProductsComponent {
     this.productListService.sendProduct(product);
   }
 
+  /*
   incrementLikes(product : Product): void{
     this.message = this.productListService.likeProduct(product)
    }
@@ -60,6 +60,7 @@ export class ProductsComponent {
    incrementDislikes(product : Product): void{
     this.message = this.productListService.dislikeProduct(product)
   }
+  */
 
   filterByTitle(word: string ): Product[]{
     return this.productListService.filterProductsByTitle(word, this.products);

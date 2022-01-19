@@ -1,21 +1,61 @@
-.form {
-  min-width: 150px;
-  width: 100%;
-}
 
-.example-full-width {
-  width: 20%;
-}
+
+
 .mat-radio-button ~ .mat-radio-button {
   margin-left: 16px;
   margin-bottom: 16px;
 }
 
 .filter{
-  max-width: 430px;
   border-style: solid;
   border-width: 3px;
   border-color: black;
-  margin: 5px;
+  padding:16px;
+  margin: 16px;
 
 }
+
+
+mat-sidenav-container{
+  height: 100%;
+}
+
+mat-sidenav-container, mat-sidenav-content{
+  padding: 16px;
+}
+
+mat-sidenav{
+  background-color: lightcoral;
+  width: 200px;
+  border-radius: 10px;
+}
+
+.flex-container {
+  display: flex;
+  
+  
+}
+
+.flex-right{
+  flex: 0 0 20%; /* flex-basis: 50% */
+  position: fixed;
+  width: 300px;
+  right: 5rem;
+  
+}
+.flex-left{
+  flex: 0 0 80%; /* flex-basis: 50% */
+  
+ 
+}
+
+
+
+
+
+
+
+
+
+
+

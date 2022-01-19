@@ -1,22 +1,54 @@
+<div class="filter">
+  <mat-form-field class="example-full-width">
+    <input name="Filter"  matInput [(ngModel)]='word' placeholder="Filter" (ngModelChange)="filterByTitle(word)">
+  </mat-form-field>
+</div>
 
-  <div class="filter">
-    <mat-form-field class="example-full-width">
-      <input name="Filter"  matInput [(ngModel)]='word' placeholder="Filter" (ngModelChange)="filterByTitle(word)">
-    </mat-form-field>
-  </div>
+
+
+<mat-sidenav-container>
+<mat-sidenav mode="side" opened>Sidenav</mat-sidenav>
+
+<mat-sidenav-content class="flex-container">
 
   
-  <app-product *ngFor="let product of filterByTitle(word)" [product]="product"
-  (likeEmitter) = "incrementLikes($event)"
-    (dislikeEmitter) = "incrementDislikes($event)"
+  <!--
+   <div class="flex-left">
+      <app-product *ngFor="let product of filterByTitle(word)" [product]="product"
+    (likeEmitter) = "incrementLikes($event)"
+      (dislikeEmitter) = "incrementDislikes($event)"
+      (shoppingCartEmitter) = "sendProduct($event)">
+    </app-product>
+  </div>
+  -->
+  <div class="flex-left">
+    <app-product *ngFor="let product of filterByTitle(word)" [product]="product"
     (shoppingCartEmitter) = "sendProduct($event)">
-    
-    
   </app-product>
-  <a routerLink="/about" routerLinkActive="active">About</a>
+</div>
+    
+
+  <div class="flex-right">
+      <app-shoppingCart></app-shoppingCart> 
+  </div>
+  
+<!--
+  <div>
+    <a routerLink="/about" routerLinkActive="active">About</a>
+  </div>
+  -->
+ 
+</mat-sidenav-content>
+</mat-sidenav-container>
+  
+  
+  
+
+  
+  
+  
 
 
-  <app-shoppingCart></app-shoppingCart> 
 
 
  
