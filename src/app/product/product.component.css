@@ -1,9 +1,11 @@
 .Product {
     max-width: 400px;
-    border-style: solid;
-    border-width: 3px;
-    border-color: black;
-    margin: 5px;
+    margin: 1rem;
+  }
+
+.mat-raised-button{
+  margin-right: 1rem;
+
   }
 
  
