@@ -35,6 +35,8 @@ export class ShoppingCartComponent implements OnInit {
 
 
   ngOnInit() {
+    let a = this.productListService.loadSession("shoppingCart");
+    console.log(a);
 
   
    
@@ -46,6 +48,7 @@ export class ShoppingCartComponent implements OnInit {
     console.log(this.shoppingCart);
     console.log(shoppingCart.price);
     this.countSum(Number(shoppingCart.price));
+    this.productListService.saveSession("shoppingCart", this.shoppingCart);
 
   }
   
@@ -63,6 +66,7 @@ export class ShoppingCartComponent implements OnInit {
      }
     });
     this.decreseSum(Number(shoppingCart.price));
+    this.productListService.saveSession("shoppingCart", this.shoppingCart);
     
     
   }
@@ -74,6 +78,8 @@ export class ShoppingCartComponent implements OnInit {
        this.shoppingCart.push(new ShoppingCart(product.itemid, product.title, 1, product.price))
        //console.log(this.shoppingCart)
        this.countSum(Number(product.price));
+
+       this.productListService.saveSession("shoppingCart", this.shoppingCart);
        
        
 
@@ -90,6 +96,7 @@ export class ShoppingCartComponent implements OnInit {
         this.shoppingCart.push(new ShoppingCart(product.itemid, product.title, 1, product.price))
          //console.log(this.shoppingCart)
          this.countSum(Number(product.price));
+         this.productListService.saveSession("shoppingCart", this.shoppingCart);
       }
     }
     }
@@ -113,11 +120,7 @@ export class ShoppingCartComponent implements OnInit {
       this.totalSum = Number((this.totalSum -  price).toFixed(2));
     }  
   }
-/*
-  openDialog() {
-    this.dialog.open(ShoppingCartComponentDialog, {data: {title: this.product.title, description: this.product.description, allergens: this.product.allergen}});
-  }
-  */
+
 
   
 
