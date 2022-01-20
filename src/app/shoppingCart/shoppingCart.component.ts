@@ -3,6 +3,7 @@ import { ShoppingCart } from './../model/shoppingCart';
 import { Product } from './../model/product';
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class ShoppingCartComponent implements OnInit {
 
 
 
-  constructor(private productListService :ProductListService ) {
+  constructor(private productListService :ProductListService, public dialog: MatDialog ) {
     this.subscription = this.productListService.getProduct().subscribe(Product =>{
       this.product = Product
       this.addProduct(this.product);
@@ -112,6 +113,11 @@ export class ShoppingCartComponent implements OnInit {
       this.totalSum = Number((this.totalSum -  price).toFixed(2));
     }  
   }
+/*
+  openDialog() {
+    this.dialog.open(ShoppingCartComponentDialog, {data: {title: this.product.title, description: this.product.description, allergens: this.product.allergen}});
+  }
+  */
 
   
 

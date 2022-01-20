@@ -26,25 +26,31 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { DialogProductComponent } from './dialogProduct/dialogProduct.component';
 import { PaymentComponent } from './payment/payment.component';
+import { WaiterComponent } from './waiter/waiter.component';
+import { ReviewComponent } from './review/review.component';
+
 
 
 
 export const appRoutes: Routes = [
-  { path: '', component: ProductsComponent},
+  { path: '', component: AboutComponent},
   { path: 'about', component: AboutComponent},
+  { path: 'table1/products', component: ProductsComponent},
   
   
 ];
 
 @NgModule({
-  declarations: [				
+  declarations: [							
     AppComponent,
     ProductsComponent,
     ProductComponent,
     AboutComponent,
     ShoppingCartComponent,
       DialogProductComponent,
-      PaymentComponent
+      PaymentComponent,
+      WaiterComponent,
+      ReviewComponent
    ],
   imports: [
     BrowserModule,
