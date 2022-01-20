@@ -25,6 +25,7 @@ import {ShoppingCartComponent } from './shoppingCart/shoppingCart.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { DialogProductComponent } from './dialogProduct/dialogProduct.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 
@@ -36,13 +37,14 @@ export const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [			
+  declarations: [				
     AppComponent,
     ProductsComponent,
     ProductComponent,
     AboutComponent,
     ShoppingCartComponent,
-      DialogProductComponent
+      DialogProductComponent,
+      PaymentComponent
    ],
   imports: [
     BrowserModule,
