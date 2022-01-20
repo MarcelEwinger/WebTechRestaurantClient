@@ -64,7 +64,7 @@ calcStarRatio(likes: number, dislikes: number){
 }
 
 getProductList(): Observable<any> {
-  return this.http.get(baseURL + "/products");
+  return this.http.get(baseURL + "/products/");
  }
 
 
