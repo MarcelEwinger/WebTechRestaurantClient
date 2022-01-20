@@ -1,9 +1,37 @@
-.Product {
-    max-width: 400px;
-    border-style: solid;
-    border-width: 3px;
-    border-color: black;
-    margin: 5px;
-  }
+.container{
+  display: flex;
+  flex-wrap: wrap;
+}
 
- 
+.child:not(:first-child){
+  flex: 1;
+}
+
+.child:nth-child(1) {
+  width: 100%;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-child {
+  flex: 2;
+}  
+
+.Product{
+  margin-bottom: 1rem;
+}
+
+#txt{
+  text-align: center;
+  
+}
+
+.btnPay{
+  width: 100%;
+}
+
+.sectionPay{
+  margin: 0.0rem;
+}

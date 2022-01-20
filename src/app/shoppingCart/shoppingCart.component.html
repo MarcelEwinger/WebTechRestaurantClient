@@ -1,44 +1,58 @@
 
-<mat-card>
+<mat-card class="block">
+  <mat-card-title id="txt">Shopping Cart</mat-card-title>
+
 <mat-card class="Product"
 *ngFor="let s of loadShoppingCart()">
-<mat-grid-list cols="3" rowHeight="1:1">
-  <mat-grid-tile>
-   {{s.quantity}},{{s.title}}
-  </mat-grid-tile>
-  <mat-grid-tile>
-    {{s.price}}
-   </mat-grid-tile>
-   <mat-grid-tile>
-    <mat-card-actions>
-      <button mat-button (click)="incrementProduct(s)" type="button"
-          style="background-color:rgb(151, 236, 24); color:black">
-          Add
-      </button>
+    <mat-card-content class="container">
+      <div class="child">
 
-      <button mat-button (click)="decrementProduct(s)" type="button"
-          style="background-color:rgb(151, 236, 24); color:black">
-          Decrease
-      </button>
+      <div class="flex-container">
 
+      <div class="flex-child">
+        <p *ngIf="s.quantity">{{s.quantity}}</p>
+      </div>
+
+      <div class="flex-child">
+        <p *ngIf="s.title"> {{s.title}}</p>
+      </div>
+
+      <div class="flex-child">
+        <p *ngIf="s.price"> {{s.price}}</p>
+      </div>
+    </div>
+
+    </div>
+    
+      <div class="child">
+        <button mat-raised-button (click)="incrementProduct(s)" >Add</button>
+      </div>
      
-  </mat-card-actions>
-   </mat-grid-tile>
-   
-
-</mat-grid-list>
+      <div class="child">
+        <button mat-raised-button (click)="decrementProduct(s)">Decrease</button>
+      </div>
   
 
+  </mat-card-content>
+     
+    
+</mat-card>
 
 
+  <mat-card-content>
 
 
+  </mat-card-content>
+
+  <mat-card-actions class="sectionPay">
+     <button mat-raised-button  class="btnPay"  id="btnPay" (click)="pay()">Pay {{this.totalSum}} €</button>
+  </mat-card-actions>
 
 
 
 
 </mat-card>
-</mat-card>
+
 
   
 
