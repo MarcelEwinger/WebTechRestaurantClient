@@ -1,3 +1,4 @@
+
 import { LocalStorageService } from './shared/localStorage.service';
 
 import { MatDialogModule } from '@angular/material/dialog';
@@ -20,6 +21,8 @@ import {ProductComponent } from './product/product.component';
 
 import { ProductListService } from './shared/product-list.service';
 
+import { DbService } from './shared/db.service';
+
 import { HttpClientModule } from '@angular/common/http';
 import {ShoppingCartComponent } from './shoppingCart/shoppingCart.component';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -30,22 +33,8 @@ import { WaiterComponent } from './waiter/waiter.component';
 import { ReviewComponent } from './review/review.component';
 import { DashboardGuestViewComponent } from './dashboardGuestView/dashboardGuestView.component';
 import { OrderComponent } from './order/order.component';
+import {MatSelectModule} from '@angular/material/select'
 
-
-
-/*
-export const appRoutes: Routes = [
-  { path: '', component: DashboardGuestViewComponent},
-  { path: 'table1/products', component: ProductsComponent},
-  { path: 'table1/products/payment', component: PaymentComponent},
-  { path: 'table1/products/waiter', component: WaiterComponent},
-  { path: 'table1/products/review', component: ReviewComponent},
-  { path: 'table1/products/order', component: OrderComponent}
-  
-  
-];
-
-*/
 
 const routes: Routes = [
   {path: 'dashboard',
@@ -109,9 +98,10 @@ const routes: Routes = [
     MatGridListModule,
     MatSidenavModule,
     MatDialogModule,
+    MatSelectModule,
     RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [ProductListService, LocalStorageService],
+  providers: [ProductListService, LocalStorageService, DbService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

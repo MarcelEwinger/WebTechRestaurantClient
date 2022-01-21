@@ -1,3 +1,61 @@
-<p>
-  review works!
-</p>
+
+
+<mat-card class="cards">
+  <mat-card-title>Who are you?</mat-card-title>
+
+  <form class="form">
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Firstname</mat-label>
+        <input matInput id="firstname">
+      </mat-form-field></td>
+      <td><mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Surename</mat-label>
+        <input matInput id="surename">
+      </mat-form-field></td>
+    </tr></table>
+  </form>
+
+  <mat-card-title>Rate your experience</mat-card-title>
+  <mat-form-field appearance="fill">
+    <mat-label>Select</mat-label>
+    <mat-select [(value)]="selectedValue">
+      <mat-option value="1">One Start</mat-option>
+      <mat-option value="2">Two Stars</mat-option>
+      <mat-option value="3">Three Stars</mat-option>
+      <mat-option value="4">Four Stars</mat-option>
+      <mat-option value="5">Five Stars</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-card-title>Describe your experience</mat-card-title>
+  <form class="form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Describe your experience</mat-label>
+      <textarea matInput id="txt"></textarea>
+    </mat-form-field>
+  </form>
+  <button mat-raised-button  class="addReview"  (click)="addReview()">Post Review</button>
+</mat-card>
+
+<mat-card class="cards" *ngFor="let s of loadReviews()">
+<mat-card-header>
+  <mat-card-title>{{s.firstname}} {{s.surname}}</mat-card-title>
+  </mat-card-header>
+  <div class="container">
+    <div class="child-left"> {{s.stars}}</div>
+    <div class="child-right"> {{s.reviewdate}}</div>
+  </div>
+  
+  
+    
+  
+  
+
+  <p>
+    {{s.textcomment}}
+
+  </p>
+<mat-card-content>
+</mat-card-content>
+</mat-card>

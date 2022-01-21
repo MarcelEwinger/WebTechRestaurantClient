@@ -1,14 +1,8 @@
+
 import { ShoppingCart } from './../model/shoppingCart';
 import { ProductListService } from './../shared/product-list.service';
 import { Product } from './../model/product';
 import { Component, Input } from '@angular/core';
-
-
-
-
-
-
-
 
 @Component({
   selector: 'app-products',
@@ -34,6 +28,7 @@ export class ProductsComponent {
   shoppingCart: ShoppingCart[] = []
 
   count: number = 0;
+  
 
   
 
@@ -42,6 +37,7 @@ export class ProductsComponent {
     this.products = p;
     console.log(this.products);
     })
+
 
   }
  
