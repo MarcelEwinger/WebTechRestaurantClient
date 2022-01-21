@@ -1,3 +1,11 @@
-<p>
-  waiter works!
-</p>
+<div class = "waiter">
+
+    <mat-card-actions class="sectionCall">
+      <button mat-raised-button  class="btnWaiter"  id="btnWaiter"  (click)="callWaiter()" [disabled]="called">Get advice</button>
+   </mat-card-actions>
+  
+<div>
+  <p *ngIf="called;">Waiting for advisory</p> 
+</div>
+  </div>
+  
