@@ -14,30 +14,17 @@ export class ProductsComponent {
 
   @Input()
   products!: Product[];
-  idVal!: string;
-  nameVal!: string;
-  reactionVal!: string;
-  error: string = "";
-
-  message: string = "";
   word: string = "";
-  priceVal! : number;
-  descriptionVal! : string;
-  tagsVal!: string;
-
   shoppingCart: ShoppingCart[] = []
-
   count: number = 0;
-  
-
   
 
   constructor(private productListService :ProductListService) {
     this.productListService.getProductList().subscribe((p : Product[]) =>{
     this.products = p;
+
     console.log(this.products);
     })
-
 
   }
  
@@ -58,7 +45,7 @@ export class ProductsComponent {
   }
   */
 
-  filterByTitle(word: string ): Product[]{
+  filterByTitle(word: string): Product[]{
     return this.productListService.filterProductsByTitle(word, this.products);
   }
 

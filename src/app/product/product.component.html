@@ -3,7 +3,7 @@
      
     <mat-card-title>{{product.title}}</mat-card-title>
 
-    <mat-card-content class="ProductContent">
+    <mat-card-content class="ProductContent" *ngIf="product.status == 'available'">
         <p *ngIf="product.price">Price: {{product.price}}</p>
 
 

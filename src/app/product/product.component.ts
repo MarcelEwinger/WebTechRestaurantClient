@@ -23,6 +23,7 @@ export class ProductComponent {
 
   constructor(public dialog: MatDialog){
 
+
   }
 
   openDialog() {
@@ -58,6 +59,14 @@ export class ProductComponent {
   }
   calcStarRatio(likes: number, dislikes: number){
     return (likes/(likes+dislikes)).toFixed(2);
+  }
+  checkStatus(){
+    if(this.product.status === "available"){
+      console.log("available");
+
+    }else{
+      console.log("not available");
+    }
   }
 
 }
