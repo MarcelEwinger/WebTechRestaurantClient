@@ -1,20 +1,26 @@
-import { Injectable } from '@angular/core';
+import { ShoppingCart } from './../model/shoppingCart';
 
-@Injectable({
-  providedIn: 'root'
-})
+
+import { Injectable } from '@angular/core';
+import { ReplaySubject, Subject } from 'rxjs';
+
+
+
+
+@Injectable({providedIn: 'root'})
 
 export class LocalStorageService {
   
 
-constructor() { 
+  constructor() {
+   
+  }
 
-}
-
-setData(data: any){
+  
+setInfo(data: any){
   const jsonData = JSON.stringify(data);
   localStorage.setItem('data', jsonData);
-  console.log("Save Data"); 
+  console.log("Save Data" + jsonData ); 
 }
 
 getData(){
@@ -24,8 +30,11 @@ getData(){
 
 removeData(key: string){
   localStorage.removeItem(key);
-
-
 }
 
+
+  
 }
+
+
+

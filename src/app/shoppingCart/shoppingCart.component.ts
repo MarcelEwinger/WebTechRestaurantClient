@@ -20,6 +20,7 @@ export class ShoppingCartComponent implements OnInit {
   product: any;
   subscription: Subscription;
   totalSum: number = 0;
+  
 
 
 
@@ -36,25 +37,36 @@ export class ShoppingCartComponent implements OnInit {
 
 
   ngOnInit() {
-    //console.log(this.localStorageServie.getData());
-    let data = this.localStorageServie.getData();
-    //console.log(data);
-    if(data != null)
-    this.shoppingCart.push(JSON.parse(data));
+    if(this.localStorageServie.getData() != null){
+      var temp = this.localStorageServie.getData();
+      if(temp !=null)
+      var obj = JSON.parse(temp);
+      console.log(obj);
+      this.shoppingCart = obj;
+      this.loadSum();
+      
     
-    console.log(this.shoppingCart);
-    this.loadShoppingCart();
-    
-    
+    }
     
    
+     
     
     
+    }
 
-  
-   
+    loadSum(){
+        this.shoppingCart.forEach((element, index)=>{
+          if(element.price != null)
+          this.totalSum = this.totalSum + (element.price  * element.quantity);
+         });
+      
+     
+    }
+
     
-  }
+    
+    
+  
 
   incrementProduct(shoppingCart : ShoppingCart){
     shoppingCart.quantity++;
@@ -62,7 +74,8 @@ export class ShoppingCartComponent implements OnInit {
     console.log(shoppingCart.price);
     this.countSum(Number(shoppingCart.price));
 
-    this.localStorageServie.setData(this.shoppingCart);
+    this.localStorageServie.setInfo(this.shoppingCart);
+    console.log(this.shoppingCart);
 
   }
   
@@ -81,7 +94,8 @@ export class ShoppingCartComponent implements OnInit {
     });
     
     this.decreseSum(Number(shoppingCart.price));
-    this.localStorageServie.setData(this.shoppingCart);
+    this.localStorageServie.setInfo(this.shoppingCart);
+    
     
     
   }
@@ -94,7 +108,7 @@ export class ShoppingCartComponent implements OnInit {
        //console.log(this.shoppingCart)
        this.countSum(Number(product.price));
 
-       this.localStorageServie.setData(this.shoppingCart);
+       this.localStorageServie.setInfo(this.shoppingCart);
        console.log(this.shoppingCart)
        
 
@@ -112,8 +126,9 @@ export class ShoppingCartComponent implements OnInit {
         this.shoppingCart.push(new ShoppingCart(product.itemid, product.title, 1, product.price))
          //console.log(this.shoppingCart)
          this.countSum(Number(product.price));
-         this.localStorageServie.setData(this.shoppingCart);
-         console.log(this.shoppingCart)
+
+         this.localStorageServie.setInfo(this.shoppingCart);
+         
       }
     }
     }

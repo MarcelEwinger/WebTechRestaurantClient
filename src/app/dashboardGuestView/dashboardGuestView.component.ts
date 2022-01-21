@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboardGuestView.component.scss']
 })
 export class DashboardGuestViewComponent implements OnInit {
-
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit() {
+    
   }
+  opened = true;
+
+  
+
+
 
 }
