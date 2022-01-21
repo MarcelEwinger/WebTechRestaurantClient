@@ -1,0 +1,50 @@
+mat-sidenav-container{
+    height: 100%;
+  }
+  
+  mat-sidenav{
+    height: 100%;
+    background-color: rgb(230, 230, 230);
+    width: 250px;
+  }
+  
+  mat-list{
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  mat-list-item a {
+    text-decoration: none;
+    color: #000;
+    height: 100%;
+    width: 100%;
+      display: flex;
+    flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  mat-list-item:hover{
+    font-weight:500;
+  }
+  
+  .logOut{
+    display: flex;
+    justify-content: center;
+  }
+  .logOut button:hover{
+    box-shadow: 0 1px rgb(173, 171, 171);
+  }
+  
+  .active-list-item{
+    background: darkgray;
+  }
+  
+  mat-divider{
+    color: #000;
+    width: 70%;
+  }

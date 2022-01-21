@@ -1,5 +1,5 @@
-import { MatDialogModule } from '@angular/material/dialog';
 
+import { MatDialogModule } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +18,7 @@ import {ProductsComponent } from './products/products.component';
 import {ProductComponent } from './product/product.component';
 
 import { ProductListService } from './shared/product-list.service';
+import { LocalStorageService } from './shared/localStorage.service';
 
 
 import { HttpClientModule } from '@angular/common/http';
@@ -28,29 +29,36 @@ import { DialogProductComponent } from './dialogProduct/dialogProduct.component'
 import { PaymentComponent } from './payment/payment.component';
 import { WaiterComponent } from './waiter/waiter.component';
 import { ReviewComponent } from './review/review.component';
+import { DashboardGuestViewComponent } from './dashboardGuestView/dashboardGuestView.component';
+import { OrderComponent } from './order/order.component';
 
 
 
 
 export const appRoutes: Routes = [
-  { path: '', component: AboutComponent},
-  { path: 'about', component: AboutComponent},
+  { path: '', component: DashboardGuestViewComponent},
   { path: 'table1/products', component: ProductsComponent},
+  { path: 'table1/products/payment', component: PaymentComponent},
+  { path: 'table1/products/waiter', component: WaiterComponent},
+  { path: 'table1/products/review', component: ReviewComponent},
+  { path: 'table1/products/order', component: OrderComponent}
   
   
 ];
 
 @NgModule({
-  declarations: [							
+  declarations: [									
     AppComponent,
     ProductsComponent,
     ProductComponent,
     AboutComponent,
     ShoppingCartComponent,
-      DialogProductComponent,
-      PaymentComponent,
-      WaiterComponent,
-      ReviewComponent
+    DialogProductComponent,
+    PaymentComponent,
+    WaiterComponent,
+    ReviewComponent,
+      DashboardGuestViewComponent,
+      OrderComponent
    ],
   imports: [
     BrowserModule,
@@ -71,7 +79,7 @@ export const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes)],
   exports: [RouterModule],
-  providers: [ProductListService],
+  providers: [ProductListService, LocalStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

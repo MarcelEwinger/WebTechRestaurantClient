@@ -67,16 +67,7 @@ getProductList(): Observable<any> {
   return this.http.get(baseURL + "/products/");
  }
 
- saveSession(key: string, value: any){
-   localStorage.removeItem(key);
-   localStorage.setItem(key, JSON.stringify(value));
-   console.log("Save Session");             
- }
- loadSession(key: string){
-  console.log("Load Session");  
-   return localStorage.getItem(key);
-  
- }
+
  
 
 

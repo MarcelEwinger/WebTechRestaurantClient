@@ -1,3 +1,4 @@
+import { LocalStorageService } from './../shared/localStorage.service';
 import { ProductListService } from './../shared/product-list.service';
 import { ShoppingCart } from './../model/shoppingCart';
 import { Product } from './../model/product';
@@ -24,7 +25,7 @@ export class ShoppingCartComponent implements OnInit {
 
 
 
-  constructor(private productListService :ProductListService, public dialog: MatDialog ) {
+  constructor(private productListService :ProductListService, public dialog: MatDialog, private localStorageServie: LocalStorageService ) {
     this.subscription = this.productListService.getProduct().subscribe(Product =>{
       this.product = Product
       this.addProduct(this.product);
@@ -35,8 +36,20 @@ export class ShoppingCartComponent implements OnInit {
 
 
   ngOnInit() {
-    let a = this.productListService.loadSession("shoppingCart");
-    console.log(a);
+    //console.log(this.localStorageServie.getData());
+    let data = this.localStorageServie.getData();
+    //console.log(data);
+    if(data != null)
+    this.shoppingCart.push(JSON.parse(data));
+    
+    console.log(this.shoppingCart);
+    this.loadShoppingCart();
+    
+    
+    
+   
+    
+    
 
   
    
@@ -48,7 +61,8 @@ export class ShoppingCartComponent implements OnInit {
     console.log(this.shoppingCart);
     console.log(shoppingCart.price);
     this.countSum(Number(shoppingCart.price));
-    this.productListService.saveSession("shoppingCart", this.shoppingCart);
+
+    this.localStorageServie.setData(this.shoppingCart);
 
   }
   
@@ -65,8 +79,9 @@ export class ShoppingCartComponent implements OnInit {
        }
      }
     });
+    
     this.decreseSum(Number(shoppingCart.price));
-    this.productListService.saveSession("shoppingCart", this.shoppingCart);
+    this.localStorageServie.setData(this.shoppingCart);
     
     
   }
@@ -79,8 +94,8 @@ export class ShoppingCartComponent implements OnInit {
        //console.log(this.shoppingCart)
        this.countSum(Number(product.price));
 
-       this.productListService.saveSession("shoppingCart", this.shoppingCart);
-       
+       this.localStorageServie.setData(this.shoppingCart);
+       console.log(this.shoppingCart)
        
 
     }else{
@@ -92,18 +107,20 @@ export class ShoppingCartComponent implements OnInit {
         }
       }); 
       
+      
       if(status === false){
         this.shoppingCart.push(new ShoppingCart(product.itemid, product.title, 1, product.price))
          //console.log(this.shoppingCart)
          this.countSum(Number(product.price));
-         this.productListService.saveSession("shoppingCart", this.shoppingCart);
+         this.localStorageServie.setData(this.shoppingCart);
+         console.log(this.shoppingCart)
       }
     }
     }
   
 
   loadShoppingCart(){
-    return this.shoppingCart
+    return this.shoppingCart;
   }
 
   pay(){

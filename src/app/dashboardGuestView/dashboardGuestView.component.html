@@ -1,0 +1,49 @@
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened>
+    <mat-list>
+
+      <mat-list-item>
+         <a routerLinkActive="active-list-item" routerLink="table1/products">Products</a>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+
+      <mat-list-item>
+        <a routerLinkActive="active-list-item" routerLink="table1/products/payment">Payment</a>
+     </mat-list-item>
+
+     <mat-divider></mat-divider>
+
+
+     <mat-list-item>
+      <a routerLinkActive="active-list-item" routerLink="table1/products/order">Order</a>
+   </mat-list-item>
+
+   <mat-divider></mat-divider>
+
+
+   <mat-list-item>
+    <a routerLinkActive="active-list-item" routerLink="table1/products/waiter">Waiter</a>
+  </mat-list-item>
+
+  <mat-divider></mat-divider>
+
+  <mat-list-item>
+    <a routerLinkActive="active-list-item" routerLink="table1/products/review">Review</a>
+  </mat-list-item>
+
+ <mat-divider></mat-divider>
+
+
+    </mat-list>
+
+    <div class="logOut">
+      <button mat-raised-button color="basic">Log out</button>
+    </div>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

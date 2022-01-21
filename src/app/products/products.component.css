@@ -15,24 +15,8 @@
 }
 
 
-mat-sidenav-container{
-  height: 100%;
-}
-
-mat-sidenav-container, mat-sidenav-content{
-  padding: 16px;
-}
-
-mat-sidenav{
-  background-color: lightcoral;
-  width: 200px;
-  border-radius: 10px;
-}
-
 .flex-container {
   display: flex;
-  
-  
 }
 
 .flex-right{
