@@ -11,7 +11,7 @@ const baseURL = "http://localhost:3000";
   providedIn: 'root'
 })
 export class DbService {
-  jwtToken: string = "";
+  jwtToken:any;
 
 constructor(private http: HttpClient) { 
 
@@ -50,10 +50,12 @@ getReviews(): Observable<any> {
     (val) => {
         console.log("POST call successful value returned in body", 
                     val);
+                    this.jwtToken = val;
+                    console.log(this.jwtToken);
     },
+    
     response => {
-        console.log("JWT Token", response);
-       this.jwtToken = response;
+        console.log("POST call in error", response);
     },
     () => {
         console.log("The POST observable is now completed.");
