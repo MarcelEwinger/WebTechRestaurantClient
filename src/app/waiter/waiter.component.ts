@@ -30,7 +30,7 @@ export class WaiterComponent implements OnInit {
     this.getStatus().subscribe((data: String) => this.status = data);
     if(this.status == 'waiting'){
       this.called = true;
-      
+
     }else{
       this.called = false;
       this.timestamp = "";
@@ -41,13 +41,24 @@ export class WaiterComponent implements OnInit {
 
   callWaiter(){
     this.called = true;
-    this.timestamp = this.date.getFullYear() + "-" + this.date.getMonth() + "-" + this.date.getDay();
-    this.http.post(baseURL + "/" + this.table + "/callWaiter", this.timestamp);
-    this.getCallID().subscribe((data: number) => this.callId = data);
+    this.timestamp = new Date().toISOString().slice(0, 10);
+    console.log(this.timestamp);
+    this.http.post(baseURL + "/" + this.table + "/callWaiter", this.timestamp) .subscribe(
+      (val) => {
+          console.log("POST call successful value returned in body", 
+                      val);
+      },
+      response => {
+          console.log("Error in Post", response);
+      },
+      () => {
+          console.log("The POST observable is now completed.");
+      });
+    //this.getCallID().subscribe((data: number) => this.callId = data);
   }
 
   getStatus(): Observable<any>{
-    return this.http.get<String>(baseURL + "/" + this.table + "/getCallStatus");
+    return this.http.get<String>(baseURL + "/" + this.table + "/getCallStatus/" + this.callId);
   }
 
   getCallID(): Observable<any>{
