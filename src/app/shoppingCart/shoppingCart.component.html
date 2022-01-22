@@ -45,7 +45,7 @@
   </mat-card-content>
 
   <mat-card-actions class="sectionPay">
-     <button mat-raised-button  class="btnPay"  id="btnPay" (click)="pay()">Pay {{this.totalSum}} €</button>
+     <button mat-raised-button  class="btnPay"  id="btnPay" (click)="pay()" [routerLink]="['/dashboard/payment']">Pay {{this.totalSum}} €</button>
   </mat-card-actions>
 
 

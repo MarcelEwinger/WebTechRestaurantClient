@@ -1,3 +1,4 @@
+import { Payment } from './../model/payment';
 import { Review } from './../model/review';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -35,7 +36,25 @@ getReviews(): Observable<any> {
     () => {
         console.log("The POST observable is now completed.");
     });
-  
+ }
+
+
+ askPayment(payment: Payment){
+  console.log(payment);
+   const body = JSON.stringify(payment);
+   console.log(body)
+   //const headers = { 'content-type': 'application/json'}  
+   this.http.post(baseURL + "/payment", payment) .subscribe(
+    (val) => {
+        console.log("POST call successful value returned in body", 
+                    val);
+    },
+    response => {
+        console.log("POST call in error", response);
+    },
+    () => {
+        console.log("The POST observable is now completed.");
+    });
 
  }
 

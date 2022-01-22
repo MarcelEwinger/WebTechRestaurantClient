@@ -113,26 +113,12 @@ export class ShoppingCartComponent implements OnInit {
        
 
     }else{
-      /*
-      this.shoppingCart.forEach((element, index)=>{
-        if(element.itemid === product.itemid){
-          this.incrementProduct(element);
-          status = true;
-         
-        }
-      }); 
-      */
-
       for(let i = 0; i < this.shoppingCart.length; i++){
         if(this.shoppingCart[i].itemid === product.itemid){
           this.incrementProduct(this.shoppingCart[i]);
           status = true;
-         
-
         }
-
       }
-      
       
       if(status === false){
         this.shoppingCart.push(new ShoppingCart(product.itemid, product.title, 1, product.price))
@@ -151,6 +137,8 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   pay(){
+    console.log("Test")
+  
   }
 
   countSum(price: number){

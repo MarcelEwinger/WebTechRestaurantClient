@@ -1,3 +1,55 @@
-<p>
-  payment works!
-</p>
+<router-outlet>
+
+  <div class="container">
+
+    <mat-card class="child">
+      <mat-card-title id="txt">Your Order</mat-card-title>
+
+     
+
+      <mat-card class="card"
+      *ngFor="let s of loadShoppingCart()">
+
+    <mat-card-content>
+      <div class="child">
+
+      <div class="container">
+
+      <div class="child">
+        <p *ngIf="s.quantity">{{s.quantity}}</p>
+      </div>
+
+      <div class="child">
+        <p *ngIf="s.title"> {{s.title}}</p>
+      </div>
+
+      <div class="child">
+        <p *ngIf="s.price"> {{s.price}}</p>
+      </div>
+    </div>
+
+    </div>
+    
+    </mat-card-content>
+    </mat-card>
+
+    <mat-card-actions class="sectionPay">
+      <button mat-raised-button  class="btnPay"  id="btnPay" (click)="pay()">Pay {{this.totalSum}} €</button>
+   </mat-card-actions>
+
+
+     
+     
+    </mat-card>
+  
+  <mat-card class="child">
+  
+  </mat-card>
+  
+  
+  </div>
+  
+  
+
+
+</router-outlet>
