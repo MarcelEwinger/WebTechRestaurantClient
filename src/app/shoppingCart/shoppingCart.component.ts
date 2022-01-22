@@ -113,6 +113,7 @@ export class ShoppingCartComponent implements OnInit {
        
 
     }else{
+      /*
       this.shoppingCart.forEach((element, index)=>{
         if(element.itemid === product.itemid){
           this.incrementProduct(element);
@@ -120,6 +121,17 @@ export class ShoppingCartComponent implements OnInit {
          
         }
       }); 
+      */
+
+      for(let i = 0; i < this.shoppingCart.length; i++){
+        if(this.shoppingCart[i].itemid === product.itemid){
+          this.incrementProduct(this.shoppingCart[i]);
+          status = true;
+         
+
+        }
+
+      }
       
       
       if(status === false){
