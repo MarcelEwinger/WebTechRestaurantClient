@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-//import { LocalStorageService } from '../shared/localStorage.service';
 
 const baseURL = "http://localhost:3000";
+var callId: number = -1;
 
 @Component({
   selector: 'app-waiter',
@@ -13,10 +13,7 @@ const baseURL = "http://localhost:3000";
 export class WaiterComponent implements OnInit {
 
   called: boolean = false;
-  date: Date = new Date();
-  timestamp: String = "";
-  table: number = 1;
-  callId: number = -1;
+  table: number = 888;
   status: String = "";
 
   constructor(private http: HttpClient) { 
@@ -25,25 +22,30 @@ export class WaiterComponent implements OnInit {
 
   ngOnInit(){
 
-    if(this.callId != -1){
+    console.log(callId);
 
-    this.getStatus().subscribe((data: String) => this.status = data);
-    if(this.status == 'waiting'){
+    if(callId != -1){
+
+    this.getStatus().subscribe((status: any) => {
+      this.status = status[Object.keys(status)[0]];
+      console.log(this.status);
+      console.log(callId);
+    
+    if(this.status == "waiting"){
       this.called = true;
 
     }else{
       this.called = false;
-      this.timestamp = "";
-      this.callId = -1;
-    }
+      callId = -1;
+    }});
+    
   }
+  console.log(this.called);
 }
 
   callWaiter(){
     this.called = true;
-    this.timestamp = new Date().toISOString().slice(0, 10);
-    console.log(this.timestamp);
-    this.http.post(baseURL + "/" + this.table + "/callWaiter", this.timestamp) .subscribe(
+    this.http.post(baseURL + "/" + this.table + "/callWaiter", "") .subscribe(
       (val) => {
           console.log("POST call successful value returned in body", 
                       val);
@@ -52,13 +54,17 @@ export class WaiterComponent implements OnInit {
           console.log("Error in Post", response);
       },
       () => {
-          console.log("The POST observable is now completed.");
+          console.log("The POST is now completed.");
+
+      this.getCallID().subscribe((data: any) => {
+      callId = parseInt(data[Object.keys(data)[0]], 10);
+      console.log(callId);
+    });
       });
-    //this.getCallID().subscribe((data: number) => this.callId = data);
   }
 
   getStatus(): Observable<any>{
-    return this.http.get<String>(baseURL + "/" + this.table + "/getCallStatus/" + this.callId);
+    return this.http.get<String>(baseURL + "/" + this.table + "/getCallStatus/" + callId);
   }
 
   getCallID(): Observable<any>{
