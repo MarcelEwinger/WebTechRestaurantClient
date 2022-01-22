@@ -35,7 +35,7 @@
     -->
 
     
-    <button mat-raised-button class="btn" (click)="addProduct()">Add</button>
+    <button mat-raised-button class="btn" (click)="addProduct()" [disabled]="notAvailable">Add</button>
     <button mat-raised-button class="btn" (click)="openDialog()">View Datails</button>
 
     

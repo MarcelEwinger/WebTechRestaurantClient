@@ -13,8 +13,12 @@ import { MatDialog } from '@angular/material/dialog';
 })
 
 export class ProductComponent {
+
+  notAvailable: boolean = false;
+
   @Input()
   product!: Product; 
+  
   
   
   @Output() likeEmitter: EventEmitter<Product> = new EventEmitter();
@@ -22,8 +26,9 @@ export class ProductComponent {
   @Output() shoppingCartEmitter: EventEmitter<Product> =  new EventEmitter();
 
   constructor(public dialog: MatDialog){
-
-
+    setTimeout(()=>{
+      this.checkStatus();
+    },50);
   }
 
   openDialog() {
@@ -53,20 +58,19 @@ export class ProductComponent {
   addProduct(){
     this.shoppingCartEmitter.emit(this.product);
      
-      
-    
     
   }
   calcStarRatio(likes: number, dislikes: number){
     return (likes/(likes+dislikes)).toFixed(2);
   }
-  checkStatus(){
-    if(this.product.status === "available"){
-      console.log("available");
 
-    }else{
-      console.log("not available");
-    }
+  checkStatus(){
+      if(this.product.status === "available"){
+        this.notAvailable = false;
+      }else{
+        this.notAvailable = true;
+      }
+    
   }
 
 }

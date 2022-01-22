@@ -1,8 +1,6 @@
 .Product {
     max-width: 400px;
     margin: 1rem;
-    border-color: lightcoral;
-    border-style: solid;
   }
 
 .mat-raised-button{
