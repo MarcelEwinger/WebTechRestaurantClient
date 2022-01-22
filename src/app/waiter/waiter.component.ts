@@ -13,7 +13,7 @@ var callId: number = -1;
 export class WaiterComponent implements OnInit {
 
   called: boolean = false;
-  table: number = 888;
+  table: number = 1; //<-- aendern
   status: String = "";
 
   constructor(private http: HttpClient) { 

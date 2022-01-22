@@ -30,6 +30,7 @@ export class ProductListService {
   
   constructor(private http: HttpClient) { 
     this.productList = globalProductList;
+
   }
 
  
@@ -66,6 +67,7 @@ calcStarRatio(likes: number, dislikes: number){
 getProductList(): Observable<any> {
   return this.http.get(baseURL + "/products/");
  }
+
 
 
  
