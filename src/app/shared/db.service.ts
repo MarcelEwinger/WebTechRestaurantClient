@@ -53,7 +53,7 @@ getReviews(): Observable<any> {
     },
     response => {
         console.log("JWT Token", response);
-        this.convertToken(response);
+       this.jwtToken = response;
     },
     () => {
         console.log("The POST observable is now completed.");
@@ -61,9 +61,6 @@ getReviews(): Observable<any> {
 
  }
 
- convertToken(response: any){
-  console.log(JSON.parse(response));
-   
- }
+ 
 
 }
