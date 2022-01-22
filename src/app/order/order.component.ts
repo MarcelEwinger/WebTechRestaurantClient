@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 var placedOrder: boolean = false;
 
@@ -17,8 +18,10 @@ export class OrderComponent implements OnInit {
 
   showOrder: boolean = false;
   status: String = "";
+  orderID: number = 0;
   
-  constructor() {
+  constructor(private http: HttpClient) {
+    this.orderID = 0;
     this.status = this.getOrderStatus();
 
   }
@@ -30,14 +33,14 @@ export class OrderComponent implements OnInit {
   
   }
 
+
   getOrderStatus(): String{
-
-
-
-
 
     return "";
   }
 
+  getStatus(): Observable<any>{
+    return this.http.get<String>(baseURL + "/" + table + "/getOrderStatus/" + this.orderID);
+  }
 
 }
