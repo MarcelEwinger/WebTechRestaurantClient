@@ -19,6 +19,10 @@ export class PaymentComponent implements OnInit {
   orderTotalSum: number = 0;
 
   payment: Payment[] = [];
+
+  jwtToken:any;
+
+  paymentRef:string = "jsnuebgfglwh3u";
  
 
 
@@ -38,16 +42,7 @@ export class PaymentComponent implements OnInit {
 
 
   }
-  pay(){
-    this.orderShoppingCart = this.shoppingCart;
-    this.orderTotalSum = this.totalSum;
-    //console.log(this.payment);
-    this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart));
-    
-
-
-   
-  }
+  
   loadSum(){
     this.shoppingCart.forEach((element, index)=>{
       if(element.price != null)
@@ -56,8 +51,48 @@ export class PaymentComponent implements OnInit {
   
  
 }
-  loadShoppingCart(){
+loadShoppingCart(){
     return this.shoppingCart;
+}
+/*
+executePayment(){
+  if(this.dbService.getJWTToken() != null){
+    this.jwtToken = this.dbService.getJWTToken();
+    console.log(this.jwtToken);
+
   }
+  const message ="Payment Successful <br> Order submitted <br> Please switch to Order or press the Button to see your Order Progress";
+  (<HTMLInputElement>document.getElementById("payment")).innerHTML = message;
+}
+*/
+errorInPayment(){
+  this.orderShoppingCart = this.shoppingCart;
+  this.orderTotalSum = this.totalSum;
+  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, "00sd0sd"));
+  setTimeout(() =>{
+    if(this.dbService.getJWTToken() != null){
+      this.jwtToken = this.dbService.getJWTToken();
+      (<HTMLInputElement>document.getElementById("payment")).innerHTML = "Error In Payment";
+    }
+  }, 200);
+
+  
+}
+executePayment(){
+  this.orderShoppingCart = this.shoppingCart;
+  this.orderTotalSum = this.totalSum;
+  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, this.paymentRef));
+
+  setTimeout(() =>{
+    if(this.dbService.getJWTToken() != null){
+      this.jwtToken = this.dbService.getJWTToken();
+      const message ="Payment Successful <br> Order submitted <br> Please switch to Order or press the Button to see your Order Progress";
+      (<HTMLInputElement>document.getElementById("payment")).innerHTML = message;
+    }
+  }, 200);
+  
+}
+
+
 
 }

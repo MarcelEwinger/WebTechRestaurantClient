@@ -33,9 +33,10 @@
     </mat-card-content>
     </mat-card>
 
-    <mat-card-actions class="sectionPay">
-      <button mat-raised-button  class="btnPay"  id="btnPay" (click)="pay()">Pay {{this.totalSum}} €</button>
-   </mat-card-actions>
+
+    <mat-card class="sectionPay">
+      <p style="text-align: center;"> Total Sum {{this.totalSum}} €</p>
+    </mat-card>
 
 
      
@@ -43,11 +44,41 @@
     </mat-card>
   
   <mat-card class="child">
+    <mat-card-title id="txt">Payment Status</mat-card-title>
+
+    
+
+      <mat-card-actions class="container">
+        <button mat-raised-button  class="child"   style="background-color:rgb(151, 236, 24);" id="executePayment" (click)="executePayment()">Execute Payment</button>
+        <button mat-raised-button  class="child"  style="background-color:rgb(226, 49, 49);" id="errorInPayment" (click)="errorInPayment()">Error in Payment</button>
+      </mat-card-actions>
+
+      <div>
+        <p id="payment"></p>
+
+      </div>
+      <mat-card-actions>
+      <button mat-raised-button   [routerLink]="['/dashboard/order']">Switch to Order</button>
+    </mat-card-actions>
+
+
+    
   
   </mat-card>
   
   
   </div>
+
+  <mat-card class="log">
+    <mat-card-title id="txt">JWT Token</mat-card-title>
+    <mat-card-actions>
+      <p id="jwt">
+        {{this.jwtToken}}
+      </p>
+  
+    </mat-card-actions>
+    
+  </mat-card>
   
   
 

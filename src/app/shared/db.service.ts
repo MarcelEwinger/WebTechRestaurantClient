@@ -17,6 +17,10 @@ constructor(private http: HttpClient) {
 
 }
 
+getJWTToken(){
+  return this.jwtToken;
+}
+
 getReviews(): Observable<any> {
   return this.http.get(baseURL + "/reviews");
  }
