@@ -44,6 +44,8 @@ export class PaymentComponent implements OnInit {
     //console.log(this.payment);
     this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart));
 
+    console.log(this.dbService.jwtToken);
+
 
    
   }
