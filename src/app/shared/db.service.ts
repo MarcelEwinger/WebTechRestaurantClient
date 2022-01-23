@@ -66,13 +66,14 @@ getReviews(): Observable<any> {
     (val) => {
         console.log("POST call successful value returned in body", 
                     val);
-              
-                if(this.orderId != null && this.orderId > 0){
-                  this.orderId = Number(val);
-                  console.log(this.orderId);
-                }else{
-                 console.log("Error"); 
-                }
+              if(Number(val) != null && Number(val > 0 )){
+                this.orderId = Number(val);
+                console.log(this.orderId);
+              }
+              else{
+                console.log("Error"); 
+               }
+               
            
     },
     
