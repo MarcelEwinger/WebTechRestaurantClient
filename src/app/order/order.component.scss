@@ -1,14 +1,33 @@
-p{
-    position: fixed;
-    top: 25%;
-    left: 50%;
-    text-decoration: solid;
-    font-size: 2em;
-    text-decoration: underline;
-  }
+.Information > p{
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  text-decoration: solid;
+  font-size: 2em;
+  text-decoration: underline;
+}
 
-  .information{
-    display: flex;
-    flex: 1;
-    margin: 1rem
+
+.OrderTitle * {
+  display: inline;
+  margin-right: 5em;
+}
+
+.OrderInformation * {
+  display: inline;
+  margin-right: 11em;
+}
+
+.Order{
+  margin-bottom: 2em;
+}
+
+.ProductTitle * {
+  display: inline;
+  margin-right: 3em;
+}
+
+.ProductInformation * {
+  display: inline;
+  margin-right: 9em;
 }

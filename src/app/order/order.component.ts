@@ -16,13 +16,23 @@ var table = 1;
 
 export class OrderComponent implements OnInit {
 
-  showOrder: boolean = false;
+  showOrder: boolean = true;
   status: String = "";
-  orderID: number = 0;
+  id: number = 0;
+  table: number;
+  likes: number;
+  dislikes: number;
+  title: String;
+  productStatus: String;
   
   constructor(private http: HttpClient) {
-    this.orderID = 0;
-    this.status = this.getOrderStatus();
+    this.id = 0;
+    this.table = table;
+    this.status = "We are working on it!";
+    this.likes = 5;
+    this.dislikes = 1;
+    this.title = "Test";
+    this.productStatus = "Keine Ahnung";
 
   }
 
@@ -33,14 +43,13 @@ export class OrderComponent implements OnInit {
   
   }
 
-
   getOrderStatus(): String{
 
     return "";
   }
 
-  getStatus(): Observable<any>{
-    return this.http.get<String>(baseURL + "/" + table + "/getOrderStatus/" + this.orderID);
-  }
+ /* getStatus(): Observable<any>{
+    return this.http.get<String>(baseURL + "/getOrderStatus/" + this.orderID);
+  }*/
 
 }

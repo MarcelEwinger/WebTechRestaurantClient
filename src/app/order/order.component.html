@@ -1,21 +1,46 @@
-<div>
 
-<mat-card-content class="information">
-<div>
-  <p *ngIf="!showOrder;">Please place an order first</p> 
+<div class="Information">
+  <p *ngIf="!showOrder; else show">Please place an order first</p> 
 </div>
-</mat-card-content>
 
-</div>
+<ng-template #show>
+
+<mat-card class="Order">
+  <mat-card-title class="OrderTitle">
+
+    <p>ID</p>
+    <p>Table</p>
+    <p>Status</p>
+  </mat-card-title>
+
+  <mat-card-content class="OrderInformation">
+
+  <p>{{id}}</p>
+  <p>{{table}}</p>
+  <p>{{status}}</p>
+
+  </mat-card-content>
+
+
+  </mat-card>
+  <mat-card class="Product">
+    <mat-card-title class="ProductTitle">
   
- 
-
+      <p>Title</p>
+      <p>Likes</p>
+      <p>Dislikes</p>
+      <p>Processing Status</p>
+    </mat-card-title>
   
+    <mat-card-content class="ProductInformation">
   
+    <p>{{title}}</p>
+    <p>{{likes}}</p>
+    <p>{{dislikes}}</p>
+    <p>{{productStatus}}</p>
   
+    </mat-card-content>
+    </mat-card>
 
 
-
-
- 
-  
+  </ng-template>
