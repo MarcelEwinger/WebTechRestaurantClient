@@ -1,6 +1,6 @@
 import { Payment } from './../model/payment';
 import { Review } from './../model/review';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, JsonpClientBackend } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, Subject, throwError } from 'rxjs';
 
@@ -12,6 +12,7 @@ const baseURL = "http://localhost:3000";
 })
 export class DbService {
   jwtToken:any;
+  orderId: number = 0;
 
 constructor(private http: HttpClient) { 
 
@@ -21,9 +22,20 @@ getJWTToken(){
   return this.jwtToken;
 }
 
+getOrderId(){
+  return this.orderId;
+}
+
+setOrderId(val: any){
+}
+
 getReviews(): Observable<any> {
   return this.http.get(baseURL + "/reviews");
  }
+
+ getOrder(id:number){
+   return this.http.get(baseURL + "/1/getOrder/" + id+"");
+}
 
  newReview(review: Review){
   // console.log(review);
@@ -34,7 +46,7 @@ getReviews(): Observable<any> {
     (val) => {
         console.log("POST call successful value returned in body", 
                     val);
-                    //console.log(val);
+                    
     },
     response => {
         console.log("POST call in error", response);
@@ -54,8 +66,14 @@ getReviews(): Observable<any> {
     (val) => {
         console.log("POST call successful value returned in body", 
                     val);
-                    this.jwtToken = val;
-                    console.log(this.jwtToken);
+              
+                if(this.orderId != null && this.orderId > 0){
+                  this.orderId = Number(val);
+                  console.log(this.orderId);
+                }else{
+                 console.log("Error"); 
+                }
+           
     },
     
     response => {
@@ -66,6 +84,9 @@ getReviews(): Observable<any> {
     });
 
  }
+
+
+ 
 
  
 
