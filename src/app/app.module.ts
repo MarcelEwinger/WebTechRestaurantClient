@@ -33,7 +33,10 @@ import { WaiterComponent } from './waiter/waiter.component';
 import { ReviewComponent } from './review/review.component';
 import { DashboardGuestViewComponent } from './dashboardGuestView/dashboardGuestView.component';
 import { OrderComponent } from './order/order.component';
-import {MatSelectModule} from '@angular/material/select'
+import {MatSelectModule} from '@angular/material/select';
+import {MatExpansionModule} from '@angular/material/expansion';
+
+
 
 
 const routes: Routes = [
@@ -99,6 +102,7 @@ const routes: Routes = [
     MatSidenavModule,
     MatDialogModule,
     MatSelectModule,
+    MatExpansionModule,
     RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [ProductListService, LocalStorageService, DbService],

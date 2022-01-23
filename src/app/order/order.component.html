@@ -1,4 +1,32 @@
+<p>It works</p>
 
+<button mat-raised-button  (click)="getOrder()">Execute Order</button>
+
+<div *ngFor="let s of loadOrder()">
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{s.tableid}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{s.status}}
+      </mat-panel-description>
+      <mat-panel-description>
+        {{s.totalamount}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+   <p *ngFor="let s of this.loadOrderedItems()">
+      {{s.itemid}},{{s.status}}
+
+    
+    
+    </p>
+  </mat-expansion-panel>
+ 
+</mat-accordion>
+</div>
+<!--
 <div class="Information">
   <p *ngIf="!showOrder; else show">Please place an order first</p> 
 </div>
@@ -44,3 +72,4 @@
 
 
   </ng-template>
+  -->

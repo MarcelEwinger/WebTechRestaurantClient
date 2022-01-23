@@ -22,20 +22,20 @@ getJWTToken(){
   return this.jwtToken;
 }
 
-getOrderId(){
-  return this.orderId;
-}
 
-setOrderId(val: any){
-}
 
 getReviews(): Observable<any> {
   return this.http.get(baseURL + "/reviews");
  }
 
- getOrder(id:number){
-   return this.http.get(baseURL + "/1/getOrder/" + id+"");
-}
+ getOrder(id:number):Observable<any>{
+   return this.http.get(baseURL + "/1/getOrder/"+id);
+  }
+  getOrderedItems(id:number):Observable<any>{
+    return this.http.get(baseURL + "/1/getOrderedItems/"+id);
+ }
+
+
 
  newReview(review: Review){
   // console.log(review);
@@ -73,22 +73,13 @@ getReviews(): Observable<any> {
               else{
                 console.log("Error"); 
                }
-               
-           
     },
-    
     response => {
         console.log("POST call in error", response);
     },
     () => {
         console.log("The POST observable is now completed.");
     });
-
  }
-
-
- 
-
- 
 
 }
