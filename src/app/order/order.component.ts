@@ -3,8 +3,6 @@ import { DbService } from '../shared/db.service';
 
 var placedOrder: boolean = false;
 
-const baseURL = "http://localhost:3000";
-
 var table = 1;
 
 @Component({
@@ -25,14 +23,13 @@ export class OrderComponent implements OnInit {
   productStatus: String;
   
   constructor(private dbService: DbService) {
-    this.orderID = 0;
+    this.orderID = dbService.orderId;
     this.table = table;
     this.status = "We are working on it!";
     this.likes = 5;
     this.dislikes = 1;
     this.title = "Test";
     this.productStatus = "Keine Ahnung";
-
   }
 
   ngOnInit() {
@@ -42,10 +39,13 @@ export class OrderComponent implements OnInit {
   
   }
 
-  getOrder(){
+  /*getOrder(){
     this.dbService.getOrder(this.orderID).subscribe((Order: any) => {
-      
     });
+  }*/
+
+  getOrderedProducts(){
+    
   }
 
 }
