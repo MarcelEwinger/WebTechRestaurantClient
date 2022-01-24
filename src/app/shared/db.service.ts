@@ -41,8 +41,11 @@ getJWTToken(){
  }
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 15fe012befe5be49726eeb1e064fdf1b208413c3
  getReviews(): Observable<any> {
   return this.http.get(baseURL + "/:table/dashboard/reviews");
  }
@@ -88,7 +91,33 @@ getJWTToken(){
     });
  }
 
+<<<<<<< HEAD
 
 
+=======
+ setLikesInDB(id: number){
+  this.http.put(baseURL + "/menuItem/like/" + id, "").subscribe(
+    (val) => {
+        console.log("Like Update successful", 
+                    val);        
+    },
+    response => {
+        console.log("Like Update error", response);
+    },
+    );
+}
+
+setDislikesInDB(id: number){
+  this.http.put(baseURL + "/menuItem/dislike/" + id, "").subscribe(
+    (val) => {
+        console.log("Dislike Update successful", 
+                    val);        
+    },
+    response => {
+        console.log("Dislike Update error", response);
+    },
+    );
+}
+>>>>>>> 15fe012befe5be49726eeb1e064fdf1b208413c3
 
 }
