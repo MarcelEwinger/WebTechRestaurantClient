@@ -91,7 +91,7 @@ executePayment(){
   this.orderShoppingCart = this.shoppingCart;
   this.orderTotalSum = this.totalSum;
   this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, this.paymentRef), this.tableNumber);
-
+/*
   setTimeout(() =>{
     if(this.dbService.getJWTToken() != null){
       this.jwtToken = this.dbService.getJWTToken();
@@ -99,6 +99,8 @@ executePayment(){
       (<HTMLInputElement>document.getElementById("payment")).innerHTML = message;
     }
   }, 200);
+  */
+ 
   
 }
 

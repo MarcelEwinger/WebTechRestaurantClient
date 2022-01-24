@@ -1,3 +1,5 @@
+import { OrderedItems } from './../model/ordereditems';
+import { Order } from './../model/order';
 import { ActivatedRoute } from '@angular/router';
 import { Payment } from './../model/payment';
 import { Review } from './../model/review';
@@ -14,6 +16,10 @@ const baseURL = "http://localhost:3000";
 export class DbService {
   jwtToken:any;
   orderId: number = 0;
+  orderStatusToken:number = 0;
+  
+  
+  
 
 constructor(private http: HttpClient, private route: ActivatedRoute) { 
 
@@ -36,19 +42,17 @@ getJWTToken(){
 
 
 
+
  getReviews(): Observable<any> {
   return this.http.get(baseURL + "/:table/dashboard/reviews");
  }
  newReview(review: Review){
-  // console.log(review);
    const body = JSON.stringify(review);
-   console.log(body)
-   //const headers = { 'content-type': 'application/json'}  
+   console.log(body);
    this.http.post(baseURL + "/:table/dashboard/reviews", review) .subscribe(
     (val) => {
         console.log("POST call successful value returned in body", 
-                    val);
-                    
+                    val);      
     },
     response => {
         console.log("POST call in error", response);
@@ -63,8 +67,6 @@ getJWTToken(){
   console.log(payment);
    const body = JSON.stringify(payment);
    console.log(body)
-   
-   //const headers = { 'content-type': 'application/json'}  
    this.http.post(baseURL + "/" + tableNumber+"/dashboard/payment", payment) .subscribe(
     (val) => {
         console.log("POST call successful value returned in body", 
@@ -74,6 +76,7 @@ getJWTToken(){
                 console.log(this.orderId);
               }
               else{
+                this.orderId = 0;
                 console.log("Error"); 
                }
     },
@@ -84,5 +87,8 @@ getJWTToken(){
         console.log("The POST observable is now completed.");
     });
  }
+
+
+
 
 }
