@@ -41,6 +41,7 @@ getJWTToken(){
  }
 
 
+
  getReviews(): Observable<any> {
   return this.http.get(baseURL + "/:table/dashboard/reviews");
  }
@@ -85,7 +86,6 @@ getJWTToken(){
         console.log("The POST observable is now completed.");
     });
  }
-
 
  setLikesInDB(id: number){
   this.http.put(baseURL + "/menuItem/like/" + id, "").subscribe(
