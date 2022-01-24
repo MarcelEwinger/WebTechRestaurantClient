@@ -1,3 +1,35 @@
-22.02.2022 --> Payment, Order
+Client
+    UI
+        Smartphone Compatible
 
-Url fix, productList HTML Fix, VirtualCategory, productList status fix, 
+    Products
+	    localStorage Like bzw. Dislike
+        Display VirtualCategory (Top Sellers, other Categories)
+     
+    Payment
+        Return JWT Token
+        
+
+    Order
+        Display Bug by switching cards
+        What if Multiple Orders?
+            Order Bug: Running Order and new Order is canceled
+            When execute new Payment the old Order wont be tracked any more
+
+        If Order is "delivered" stop asking db
+
+
+    Review
+        check Imputs
+        maybe some UI Changes 
+    
+    Waiter
+        DB Verbindung auf DB.Service auslagern
+        Deleted Call rictig implementieren
+
+    LogOut
+        Message to Server
+
+Backend
+    cancel everything
+
