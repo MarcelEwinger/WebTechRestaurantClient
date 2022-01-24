@@ -1,6 +1,8 @@
 Client
+
     UI
         Smartphone Compatible
+        Sidebar close/open function
 
     Products
 	    localStorage Like bzw. Dislike
@@ -26,6 +28,7 @@ Client
     Waiter
         DB Verbindung auf DB.Service auslagern
         Deleted Call rictig implementieren
+        Reload page Bug
 
     LogOut
         Message to Server
