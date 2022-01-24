@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 const baseURL = "http://localhost:3000";
 var callId: number = -1;
@@ -13,11 +14,17 @@ var callId: number = -1;
 export class WaiterComponent implements OnInit {
 
   called: boolean = false;
-  table: number = 1; //<-- aendern
+  table: number = 0;
   status: String = "";
+  href: String = "";
 
-  constructor(private http: HttpClient) { 
-    
+  constructor(private http: HttpClient, private router: Router) { 
+    this.href = this.router.url;
+    console.log(this.router.url);
+
+    let works: String[] = this.href.split('/');
+    console.log(works[1]);
+    this.table = Number(works[1]);
   }
 
   ngOnInit(){
