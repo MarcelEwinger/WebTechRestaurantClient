@@ -37,8 +37,9 @@
     
     <button mat-raised-button class="btn" (click)="addProduct()" [disabled]="notAvailable">Add</button>
     <button mat-raised-button class="btn" (click)="openDialog()">View Datails</button>
+    <button mat-raised-button class="btnLike" (click)="incrementLikes()" [disabled]="rated">Like</button>
+    <button mat-raised-button class="btnDislike" (click)="incrementDislikes()" [disabled]="rated">Dislike</button>
 
-    
     
 </mat-card>
 

@@ -35,7 +35,6 @@ getJWTToken(){
  }
 
 
-
  getReviews(): Observable<any> {
   return this.http.get(baseURL + "/:table/dashboard/reviews");
  }
@@ -84,5 +83,29 @@ getJWTToken(){
         console.log("The POST observable is now completed.");
     });
  }
+
+ setLikesInDB(id: number){
+  this.http.put(baseURL + "/menuItem/like/" + id, "").subscribe(
+    (val) => {
+        console.log("Like Update successful", 
+                    val);        
+    },
+    response => {
+        console.log("Like Update error", response);
+    },
+    );
+}
+
+setDislikesInDB(id: number){
+  this.http.put(baseURL + "/menuItem/dislike/" + id, "").subscribe(
+    (val) => {
+        console.log("Dislike Update successful", 
+                    val);        
+    },
+    response => {
+        console.log("Dislike Update error", response);
+    },
+    );
+}
 
 }

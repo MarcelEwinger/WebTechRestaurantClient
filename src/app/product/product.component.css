@@ -8,4 +8,13 @@
 
   }
 
+  .btnLike{
+    background-color: greenyellow;
+    margin-left: 20px;
+  }
+
+  .btnDislike{
+    background-color: red;
+  }
+
  

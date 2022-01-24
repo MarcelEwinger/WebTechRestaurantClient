@@ -2,6 +2,7 @@ import { DialogProductComponent } from './../dialogProduct/dialogProduct.compone
 import { Product } from './../model/product';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { DbService } from '../shared/db.service';
 
 
 
@@ -15,6 +16,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class ProductComponent {
 
   notAvailable: boolean = false;
+  rated: boolean = false;
 
   @Input()
   product!: Product; 
@@ -25,7 +27,7 @@ export class ProductComponent {
   @Output() dislikeEmitter: EventEmitter<Product> =  new EventEmitter();
   @Output() shoppingCartEmitter: EventEmitter<Product> =  new EventEmitter();
 
-  constructor(public dialog: MatDialog){
+  constructor(public dialog: MatDialog,  private dbService: DbService){
     setTimeout(()=>{
       this.checkStatus();
     },50);
@@ -43,8 +45,13 @@ export class ProductComponent {
     }else{
       this.product.likes = 1;
     }
-    
+
+    //neue Likes in DB schreiben
+    this.dbService.setLikesInDB(this.product.itemid);
+
+    this.rated = true;
   }
+
 
   incrementDislikes(){
     this.dislikeEmitter.emit(this.product);
@@ -53,7 +60,12 @@ export class ProductComponent {
   
     }else{
       this.product.dislikes = 1;
-    }  
+    }
+    
+    //neue Dislikes in DB schreiben
+    this.dbService.setDislikesInDB(this.product.itemid)
+    
+    this.rated = true;
   }
   addProduct(){
     this.shoppingCartEmitter.emit(this.product);
