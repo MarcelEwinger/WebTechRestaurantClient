@@ -25,14 +25,18 @@ export class PaymentComponent implements OnInit {
 
   paymentRef:string = "jsnuebgfglwh3u";
 
-  public href: string = "";
+  //public href: string = "";
 
-
+  tableNumber:number = 0;
  
 
   constructor(private productListService :ProductListService, public dialog: MatDialog, private localStorageServie: LocalStorageService, private dbService: DbService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+   let href = this.router.url;
+    const works = href.split('/');
+    console.log(works[1]);
+    this.tableNumber = Number(works[1]);
    
 
     if(this.localStorageServie.getData() != null){
@@ -71,16 +75,9 @@ executePayment(){
 }
 */
 errorInPayment(){
-  this.href = this.router.url;
-  console.log(this.router.url);
-
-  const works = this.href.split('/');
-  console.log(works[1]);
-  const tableNumber = Number(works[1]);
- 
   this.orderShoppingCart = this.shoppingCart;
   this.orderTotalSum = this.totalSum;
-  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, "00sd0sd"), tableNumber);
+  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, "00sd0sd"), this.tableNumber);
   setTimeout(() =>{
     if(this.dbService.getJWTToken() != null){
       this.jwtToken = this.dbService.getJWTToken();
@@ -91,17 +88,9 @@ errorInPayment(){
   
 }
 executePayment(){
-  this.href = this.router.url;
-  console.log(this.router.url);
-
-  const works = this.href.split('/');
-  console.log(works[1]);
-  const tableNumber = Number(works[1]);
- 
- 
   this.orderShoppingCart = this.shoppingCart;
   this.orderTotalSum = this.totalSum;
-  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, this.paymentRef), tableNumber);
+  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, this.paymentRef), this.tableNumber);
 
   setTimeout(() =>{
     if(this.dbService.getJWTToken() != null){
