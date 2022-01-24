@@ -41,11 +41,7 @@ getJWTToken(){
  }
 
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 15fe012befe5be49726eeb1e064fdf1b208413c3
  getReviews(): Observable<any> {
   return this.http.get(baseURL + "/:table/dashboard/reviews");
  }
@@ -91,10 +87,6 @@ getJWTToken(){
     });
  }
 
-<<<<<<< HEAD
-
-
-=======
  setLikesInDB(id: number){
   this.http.put(baseURL + "/menuItem/like/" + id, "").subscribe(
     (val) => {
@@ -118,6 +110,7 @@ setDislikesInDB(id: number){
     },
     );
 }
->>>>>>> 15fe012befe5be49726eeb1e064fdf1b208413c3
+
+
 
 }
