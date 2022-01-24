@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Payment } from './../model/payment';
 import { Review } from './../model/review';
 import { HttpClient, HttpErrorResponse, JsonpClientBackend } from '@angular/common/http';
@@ -14,7 +15,7 @@ export class DbService {
   jwtToken:any;
   orderId: number = 0;
 
-constructor(private http: HttpClient) { 
+constructor(private http: HttpClient, private route: ActivatedRoute) { 
 
 }
 
@@ -24,9 +25,7 @@ getJWTToken(){
 
 
 
-getReviews(): Observable<any> {
-  return this.http.get(baseURL + "/reviews");
- }
+
 
  getOrder(id:number):Observable<any>{
    return this.http.get(baseURL + "/1/getOrder/"+id);
@@ -37,12 +36,15 @@ getReviews(): Observable<any> {
 
 
 
+ getReviews(): Observable<any> {
+  return this.http.get(baseURL + "/:table/dashboard/reviews");
+ }
  newReview(review: Review){
   // console.log(review);
    const body = JSON.stringify(review);
    console.log(body)
    //const headers = { 'content-type': 'application/json'}  
-   this.http.post(baseURL + "/reviews", review) .subscribe(
+   this.http.post(baseURL + "/:table/dashboard/reviews", review) .subscribe(
     (val) => {
         console.log("POST call successful value returned in body", 
                     val);
@@ -57,12 +59,13 @@ getReviews(): Observable<any> {
  }
 
 
- askPayment(payment: Payment){
+ askPayment(payment: Payment, tableNumber: Number){
   console.log(payment);
    const body = JSON.stringify(payment);
    console.log(body)
+   
    //const headers = { 'content-type': 'application/json'}  
-   this.http.post(baseURL + "/payment", payment) .subscribe(
+   this.http.post(baseURL + "/" + tableNumber+"/dashboard/payment", payment) .subscribe(
     (val) => {
         console.log("POST call successful value returned in body", 
                     val);

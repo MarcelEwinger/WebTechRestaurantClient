@@ -40,7 +40,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 
 
 const routes: Routes = [
-  {path: 'dashboard',
+  {path: ':table/dashboard',
   component: DashboardGuestViewComponent,
   children:[
     {

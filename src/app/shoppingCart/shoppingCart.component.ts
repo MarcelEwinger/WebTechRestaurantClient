@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from './../shared/localStorage.service';
 import { ProductListService } from './../shared/product-list.service';
 import { ShoppingCart } from './../model/shoppingCart';
@@ -5,6 +6,7 @@ import { Product } from './../model/product';
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+
 
 
 @Component({
@@ -20,6 +22,9 @@ export class ShoppingCartComponent implements OnInit {
   product: any;
   subscription: Subscription;
   totalSum: number = 0;
+
+  url!: string;
+
   
 
 
@@ -32,6 +37,8 @@ export class ShoppingCartComponent implements OnInit {
       this.addProduct(this.product);
 
     });
+
+  
    }
 
 

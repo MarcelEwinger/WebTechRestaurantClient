@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { DbService } from './../shared/db.service';
 import { Payment } from './../model/payment';
 
@@ -23,13 +24,17 @@ export class PaymentComponent implements OnInit {
   jwtToken:any;
 
   paymentRef:string = "jsnuebgfglwh3u";
+
+  public href: string = "";
+
+
  
 
-
-
-  constructor(private productListService :ProductListService, public dialog: MatDialog, private localStorageServie: LocalStorageService, private dbService: DbService) { }
+  constructor(private productListService :ProductListService, public dialog: MatDialog, private localStorageServie: LocalStorageService, private dbService: DbService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+   
+
     if(this.localStorageServie.getData() != null){
       var temp = this.localStorageServie.getData();
       if(temp !=null)
@@ -39,7 +44,7 @@ export class PaymentComponent implements OnInit {
       console.log(this.shoppingCart);
       this.loadSum();
     }
-
+   
 
   }
   
@@ -66,9 +71,16 @@ executePayment(){
 }
 */
 errorInPayment(){
+  this.href = this.router.url;
+  console.log(this.router.url);
+
+  const works = this.href.split('/');
+  console.log(works[1]);
+  const tableNumber = Number(works[1]);
+ 
   this.orderShoppingCart = this.shoppingCart;
   this.orderTotalSum = this.totalSum;
-  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, "00sd0sd"));
+  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, "00sd0sd"), tableNumber);
   setTimeout(() =>{
     if(this.dbService.getJWTToken() != null){
       this.jwtToken = this.dbService.getJWTToken();
@@ -79,9 +91,17 @@ errorInPayment(){
   
 }
 executePayment(){
+  this.href = this.router.url;
+  console.log(this.router.url);
+
+  const works = this.href.split('/');
+  console.log(works[1]);
+  const tableNumber = Number(works[1]);
+ 
+ 
   this.orderShoppingCart = this.shoppingCart;
   this.orderTotalSum = this.totalSum;
-  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, this.paymentRef));
+  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, this.paymentRef), tableNumber);
 
   setTimeout(() =>{
     if(this.dbService.getJWTToken() != null){
