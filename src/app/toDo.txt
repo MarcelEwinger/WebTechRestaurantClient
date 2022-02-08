@@ -27,8 +27,8 @@ Client
 
     Review
         Marcel:
-            check Inputs
-            UI Changes
+            check Inputs (Client) --> Finished
+            UI Changes  --> Finished
 
         Raphi:
 	        Add Uwuifier 
