@@ -84,21 +84,11 @@ export class ReviewComponent implements OnInit {
    
   }
 
-  createDivRatingDot(){
-    const node = document.createElement("div");
-    /*
-    node.setAttribute("class", "ratingDot");
-    document.getElementById("ratingID")?.append(node);
-    console.log("Added");
-    */
-   node
-    
-   
-
-    
-    
-
+  generateStars(s: any){
+    console.log(s)
 
   }
+
+ 
 
 }

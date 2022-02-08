@@ -50,7 +50,7 @@
 
 </mat-card>
 
-<button mat-raised-button (click)= "createDivRatingDot()">Test</button>
+
 
 
 
@@ -59,13 +59,28 @@
 
 <mat-card class="cards" *ngFor="let s of loadReviews()">
   <mat-card-content>
-    <div class="rating" id="ratingID">
-      
+   <div class="container">
+     <div class="child">
+       {{generateStars(s.stars)}}
+       {{s.stars}}
+       <!--
+      <img src="../assets/star.png" width="20">
+      <img src="../assets/star.png" width="20">
+      <img src="../assets/star.png" width="20">
+      <img src="../assets/star.png" width="20">
+      <img src="../assets/star.png" width="20">
+     -->
+     </div>
+     <div class="child">
+      <p style="margin-left: 1rem;">Bewertet am {{s.reviewdate}}</p>    
+     </div>
+   </div>
+  
       
       
     
-    </div>
-    <p style="margin-left: 1rem;">Bewertet am {{s.reviewdate}}</p>    
+  
+   
    
 
   

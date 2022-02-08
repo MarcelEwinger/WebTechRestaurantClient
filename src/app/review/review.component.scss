@@ -4,10 +4,12 @@
 
 
 .container{
-    overflow:auto;
-    margin-bottom: 1rem;
+    display: flex;
+    
 }
-
+.child{
+  width: 7rem;  
+}
 .container2{
     display: flex;
     flex-wrap: wrap;
