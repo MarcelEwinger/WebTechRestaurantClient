@@ -17,6 +17,7 @@ export class ReviewComponent implements OnInit {
 
   constructor(private dbService: DbService) {
     this.getReview();
+    
    }
 
   ngOnInit() {
@@ -80,16 +81,24 @@ export class ReviewComponent implements OnInit {
     setTimeout(() =>{
       this.getReview();
     }, 1000);
-    
-  
    
-
   }
 
-  
+  createDivRatingDot(){
+    const node = document.createElement("div");
+    /*
+    node.setAttribute("class", "ratingDot");
+    document.getElementById("ratingID")?.append(node);
+    console.log("Added");
+    */
+   node
+    
+   
+
+    
+    
 
 
-  
-  
+  }
 
 }

@@ -5,15 +5,15 @@
   <mat-card-title>Name</mat-card-title>
     <div class="container2">
 
-      <div class="child" id="firstChild">
+      <div class="child-left">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Firstname</mat-label>
           <input  type="text" matInput id="firstname" ngModel name="firstname" required >
         </mat-form-field>
       </div>
 
-      <div class="child">
-        <mat-form-field class="example-full-width" appearance="fill">
+      <div class="child-right">
+        <mat-form-field class="example-full-width" appearance="fill" >
           <mat-label>Surename</mat-label>
           <input type="text" matInput id="surename" ngModel name="surename" required>
         </mat-form-field>
@@ -50,25 +50,42 @@
 
 </mat-card>
 
+<button mat-raised-button (click)= "createDivRatingDot()">Test</button>
+
 
 
 
 
 
 <mat-card class="cards" *ngFor="let s of loadReviews()">
+  <mat-card-content>
+    <div class="rating" id="ratingID">
+      
+      
+      
+    
+    </div>
+    <p style="margin-left: 1rem;">Bewertet am {{s.reviewdate}}</p>    
+   
 
+  
+   
   <mat-card-title>{{s.firstname}} {{s.surname}}</mat-card-title>
-  <br>
-  
-  <div class="container">
-    <div class="child-left"> {{s.stars}} Sterne</div>
-    <div class="child-right"> {{s.reviewdate}}</div>
-  </div>
-  
+
+
+
   <p>
     {{s.textcomment}}
-
   </p>
-<mat-card-content>
+
+  <p style="font-weight: bold;">
+    Besuchsdatum: 
+  </p>
 </mat-card-content>
 </mat-card>
+
+
+
+
+
+

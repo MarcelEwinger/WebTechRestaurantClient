@@ -11,16 +11,14 @@
 .container2{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
 }
 
-.child{
-    flex: 1;
+.png{
+    width: 5rem;
+    height: 5rem;
 }
 
-#firstChild{
-    margin-right: 1rem;
-}
+
 
 #txt{
     height: 5rem;
@@ -30,13 +28,35 @@
     
 }
 
+.example-full-width  {
+    width: 99%;
+}
 
 
 .child-left{
    float:left;
+   flex: 1;
+   overflow:hidden;
+   
 }
 
 .child-right{
     float:right;
+    flex: 1;
+    overflow:hidden;
+}
+
+.rating{
+    display: flex;
+   	flex-direction: row;
+	
+}
+
+.ratingDot{
+    width: 16px;
+	height: 16px;
+    border-radius: 50%;
+    background-color: green;
+    margin: 0 0.1rem 0 0;
 }
 
