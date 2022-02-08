@@ -14,6 +14,7 @@ export class ReviewComponent implements OnInit {
   selectedValue ="";
 
 
+
   constructor(private dbService: DbService) {
     this.getReview();
    }
@@ -27,31 +28,66 @@ export class ReviewComponent implements OnInit {
   }
 
   getReview(){
+    console.log("Load Reviews")
     this.dbService.getReviews().subscribe((p : Review[]) =>{
       this.reviews = p;
       for(let s of this.reviews){
         const str  = s.reviewdate.split("T");
         s.reviewdate = str[0];
-  
       }
-      //console.log(this.reviews);
-      //console.log(p);
       })
   }
-  addReview(){
-    const firstname = (<HTMLInputElement>document.getElementById("firstname")).value;
-    const surename = (<HTMLInputElement>document.getElementById("surename")).value;
-    const txt = (<HTMLInputElement>document.getElementById("txt")).value;
-    const stars = this.selectedValue;
+
+  checkInputs(val: any){
+    let alertText: string[] = [];
+    let status: boolean = true;
+    const firstname = val.firstname;
+    const surename = val.surename;
+    const txt = val.txt;
+    const stars = val.stars;
+
+    if(firstname === null || firstname === ''){
+      alertText.push("Please enter your firstname");
+      status = false
+    }
+    if(surename === null || surename === ''){
+      alertText.push("Please enter your surename")
+      status = false
+    }
+    if(txt === null || txt === ''){
+      alertText.push("Please descripe your experience")
+      status = false
+    }
+    if(stars === null || stars === ''){
+      alertText.push("Please select your experience ")
+      status = false
+    }
+
+   if(status === true){
+    console.log("Allright")
+    this.addReview(firstname, surename, stars, txt)
+   }else{
+     alert(alertText);
+   }
+  }
+
+
+
+  addReview(firstname: string, surename: string, stars: string, txt: string){
     const reviewdate  = new Date().toISOString().slice(0, 10);
-    //console.log(firstname, surename, stars, txt, reviewdate);
     this.dbService.newReview(new Review(reviewdate,txt, Number(stars),firstname, surename));
+    
     setTimeout(() =>{
       this.getReview();
     }, 1000);
-   
     
+  
+   
+
   }
+
+  
+
 
   
   

@@ -26,9 +26,12 @@ Client
 
 
     Review
-        check Imputs
-        maybe some UI Changes
-	Add Uwuifier 
+        Marcel:
+            check Inputs
+            UI Changes
+
+        Raphi:
+	        Add Uwuifier 
     
     Waiter
         DB Verbindung auf DB.Service auslagern

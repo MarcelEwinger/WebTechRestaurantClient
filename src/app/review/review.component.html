@@ -1,25 +1,32 @@
 
 
 <mat-card class="cards">
-  <mat-card-title>Who are you?</mat-card-title>
+  <form #reviewForm="ngForm" (ngSubmit)="checkInputs(reviewForm.value)" >
+  <mat-card-title>Name</mat-card-title>
+    <div class="container2">
 
-  <form class="form">
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Firstname</mat-label>
-        <input matInput id="firstname">
-      </mat-form-field></td>
-      <td><mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Surename</mat-label>
-        <input matInput id="surename">
-      </mat-form-field></td>
-    </tr></table>
-  </form>
+      <div class="child" id="firstChild">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Firstname</mat-label>
+          <input  type="text" matInput id="firstname" ngModel name="firstname" required >
+        </mat-form-field>
+      </div>
 
-  <mat-card-title>Rate your experience</mat-card-title>
-  <mat-form-field appearance="fill">
+      <div class="child">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Surename</mat-label>
+          <input type="text" matInput id="surename" ngModel name="surename" required>
+        </mat-form-field>
+      </div>
+    </div>
+  
+
+
+  <mat-card-title>Select your experience</mat-card-title>
+  
+  <mat-form-field appearance="fill" class="example-full-width">
     <mat-label>Select</mat-label>
-    <mat-select [(value)]="selectedValue">
+    <mat-select [(value)]="selectedValue" ngModel name="stars" required >
       <mat-option value="1">One Start</mat-option>
       <mat-option value="2">Two Stars</mat-option>
       <mat-option value="3">Three Stars</mat-option>
@@ -29,29 +36,35 @@
   </mat-form-field>
 
   <mat-card-title>Describe your experience</mat-card-title>
-  <form class="form">
+ 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Describe your experience</mat-label>
-      <textarea matInput id="txt"></textarea>
+      <textarea   type="text" matInput id="txt" ngModel name="txt" required>
+        
+      </textarea>
     </mat-form-field>
-  </form>
-  <button mat-raised-button  class="addReview"  (click)="addReview()">Post Review</button>
+  
+
+  <button mat-raised-button  class="addReview">Post Review</button>
+</form>  
+
 </mat-card>
 
+
+
+
+
+
 <mat-card class="cards" *ngFor="let s of loadReviews()">
-<mat-card-header>
+
   <mat-card-title>{{s.firstname}} {{s.surname}}</mat-card-title>
-  </mat-card-header>
+  <br>
+  
   <div class="container">
-    <div class="child-left"> {{s.stars}}</div>
+    <div class="child-left"> {{s.stars}} Sterne</div>
     <div class="child-right"> {{s.reviewdate}}</div>
   </div>
   
-  
-    
-  
-  
-
   <p>
     {{s.textcomment}}
 
