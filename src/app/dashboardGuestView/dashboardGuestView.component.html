@@ -1,49 +1,58 @@
-<mat-sidenav-container>
-  <mat-sidenav mode="side" opened>
-    <mat-list>
 
-      <mat-list-item>
-         <a routerLinkActive="active-list-item" routerLink="products">Products</a>
-      </mat-list-item>
+
+<mat-toolbar class="mat-elevation-z8">
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened">
+          menu
+      </mat-icon>
+      <mat-icon *ngIf="sidenav.opened">
+          close
+      </mat-icon>
+  </button>
+</mat-toolbar>
+
+
+
+
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    
+        <button mat-button class="menu-button">
+          <mat-icon>home</mat-icon>
+          <a routerLinkActive="active-list-item" routerLink="products">Products</a>
+      </button>
+ 
+      <button mat-button class="menu-button">
+          <mat-icon>person</mat-icon>
+          <a routerLinkActive="active-list-item" routerLink="payment">Payment</a>
+      </button>
+      <button mat-button class="menu-button">
+          <mat-icon>info</mat-icon>
+          <a routerLinkActive="active-list-item" routerLink="order">Order</a>
+      </button>
+
+      <button mat-button class="menu-button">
+        <mat-icon>info</mat-icon>
+        <a routerLinkActive="active-list-item" routerLink="waiter">Waiter</a>
+    </button>
+
+    <button mat-button class="menu-button">
+      <mat-icon>info</mat-icon>
+      <a routerLinkActive="active-list-item" routerLink="review">Review</a>
+  </button>
 
       <mat-divider></mat-divider>
-
-      <mat-list-item>
-        <a routerLinkActive="active-list-item" routerLink="payment">Payment</a>
-     </mat-list-item>
-
-     <mat-divider></mat-divider>
-
-
-     <mat-list-item>
-      <a routerLinkActive="active-list-item" routerLink="order">Order</a>
-   </mat-list-item>
-
-   <mat-divider></mat-divider>
-
-
-   <mat-list-item>
-    <a routerLinkActive="active-list-item" routerLink="waiter">Waiter</a>
-  </mat-list-item>
-
-  <mat-divider></mat-divider>
-
-  <mat-list-item>
-    <a routerLinkActive="active-list-item" routerLink="review">Review</a>
-  </mat-list-item>
-
- 
-
-
-    </mat-list>
-
-    <div class="logOut">
-      <button mat-raised-button color="basic">Log out</button>
-    </div>
-
+        <button mat-raised-button color="basic">Log out</button>
+   
+      
   </mat-sidenav>
 
+
+
   <mat-sidenav-content>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+ </mat-sidenav-content>
+
+  </mat-sidenav-container>

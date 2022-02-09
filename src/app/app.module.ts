@@ -36,6 +36,8 @@ import { OrderComponent } from './order/order.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -106,6 +108,8 @@ const routes: Routes = [
     MatSelectModule,
     MatExpansionModule,
     MatSnackBarModule,
+    MatToolbarModule,
+    MatIconModule,
     RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [ProductListService, LocalStorageService, DbService],
