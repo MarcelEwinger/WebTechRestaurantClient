@@ -12,6 +12,7 @@ export class ReviewComponent implements OnInit {
   @Input()
   reviews: Review[] = [];
   selectedValue ="";
+  Allmonth = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 
 
@@ -35,6 +36,10 @@ export class ReviewComponent implements OnInit {
       for(let s of this.reviews){
         const str  = s.reviewdate.split("T");
         s.reviewdate = str[0];
+        const arr = str[0].split('-')
+        s.year = arr[0];
+        s.day = arr[2];
+        s.month = this.Allmonth[new Date(s.reviewdate).getMonth()];
       }
       })
   }
@@ -84,10 +89,14 @@ export class ReviewComponent implements OnInit {
    
   }
 
-  generateStars(s: any){
-    console.log(s)
+ 
+ 
 
-  }
+ 
+
+  
+
+  
 
  
 

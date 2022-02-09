@@ -51,50 +51,59 @@
 </mat-card>
 
 
-
-
-
-
-
-
 <mat-card class="cards" *ngFor="let s of loadReviews()">
   <mat-card-content>
    <div class="container">
-     <div class="child">
-       {{generateStars(s.stars)}}
-       {{s.stars}}
-       <!--
-      <img src="../assets/star.png" width="20">
-      <img src="../assets/star.png" width="20">
-      <img src="../assets/star.png" width="20">
-      <img src="../assets/star.png" width="20">
-      <img src="../assets/star.png" width="20">
-     -->
+     <div class="child-left-bewertung" [ngSwitch] ="s.stars">
+       <span *ngSwitchCase="1">
+        <img src="../assets/star.png" width="20">
+       </span>
+
+       <span *ngSwitchCase="2">
+        <img src="../assets/star.png" width="20">
+        <img src="../assets/star.png" width="20">
+       </span>
+
+       <span *ngSwitchCase="3">
+        <img src="../assets/star.png" width="20">
+        <img src="../assets/star.png" width="20">
+        <img src="../assets/star.png" width="20">
+       </span>
+
+       <span *ngSwitchCase="4">
+        <img src="../assets/star.png" width="20">
+        <img src="../assets/star.png" width="20">
+        <img src="../assets/star.png" width="20">
+        <img src="../assets/star.png" width="20">
+       </span>
+
+       <span *ngSwitchCase="5">
+        <img src="../assets/star.png" width="20">
+        <img src="../assets/star.png" width="20">
+        <img src="../assets/star.png" width="20">
+        <img src="../assets/star.png" width="20">
+        <img src="../assets/star.png" width="20">
+       </span>
      </div>
-     <div class="child">
-      <p style="margin-left: 1rem;">Bewertet am {{s.reviewdate}}</p>    
+
+   
+
+     <div class="child-right-bewertung">
+      <p style="margin-left: 1rem;">Bewertet am {{s.day}} {{s.month}} {{s.year}}</p>    
      </div>
+     
    </div>
-  
-      
-      
+   
     
-  
-   
-   
-
-  
-   
   <mat-card-title>{{s.firstname}} {{s.surname}}</mat-card-title>
-
-
+  
 
   <p>
     {{s.textcomment}}
   </p>
 
   <p style="font-weight: bold;">
-    Besuchsdatum: 
+    Besuchsdatum: <span style="font-weight: lighter;">{{s.month}} {{s.day}}</span>
   </p>
 </mat-card-content>
 </mat-card>

@@ -7,9 +7,8 @@
     display: flex;
     
 }
-.child{
-  width: 7rem;  
-}
+
+
 .container2{
     display: flex;
     flex-wrap: wrap;
@@ -48,17 +47,15 @@
     overflow:hidden;
 }
 
-.rating{
-    display: flex;
-   	flex-direction: row;
-	
+.child-right-bewertung{
+    float:left;
+    flex-wrap: wrap;
 }
 
-.ratingDot{
-    width: 16px;
-	height: 16px;
-    border-radius: 50%;
-    background-color: green;
-    margin: 0 0.1rem 0 0;
+.child-left-bewertung{
+    float:left;
+    flex: 1;
 }
+
+
 
