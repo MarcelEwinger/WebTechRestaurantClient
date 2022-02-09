@@ -1,3 +1,4 @@
+
 import { OrderedItems } from './../model/ordereditems';
 import { Order } from './../model/order';
 import { ActivatedRoute } from '@angular/router';
@@ -6,6 +7,7 @@ import { Review } from './../model/review';
 import { HttpClient, HttpErrorResponse, JsonpClientBackend } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, Subject, throwError } from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 const baseURL = "http://localhost:3000";
 
@@ -21,7 +23,7 @@ export class DbService {
   
   
 
-constructor(private http: HttpClient, private route: ActivatedRoute) { 
+constructor(private http: HttpClient, private route: ActivatedRoute, private snackBar: MatSnackBar) { 
 
 }
 
@@ -51,7 +53,12 @@ getJWTToken(){
    this.http.post(baseURL + "/:table/dashboard/reviews", review) .subscribe(
     (val) => {
         console.log("POST call successful value returned in body", 
-                    val);      
+                    val);
+                    this.snackBar.open('Review added', '', {
+                      duration: 3000
+                    });
+                  
+
     },
     response => {
         console.log("POST call in error", response);
@@ -59,6 +66,7 @@ getJWTToken(){
     () => {
         console.log("The POST observable is now completed.");
     });
+    
  }
 
 

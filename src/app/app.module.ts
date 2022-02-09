@@ -35,6 +35,8 @@ import { DashboardGuestViewComponent } from './dashboardGuestView/dashboardGuest
 import { OrderComponent } from './order/order.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 
 
@@ -103,6 +105,7 @@ const routes: Routes = [
     MatDialogModule,
     MatSelectModule,
     MatExpansionModule,
+    MatSnackBarModule,
     RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [ProductListService, LocalStorageService, DbService],

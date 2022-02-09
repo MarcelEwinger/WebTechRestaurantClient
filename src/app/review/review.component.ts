@@ -83,6 +83,7 @@ export class ReviewComponent implements OnInit {
     const reviewdate  = new Date().toISOString().slice(0, 10);
     this.dbService.newReview(new Review(reviewdate,txt, Number(stars),firstname, surename));
     
+    
     setTimeout(() =>{
       this.getReview();
     }, 1000);
