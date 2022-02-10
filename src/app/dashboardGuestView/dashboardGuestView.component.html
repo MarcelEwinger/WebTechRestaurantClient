@@ -9,6 +9,7 @@
           close
       </mat-icon>
   </button>
+  Welcome to our Restaurant
 </mat-toolbar>
 
 
@@ -18,31 +19,36 @@
     <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
     
         <button mat-button class="menu-button">
-          <mat-icon>home</mat-icon>
+          <mat-icon>restaurant_menu</mat-icon>
           <a routerLinkActive="active-list-item" routerLink="products">Products</a>
       </button>
  
       <button mat-button class="menu-button">
-          <mat-icon>person</mat-icon>
+          <mat-icon>payment</mat-icon>
           <a routerLinkActive="active-list-item" routerLink="payment">Payment</a>
       </button>
       <button mat-button class="menu-button">
-          <mat-icon>info</mat-icon>
+          <mat-icon>shopping_basket</mat-icon>
           <a routerLinkActive="active-list-item" routerLink="order">Order</a>
       </button>
 
       <button mat-button class="menu-button">
-        <mat-icon>info</mat-icon>
+        <mat-icon>help_outline</mat-icon>
         <a routerLinkActive="active-list-item" routerLink="waiter">Waiter</a>
     </button>
 
     <button mat-button class="menu-button">
-      <mat-icon>info</mat-icon>
+      <mat-icon>rate_review</mat-icon>
       <a routerLinkActive="active-list-item" routerLink="review">Review</a>
-  </button>
+   </button>
 
       <mat-divider></mat-divider>
-        <button mat-raised-button color="basic">Log out</button>
+
+      <button mat-button class="menu-button">
+        <mat-icon>exit_to_app</mat-icon>
+        Logout
+     </button>
+     
    
       
   </mat-sidenav>

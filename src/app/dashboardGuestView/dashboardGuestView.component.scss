@@ -44,8 +44,8 @@
   */
 
   mat-toolbar {
-    background-color: white;
-    color: black
+    background: #002b5c;
+    color: white
 }
 
 mat-sidenav {
@@ -83,26 +83,21 @@ mat-sidenav-container {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    font-size: 1rem;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
     
 
     mat-icon {
         margin-right: 8px;
+        color: white
         
     }
 }
 
 a {
   text-decoration: none;
-  color: #000;
-
+  color: white;
 }
-
-
-
-
-
-
 
 mat-divider {
     margin-top: 16px;
