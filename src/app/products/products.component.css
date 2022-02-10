@@ -7,12 +7,30 @@
 }
 
 .filter{
-  border-style: solid;
-  border-width: 3px;
-  border-color: black;
-  padding:16px;
-  margin: 16px;
+  margin: 1rem;
+  display: flex;
 }
+
+.child-left-search{
+  flex: 0 0 10%;
+}
+.child-right-categories{
+  overflow-x: scroll;
+  flex: 0 0 90%;
+}
+
+.example-full-width{
+  width: 3rem;
+  display: none;
+}
+.mat-tab-group{
+  color: #002b5c;
+}
+
+.mat-button{
+  margin-top: 0.5rem;
+}
+
 
 
 .flex-container {
@@ -31,6 +49,7 @@
   
  
 }
+
 
 
 

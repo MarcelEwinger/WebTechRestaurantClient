@@ -42,11 +42,15 @@ getJWTToken(){
     return this.http.get(baseURL + "/1/getOrderedItems/"+id);
  }
 
-
-
  getReviews(): Observable<any> {
   return this.http.get(baseURL + "/:table/dashboard/reviews");
  }
+
+ getCategories(): Observable<any> {
+   return this.http.get(baseURL + "/categories");
+
+ }
+
  newReview(review: Review){
    const body = JSON.stringify(review);
    console.log(body);

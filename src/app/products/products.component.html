@@ -1,23 +1,38 @@
-<div class="filter">
-  <mat-form-field class="example-full-width">
-    <input name="Filter"  matInput [(ngModel)]='word' placeholder="Filter" (ngModelChange)="filterByTitle(word)">
-  </mat-form-field>
-</div>
+
+<mat-card class="filter">
+  <div class="child-left-search">
+    <button mat-button>
+      <mat-icon>search</mat-icon>
+      <mat-form-field class="example-full-width" >
+        <input name="Filter"  matInput [(ngModel)]='word' 
+      (ngModelChange)="filterByTitle(word)">
+      </mat-form-field>
+    </button>
+  </div>
+
+  <div class="child-right-categories" id="categoriesTab">
+    <mat-tab-group animationDuration="500ms"  [selectedIndex]="0" >
+      <mat-tab label="All"></mat-tab>
+      <mat-tab label="Top Seller"></mat-tab>
+      <mat-tab *ngFor="let category of getCategories()" [label] = category.name class="mat-tab-categories">
+    
+      </mat-tab>
+      
+    </mat-tab-group>
+  </div>
+
+
+
+
+</mat-card>
 
 
 
 
 
 <div class="flex-container">
-  <!--
-   <div class="flex-left">
-      <app-product *ngFor="let product of filterByTitle(word)" [product]="product"
-    (likeEmitter) = "incrementLikes($event)"
-      (dislikeEmitter) = "incrementDislikes($event)"
-      (shoppingCartEmitter) = "sendProduct($event)">
-    </app-product>
-  </div>
-  -->
+
+
   <div class="flex-left">
     <app-product *ngFor="let product of filterByTitle(word)" [product]="product"
     (shoppingCartEmitter) = "sendProduct($event)">
@@ -29,16 +44,7 @@
       <app-shoppingCart></app-shoppingCart> 
   </div>
   
-<!--
-  <div>
-    <a routerLink="/about" routerLinkActive="active">About</a>
-  </div>
-  -->
- 
 
-  
-  
-  
 
 
 

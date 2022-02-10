@@ -38,6 +38,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -110,6 +111,7 @@ const routes: Routes = [
     MatSnackBarModule,
     MatToolbarModule,
     MatIconModule,
+    MatTabsModule,
     RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [ProductListService, LocalStorageService, DbService],
