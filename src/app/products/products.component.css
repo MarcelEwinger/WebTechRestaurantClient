@@ -9,6 +9,7 @@
 .filter{
   margin: 1rem;
   display: flex;
+ 
 }
 
 .child-left-search{
@@ -21,7 +22,6 @@
 
 .example-full-width{
   width: 3rem;
-  display: none;
 }
 .mat-tab-group{
   color: #002b5c;
