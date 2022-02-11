@@ -26,6 +26,7 @@ export class ProductsComponent {
   constructor(private productListService :ProductListService, private dbService: DbService) {
     this.loadCategories();
     this.productListService.getProductList().subscribe((p : Product[]) =>{
+      console.log(p);
     this.products = p;
     console.log(this.products);
     })

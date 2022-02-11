@@ -12,7 +12,6 @@
 
   <div class="child-right-categories" id="categoriesTab">
     <mat-tab-group animationDuration="500ms"  [selectedIndex]="0" >
-      <mat-tab label="All"></mat-tab>
       <mat-tab label="Top Seller"></mat-tab>
       <mat-tab *ngFor="let category of getCategories()" [label] = category.name class="mat-tab-categories">
     
