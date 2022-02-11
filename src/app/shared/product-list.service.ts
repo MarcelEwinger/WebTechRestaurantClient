@@ -1,3 +1,4 @@
+import { Category } from './../model/category';
 import { ShoppingCart } from './../model/shoppingCart';
 import { Product } from './../model/product';
 
@@ -29,8 +30,6 @@ export class ProductListService {
   }
   
   constructor(private http: HttpClient) { 
-    this.productList = globalProductList;
-
   }
 
  
@@ -41,6 +40,10 @@ export class ProductListService {
     }else{
       return list.filter((p) => p.title?.toLowerCase().includes(word.toLowerCase()));
     }
+
+  }
+  filterProductsByCategory(category: Category, list: Product[]) : Product[]{
+    return list.filter((p) => p.categories.includes(category.name ));
 
   }
 

@@ -2,17 +2,18 @@
 
 export class Product {
 	itemid!: number;
-	title?: string;
-	description?: string;
-	price?: number = 0;
-	likes?: number = 0;
-	dislikes?: number = 0;
-	status?: string;
-	allergen?: string;
+	title!: string;
+	description!: string;
+	price!: number;
+	likes!: number;
+	dislikes!: number;
+	status!: string;
+	allergene!: string;
+	categories!: string;
 
 
 
-	constructor(itemid:number, title?: string, description?: string, price?: number, likes?: number, dislikes?: number, status?: string, allergen?: string){
+	constructor(itemid:number, title: string, description: string, price: number, likes: number, dislikes: number, status: string, allergene: string, categories: string){
 		this.itemid = itemid;
 		this.title = title;
 		this.description = description;
@@ -20,7 +21,8 @@ export class Product {
 		this.likes = likes;
 		this.dislikes = dislikes;
 		this.status = status;
-		this.allergen = allergen;
+		this.allergene = allergene;
+		this.categories = categories;
 	}
 
 	

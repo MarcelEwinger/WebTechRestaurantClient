@@ -29,9 +29,17 @@
 
 
   <div class="flex-left">
+    <mat-card *ngFor="let category of getCategories()" style="margin-bottom: 1rem;">
+      <mat-card-title>{{category.name}}</mat-card-title>
+      <!--
     <app-product *ngFor="let product of filterByTitle(word)" [product]="product"
     (shoppingCartEmitter) = "sendProduct($event)">
   </app-product>
+  -->
+  <app-product *ngFor="let product of filterByCategory(category)" [product]="product"
+  (shoppingCartEmitter) = "sendProduct($event)">
+</app-product>
+</mat-card>
 </div>
     
 

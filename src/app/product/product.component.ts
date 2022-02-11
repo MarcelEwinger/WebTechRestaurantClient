@@ -1,3 +1,4 @@
+import { Category } from './../model/category';
 import { DialogProductComponent } from './../dialogProduct/dialogProduct.component';
 import { Product } from './../model/product';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
@@ -19,7 +20,8 @@ export class ProductComponent {
   rated: boolean = false;
 
   @Input()
-  product!: Product; 
+  product!: Product;
+  categories!: Category[]; 
   
   
   
@@ -34,7 +36,7 @@ export class ProductComponent {
   }
 
   openDialog() {
-    this.dialog.open(DialogProductComponent, {data: {title: this.product.title, description: this.product.description, allergens: this.product.allergen}});
+    this.dialog.open(DialogProductComponent, {data: {title: this.product.title, description: this.product.description, allergens: this.product.allergene}});
   }
 
 
@@ -83,6 +85,15 @@ export class ProductComponent {
         this.notAvailable = true;
       }
     
+  }
+  loadCategories(){
+    this.dbService.getCategories().subscribe((c : Category[]) =>{
+      this.categories = c;
+      
+    })
+  }
+  getCategories(){
+    return this.categories;
   }
 
 }
