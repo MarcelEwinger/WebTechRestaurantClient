@@ -2,7 +2,7 @@
 
   mat-toolbar {
     background: #002b5c;
-    color: white
+    color: white;
 }
 
 mat-sidenav {
@@ -15,6 +15,7 @@ mat-sidenav {
     padding: 16px;
     text-align: center;
 }
+
 
 .content {
     height: calc(100vh - 98px);

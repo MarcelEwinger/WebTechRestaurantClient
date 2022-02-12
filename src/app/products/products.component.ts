@@ -45,6 +45,10 @@ export class ProductsComponent {
     });
    
   }
+
+  onTabChange(data: any){
+    console.log(data)
+  }
   
  
 

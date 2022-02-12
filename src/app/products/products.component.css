@@ -1,15 +1,16 @@
 
 
 
-.mat-radio-button ~ .mat-radio-button {
-  margin-left: 16px;
-  margin-bottom: 16px;
-}
 
-.filter{
+.flex-container{
   margin: 1rem;
   display: flex;
- 
+  margin-right: 0rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  
 }
 
 .child-left-search{
@@ -38,17 +39,15 @@
 }
 
 .flex-right{
-  flex: 0 0 20%; /* flex-basis: 50% */
-  position: fixed;
-  width: 300px;
-  right: 5rem;
-  
-}
-.flex-left{
-  flex: 0 0 80%; /* flex-basis: 50% */
-  
+  flex: 0 0 30%;
+  z-index: 3;
+
  
+
+
+  
 }
+
 
 
 

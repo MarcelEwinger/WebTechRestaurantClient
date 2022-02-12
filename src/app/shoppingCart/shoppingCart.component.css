@@ -35,3 +35,11 @@
 .sectionPay{
   margin: 0.0rem;
 }
+
+.block{
+  flex: 0 0 30%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+ 
+}
