@@ -4,7 +4,6 @@ import { Product } from './../model/product';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import globalProductList from '../../assets/menu_Items.json';
 import { Observable, Subject } from 'rxjs';
 
 const baseURL = "http://localhost:3000";

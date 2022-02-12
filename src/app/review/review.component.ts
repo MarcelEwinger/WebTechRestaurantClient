@@ -1,6 +1,7 @@
 import { Review } from './../model/review';
 import { DbService } from './../shared/db.service';
 import { Component, Input, OnInit } from '@angular/core';
+import Uwuifier from 'uwuifier';
 
 @Component({
   selector: 'app-review',
@@ -9,11 +10,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ReviewComponent implements OnInit {
 
+  private uwuifier = new Uwuifier();
+
   @Input()
   reviews: Review[] = [];
   selectedValue ="";
   Allmonth = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-
 
 
   constructor(private dbService: DbService) {
@@ -77,12 +79,10 @@ export class ReviewComponent implements OnInit {
    }
   }
 
-
-
   addReview(firstname: string, surename: string, stars: string, txt: string){
     const reviewdate  = new Date().toISOString().slice(0, 10);
-    this.dbService.newReview(new Review(reviewdate,txt, Number(stars),firstname, surename));
-    
+    let newTxt = this.uwuifier.uwuifySentence(txt);
+    this.dbService.newReview(new Review(reviewdate,newTxt, Number(stars),firstname, surename));
     
     setTimeout(() =>{
       this.getReview();
