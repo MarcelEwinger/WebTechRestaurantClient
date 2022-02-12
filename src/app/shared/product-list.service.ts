@@ -43,7 +43,8 @@ export class ProductListService {
 
   }
   filterProductsByCategory(category: Category, list: Product[]) : Product[]{
-    return list.filter((p) => p.categories.includes(category.name ));
+    return list.filter((p) => p.categories.includes(category.name));
+   
 
   }
 

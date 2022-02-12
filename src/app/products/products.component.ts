@@ -5,6 +5,7 @@ import { ShoppingCart } from './../model/shoppingCart';
 import { ProductListService } from './../shared/product-list.service';
 import { Product } from './../model/product';
 import { Component, Input } from '@angular/core';
+import { merge } from 'rxjs';
 
 
 @Component({
@@ -26,12 +27,23 @@ export class ProductsComponent {
 
   constructor(private productListService :ProductListService, private dbService: DbService) {
     this.loadCategories();
-    this.productListService.getProductList().subscribe((p : Product[]) =>{
-     // console.log(p);
-      this.products = p;
-     // console.log(this.products);
-      
-    })
+    this.productListService.getProductList().subscribe((p) =>{
+      //this.products = [];
+      //console.log(p);
+      let obj1 = p.menuItems;
+      let obj2 = p.topSeller;
+      let finalObj: Product[] = [];
+      for(let x of obj1){
+        finalObj.push(x);
+      } 
+      for(let x of obj2){
+        finalObj.push(x);
+
+      }
+      console.log(finalObj);
+      this.products = finalObj;
+    });
+   
   }
   
  
@@ -42,10 +54,7 @@ export class ProductsComponent {
     
   }
 
-  
-  
 
-  
   filterByTitle(word: string): Product[]{
     return this.productListService.filterProductsByTitle(word, this.products);
   }
@@ -56,10 +65,26 @@ export class ProductsComponent {
 
   }
 
+  loadProducts(){
+    this.productListService.getProductList().subscribe((p : Product[]) =>{
+      this.products = p;
+     
+      console.log(this.products);
+    });
+  }
+
+  getProducts(){
+    return this.products;
+  }
+  
+
+ 
+
   loadCategories(){
     this.dbService.getCategories().subscribe((c : Category[]) =>{
       this.categories = c;
-      
+      this.categories.unshift(new Category(0, "Top Seller", "Top Seller"));
+      //console.log(this.categories);
     })
   }
   getCategories(){

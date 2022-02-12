@@ -87,15 +87,7 @@ export class ProductComponent {
       }
     
   }
-  loadCategories(){
-    this.dbService.getCategories().subscribe((c : Category[]) =>{
-      this.categories = c;
-      
-    })
-  }
-  getCategories(){
-    return this.categories;
-  }
+ 
 
 }
 
