@@ -59,7 +59,7 @@ export class ProductListService {
 
  
 getProductById(id : string): Product[]{
-    return this.productList.filter((p) => p.itemid.toString() === id);
+    return this.productList.filter((p) => p.id.toString() === id);
 }
 
 

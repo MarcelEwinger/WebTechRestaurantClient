@@ -49,7 +49,8 @@ export class ProductComponent {
     }
 
     //neue Likes in DB schreiben
-    this.dbService.setLikesInDB(this.product.itemid);
+    this.dbService.setLikesInDB(this.product.id);
+    console.log(this.product);
 
     this.rated = true;
   }
@@ -65,7 +66,7 @@ export class ProductComponent {
     }
     
     //neue Dislikes in DB schreiben
-    this.dbService.setDislikesInDB(this.product.itemid)
+    this.dbService.setDislikesInDB(this.product.id)
     
     this.rated = true;
   }

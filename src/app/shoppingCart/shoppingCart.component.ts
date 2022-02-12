@@ -111,7 +111,7 @@ export class ShoppingCartComponent implements OnInit {
     //if list is empty
     if(this.shoppingCart.length === 0){
        //console.log("List empty")
-       this.shoppingCart.push(new ShoppingCart(product.itemid, product.title, 1, product.price))
+       this.shoppingCart.push(new ShoppingCart(product.id, product.title, 1, product.price))
        //console.log(this.shoppingCart)
        this.countSum(Number(product.price));
 
@@ -121,14 +121,14 @@ export class ShoppingCartComponent implements OnInit {
 
     }else{
       for(let i = 0; i < this.shoppingCart.length; i++){
-        if(this.shoppingCart[i].itemid === product.itemid){
+        if(this.shoppingCart[i].itemid === product.id){
           this.incrementProduct(this.shoppingCart[i]);
           status = true;
         }
       }
       
       if(status === false){
-        this.shoppingCart.push(new ShoppingCart(product.itemid, product.title, 1, product.price))
+        this.shoppingCart.push(new ShoppingCart(product.id, product.title, 1, product.price))
          //console.log(this.shoppingCart)
          this.countSum(Number(product.price));
 
