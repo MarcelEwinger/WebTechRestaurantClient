@@ -6,7 +6,6 @@ import { ProductListService } from './../shared/product-list.service';
 import { Product } from './../model/product';
 import { Component, HostListener, Input } from '@angular/core';
 import { merge } from 'rxjs';
-import { ResizedEvent } from 'angular-resize-event';
 
 
 @Component({

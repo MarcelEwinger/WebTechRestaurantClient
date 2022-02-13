@@ -125,5 +125,12 @@ setDislikesInDB(id: number){
     );
 }
 
+getCallID(table: number): Observable<any>{
+  return this.http.get<number>(baseURL + "/" + table + "/getCallID");
+}
+
+getStatus(table: number, callId: number): Observable<any>{
+  return this.http.get<String>(baseURL + "/" + table + "/getCallStatus/" + callId);
+}
 
 }
