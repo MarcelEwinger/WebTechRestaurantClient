@@ -72,6 +72,10 @@ const routes: Routes = [
     {
       path: "order",
       component: OrderComponent
+    },
+    {
+      path: "shoppingCart",
+      component: ShoppingCartComponent
     }
   ]
 }

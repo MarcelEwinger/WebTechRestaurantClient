@@ -1,16 +1,13 @@
 
 
-
-
 .flex-container{
   margin: 1rem;
-  display: flex;
-  margin-right: 0rem;
+  margin-right: 1rem;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 2;
-  
+
 }
 
 .child-left-search{
@@ -33,19 +30,17 @@
 }
 
 
-
-.flex-container {
-  display: flex;
-}
-
 .flex-right{
   flex: 0 0 30%;
   z-index: 3;
 }
 
 @media (max-width: 800px) {
-  .flex-container{
-    flex-direction: column;
+  .flex-right{
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
   }
 }
 

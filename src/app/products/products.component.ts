@@ -4,8 +4,9 @@ import { DbService } from './../shared/db.service';
 import { ShoppingCart } from './../model/shoppingCart';
 import { ProductListService } from './../shared/product-list.service';
 import { Product } from './../model/product';
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { merge } from 'rxjs';
+import { ResizedEvent } from 'angular-resize-event';
 
 
 @Component({
@@ -23,6 +24,8 @@ export class ProductsComponent {
   count: number = 0;
 
   categories: Category[] = [];
+
+
   
 
   constructor(private productListService :ProductListService, private dbService: DbService) {
@@ -92,16 +95,8 @@ export class ProductsComponent {
     })
   }
   getCategories(){
-    return this.categories;
+    return this.categories;0
   }
 
-
-  
-
-  
-  
-
-  
-  
 
 }

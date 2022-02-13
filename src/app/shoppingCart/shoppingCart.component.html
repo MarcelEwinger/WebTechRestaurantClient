@@ -2,6 +2,9 @@
 <mat-card class="block">
   <mat-card-title id="txt">Shopping Cart</mat-card-title>
 
+
+  <mat-card class="show" *ngIf="!small">
+ 
 <mat-card class="Product"
 *ngFor="let s of loadShoppingCart()">
     <mat-card-content class="container">
@@ -34,8 +37,9 @@
   
 
   </mat-card-content>
-     
-    
+
+</mat-card>
+
 </mat-card>
 
 
@@ -44,8 +48,10 @@
 
   </mat-card-content>
 
+  <button mat-raised-button  class="btnShoppingCart"  [routerLink]="['../shoppingCart']" *ngIf="small">Go to Shopping Cart</button>
+
   <mat-card-actions class="sectionPay">
-     <button mat-raised-button  class="btnPay"  id="btnPay" (click)="pay()" [routerLink]="['../payment']">Pay {{this.totalSum}} €</button>
+     <button mat-raised-button  *ngIf="!small" class="btnPay"  id="btnPay" (click)="pay()" [routerLink]="['../payment']">Pay {{this.totalSum}} €</button>
   </mat-card-actions>
 
 

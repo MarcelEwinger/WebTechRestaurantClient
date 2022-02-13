@@ -4,9 +4,10 @@ import { LocalStorageService } from './../shared/localStorage.service';
 import { ProductListService } from './../shared/product-list.service';
 import { ShoppingCart } from './../model/shoppingCart';
 import { Product } from './../model/product';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import { ResizedEvent } from 'angular-resize-event';
 
 
 
@@ -27,8 +28,9 @@ export class ShoppingCartComponent implements OnInit {
 
   url!: string;
 
-  
+  private width: number = window.innerWidth;
 
+  public small: boolean = false;
 
 
 
@@ -37,6 +39,12 @@ export class ShoppingCartComponent implements OnInit {
     this.subscription = this.productListService.getProduct().subscribe(Product =>{
       this.product = Product
       this.addProduct(this.product);
+
+      if(this.width < 800){
+        this.small = true;
+      }else{
+        this.small = false;
+      }
 
     });
 
@@ -160,6 +168,18 @@ export class ShoppingCartComponent implements OnInit {
     if(price != null){
       this.totalSum = Number((this.totalSum -  price).toFixed(2));
     }  
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: ResizedEvent):void {
+    this.width = window.innerWidth;
+    if(this.width <= 800){
+      this.small = true;
+      console.log("small")
+    }else{
+      this.small = false;
+      console.log("big")
+    }
   }
 
 
