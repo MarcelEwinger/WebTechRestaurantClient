@@ -81,8 +81,8 @@ export class ReviewComponent implements OnInit {
 
   addReview(firstname: string, surename: string, stars: string, txt: string){
     const reviewdate  = new Date().toISOString().slice(0, 10);
-    let newTxt = this.uwuifier.uwuifySentence(txt);
-    this.dbService.newReview(new Review(reviewdate,newTxt, Number(stars),firstname, surename));
+    let secureTxt = this.uwuifier.uwuifySentence(txt);
+    this.dbService.newReview(new Review(reviewdate,secureTxt, Number(stars),firstname, surename));
     
     setTimeout(() =>{
       this.getReview();

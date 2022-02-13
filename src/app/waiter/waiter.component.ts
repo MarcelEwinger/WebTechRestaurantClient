@@ -20,11 +20,12 @@ export class WaiterComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router) { 
     this.href = this.router.url;
-    console.log(this.router.url);
+    console.log("URL: " + this.router.url);
 
     let works: String[] = this.href.split('/');
     console.log(works[1]);
     this.table = Number(works[1]);
+    console.log("Table: " + this.table);
   }
 
   ngOnInit(){

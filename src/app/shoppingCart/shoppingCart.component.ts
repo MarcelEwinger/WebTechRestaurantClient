@@ -1,4 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { LocalStorageService } from './../shared/localStorage.service';
 import { ProductListService } from './../shared/product-list.service';
 import { ShoppingCart } from './../model/shoppingCart';
@@ -16,6 +17,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ShoppingCartComponent implements OnInit {
 
+
   @Input()
   products!: Product[];
   shoppingCart: ShoppingCart[] = []
@@ -31,7 +33,7 @@ export class ShoppingCartComponent implements OnInit {
 
 
 
-  constructor(private productListService :ProductListService, public dialog: MatDialog, private localStorageServie: LocalStorageService ) {
+  constructor(private productListService :ProductListService, public dialog: MatDialog, private localStorageServie: LocalStorageService, private observer: BreakpointObserver) {
     this.subscription = this.productListService.getProduct().subscribe(Product =>{
       this.product = Product
       this.addProduct(this.product);
@@ -160,7 +162,5 @@ export class ShoppingCartComponent implements OnInit {
     }  
   }
 
-
-  
 
 }
