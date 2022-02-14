@@ -35,7 +35,7 @@
 
 
     <mat-card class="sectionPay">
-      <p style="text-align: center;"> Total Sum {{this.totalSum}} </p>
+      <p style="text-align: center;"> Total Sum {{this.getTotalSum()}} </p>
     </mat-card>
 
 
@@ -69,16 +69,7 @@
   
   </div>
 
-  <mat-card class="log">
-    <mat-card-title id="txt">JWT Token</mat-card-title>
-    <mat-card-actions>
-      <p id="jwt">
-        {{this.jwtToken}}
-      </p>
-  
-    </mat-card-actions>
-    
-  </mat-card>
+
   
   
 

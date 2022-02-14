@@ -78,7 +78,10 @@ export class ShoppingCartComponent implements OnInit {
           this.totalSum = this.totalSum + (element.price  * element.quantity);
          });
       
-     
+    }
+
+    getTotalSum(){
+      return this.totalSum.toFixed(2);
     }
 
     

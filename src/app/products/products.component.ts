@@ -30,8 +30,6 @@ export class ProductsComponent {
   constructor(private productListService :ProductListService, private dbService: DbService) {
     this.loadCategories();
     this.productListService.getProductList().subscribe((p) =>{
-      //this.products = [];
-      //console.log(p);
       let obj1 = p.menuItems;
       let obj2 = p.topSeller;
       let finalObj: Product[] = [];

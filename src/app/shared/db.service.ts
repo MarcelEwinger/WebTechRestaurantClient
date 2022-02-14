@@ -16,7 +16,7 @@ const baseURL = "http://localhost:3000";
   providedIn: 'root'
 })
 export class DbService {
-  jwtToken:any;
+  jwtToken:string = '';
   orderId: number = 0;
   orderStatusToken:number = 0;
   
@@ -27,9 +27,6 @@ constructor(private http: HttpClient, private route: ActivatedRoute, private sna
 
 }
 
-getJWTToken(){
-  return this.jwtToken;
-}
 
 
 
@@ -63,8 +60,6 @@ getJWTToken(){
                     this.snackBar.open('Review added', '', {
                       duration: 3000
                     });
-                  
-
     },
     response => {
         console.log("POST call in error", response);
@@ -72,33 +67,14 @@ getJWTToken(){
     () => {
         console.log("The POST observable is now completed.");
     });
-    
  }
 
-
- askPayment(payment: Payment, tableNumber: Number){
+ askPayment(payment: Payment, tableNumber: Number): any{
   console.log(payment);
-   const body = JSON.stringify(payment);
+  const body = JSON.stringify(payment);
    console.log(body)
-   this.http.post(baseURL + "/" + tableNumber+"/dashboard/payment", payment) .subscribe(
-    (val) => {
-        console.log("POST call successful value returned in body", 
-                    val);
-              if(Number(val) != null && Number(val > 0 )){
-                this.orderId = Number(val);
-                console.log(this.orderId);
-              }
-              else{
-                this.orderId = 0;
-                console.log("Error"); 
-               }
-    },
-    response => {
-        console.log("POST call in error", response);
-    },
-    () => {
-        console.log("The POST observable is now completed.");
-    });
+   return this.http.post(baseURL + "/" + tableNumber+"/dashboard/payment", payment);
+    
  }
 
  setLikesInDB(id: number){
@@ -131,6 +107,16 @@ getCallID(table: number): Observable<any>{
 
 getStatus(table: number, callId: number): Observable<any>{
   return this.http.get<String>(baseURL + "/" + table + "/getCallStatus/" + callId);
+}
+
+setJWTToken(token: string){
+  this.jwtToken = token;
+  //console.log(this.jwtToken);
+
+}
+
+getJWTToken(): string{
+  return this.jwtToken;
 }
 
 }

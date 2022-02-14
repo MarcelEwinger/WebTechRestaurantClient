@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DbService } from './../shared/db.service';
 import { Payment } from './../model/payment';
@@ -21,22 +22,17 @@ export class PaymentComponent implements OnInit {
 
   payment: Payment[] = [];
 
-  jwtToken:any;
+  jwtToken:string = '';
 
-  paymentRef:string = "jsnuebgfglwh3u";
-
-  //public href: string = "";
-
+  paymentRefFalse:string = "00sd0sd";
+  paymentRefTrue:string = "jsnuebgfglwh3u";
   tableNumber:number = 0;
  
 
-  constructor(private productListService :ProductListService, public dialog: MatDialog, private localStorageServie: LocalStorageService, private dbService: DbService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private productListService :ProductListService, public dialog: MatDialog, private localStorageServie: LocalStorageService, private dbService: DbService, private route: ActivatedRoute, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-   let href = this.router.url;
-    const works = href.split('/');
-    console.log(works[1]);
-    this.tableNumber = Number(works[1]);
+    this.getTabelNumber();
    
 
     if(this.localStorageServie.getData() != null){
@@ -48,8 +44,6 @@ export class PaymentComponent implements OnInit {
       console.log(this.shoppingCart);
       this.loadSum();
     }
-   
-
   }
   
   loadSum(){
@@ -60,50 +54,82 @@ export class PaymentComponent implements OnInit {
   
  
 }
+
+getTotalSum(){
+  return this.totalSum.toFixed(2);
+}
+
 loadShoppingCart(){
     return this.shoppingCart;
 }
-/*
+
+errorInPayment(){
+  if(this.shoppingCart.length === 0){
+    console.log("Empty Shopping Card")
+    this.displaySnackbar('No Items in Order', 3000);
+  }
+    else{
+      this.orderShoppingCart = this.shoppingCart;
+      this.orderTotalSum = this.totalSum;
+      let returnValue =  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart,  this.paymentRefFalse), this.tableNumber);
+      this.paymentProcessing(returnValue);
+   
+    }
+ 
+}
+
 executePayment(){
-  if(this.dbService.getJWTToken() != null){
-    this.jwtToken = this.dbService.getJWTToken();
-    console.log(this.jwtToken);
+  if(this.shoppingCart.length === 0){
+    console.log("Empty Shopping Card")
+    this.displaySnackbar('No Items in Order', 3000);
+  }else{
+    this.orderShoppingCart = this.shoppingCart;
+    this.orderTotalSum = this.totalSum;
+    let returnValue =  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, this.paymentRefTrue), this.tableNumber);  
+    this.paymentProcessing(returnValue);
+   
+
 
   }
-  const message ="Payment Successful <br> Order submitted <br> Please switch to Order or press the Button to see your Order Progress";
-  (<HTMLInputElement>document.getElementById("payment")).innerHTML = message;
 }
-*/
-errorInPayment(){
-  this.orderShoppingCart = this.shoppingCart;
-  this.orderTotalSum = this.totalSum;
-  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, "00sd0sd"), this.tableNumber);
-  setTimeout(() =>{
-    if(this.dbService.getJWTToken() != null){
-      this.jwtToken = this.dbService.getJWTToken();
-      (<HTMLInputElement>document.getElementById("payment")).innerHTML = "Error In Payment";
-    }
-  }, 200);
 
-  
-}
-executePayment(){
-  this.orderShoppingCart = this.shoppingCart;
-  this.orderTotalSum = this.totalSum;
-  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, this.paymentRef), this.tableNumber);
-/*
-  setTimeout(() =>{
-    if(this.dbService.getJWTToken() != null){
-      this.jwtToken = this.dbService.getJWTToken();
-      const message ="Payment Successful <br> Order submitted <br> Please switch to Order or press the Button to see your Order Progress";
-      (<HTMLInputElement>document.getElementById("payment")).innerHTML = message;
-    }
-  }, 200);
-  */
- 
-  
+paymentProcessing(data: any){
+  data.subscribe(
+    (val: any) => {
+        console.log("POST call successful value returned in body", 
+                    val);
+                    if(val != ''){
+                      this.dbService.setJWTToken(val);
+                      this.displaySnackbar('Payment successful' , 3000);
+                    }else{
+                      this.displaySnackbar('Payment failure' , 3000);
+                    }
+                    
+    },
+    (    response: any) => {
+        console.log("POST call in error", response);
+        this.displaySnackbar('Payment failure' , 3000);
+    },
+    () => {
+        console.log("The POST observable is now completed.");
+    });
+
+
 }
 
 
+
+displaySnackbar(text: string, length: number){
+  this.snackBar.open(text, '', {
+    duration: length
+  });
+}
+
+getTabelNumber(){
+  let href = this.router.url;
+  const works = href.split('/');
+  console.log(works[1]);
+  this.tableNumber = Number(works[1]);
+}
 
 }

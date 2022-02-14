@@ -51,7 +51,11 @@
   <button mat-raised-button  class="btnShoppingCart"  [routerLink]="['../shoppingCart']" *ngIf="small">Go to Shopping Cart</button>
 
   <mat-card-actions class="sectionPay">
+<<<<<<< Updated upstream
      <button mat-raised-button class="btnPay"  id="btnPay" (click)="pay()" [routerLink]="['../payment']">Pay {{this.totalSum}} €</button>
+=======
+     <button mat-raised-button  *ngIf="!small" class="btnPay"  id="btnPay" (click)="pay()" [routerLink]="['../payment']">Pay {{this.getTotalSum()}} €</button>
+>>>>>>> Stashed changes
   </mat-card-actions>
 
 

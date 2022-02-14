@@ -26,6 +26,10 @@ removeData(key: string){
   localStorage.removeItem(key);
 }
 
+clearData(){
+  localStorage.clear();
+}
+
 
   
 }
