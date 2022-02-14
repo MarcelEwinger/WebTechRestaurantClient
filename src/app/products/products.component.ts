@@ -16,10 +16,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 })
 
 
-
-
 export class ProductsComponent{
-
 
   @Input()
   products!: Product[];
@@ -29,8 +26,8 @@ export class ProductsComponent{
 
   categories: Category[] = [];
 
-  public tabName: string = "0";
 
+  public tabName: string = "0";
 
   
 
@@ -52,6 +49,7 @@ export class ProductsComponent{
     });
    
   }
+
 
   onTabChange(event: MatTabChangeEvent) {
     this.tabName = event.tab.textLabel;

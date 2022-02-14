@@ -3,7 +3,7 @@
 <div class="flexi-container">
   <head>Hallo</head>
 
-  <!--
+  <!-- Filter start
     <div class="child-left-search">
     <button mat-button>
       <mat-icon>search</mat-icon>
@@ -14,7 +14,7 @@
       </mat-form-field>
     </button>
   </div>
--->
+ Filter end -->
 
   <div class="child-right-categories" id="categoriesTab">
     <mat-tab-group animationDuration="500ms" (selectedTabChange)="onTabChange($event)">
@@ -39,6 +39,7 @@
   <mat-card *ngFor="let category of getCategories()" style="margin-bottom: 1rem;">
     <mat-card-title id= {{category.name}} style="margin-left: 1rem;">{{category.name}}</mat-card-title>
   
+
     <!-- <app-product *ngFor="let product of filterByTitle(word)" [product]="product" (shoppingCartEmitter) = "sendProduct($event)"></app-product> -->
   
   <app-product *ngFor="let product of filterByCategory(category)" [product]="product"

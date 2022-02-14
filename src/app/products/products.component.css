@@ -10,6 +10,11 @@
 
 }
 
+.highlight {
+  background-color: violet;
+  font-weight: bold;
+}
+
 .child-left-search{
   flex: 0 0 10%;
 }
