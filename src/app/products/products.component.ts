@@ -5,16 +5,21 @@ import { ShoppingCart } from './../model/shoppingCart';
 import { ProductListService } from './../shared/product-list.service';
 import { Product } from './../model/product';
 import { Component, HostListener, Input } from '@angular/core';
-import { merge } from 'rxjs';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+
 
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['products.component.css']
-
 })
-export class ProductsComponent {
+
+
+
+
+export class ProductsComponent{
+
 
   @Input()
   products!: Product[];
@@ -23,6 +28,8 @@ export class ProductsComponent {
   count: number = 0;
 
   categories: Category[] = [];
+
+  public tabName: string = "0";
 
 
   
@@ -46,8 +53,9 @@ export class ProductsComponent {
    
   }
 
-  onTabChange(data: any){
-    console.log(data)
+  onTabChange(event: MatTabChangeEvent) {
+    this.tabName = event.tab.textLabel;
+    console.log(this.tabName);
   }
   
  
