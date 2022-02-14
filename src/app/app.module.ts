@@ -1,3 +1,4 @@
+import { SessionStorageService } from './shared/sessionStorage.service';
 
 import { LocalStorageService } from './shared/localStorage.service';
 
@@ -118,7 +119,7 @@ const routes: Routes = [
     MatTabsModule,
     RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [ProductListService, LocalStorageService, DbService],
+  providers: [ProductListService, LocalStorageService, DbService, SessionStorageService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
