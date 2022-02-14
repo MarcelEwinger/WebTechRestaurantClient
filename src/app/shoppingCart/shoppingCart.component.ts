@@ -54,6 +54,7 @@ export class ShoppingCartComponent implements OnInit {
 
 
   ngOnInit() {
+
     if(this.localStorageServie.getData() != null){
       var temp = this.localStorageServie.getData();
       if(temp !=null)
@@ -61,9 +62,9 @@ export class ShoppingCartComponent implements OnInit {
       console.log(obj);
       this.shoppingCart = obj;
       this.loadSum();
-      
-    
     }
+
+    
     
    
      
@@ -175,10 +176,8 @@ export class ShoppingCartComponent implements OnInit {
     this.width = window.innerWidth;
     if(this.width <= 800){
       this.small = true;
-      console.log("small")
     }else{
       this.small = false;
-      console.log("big")
     }
   }
 
