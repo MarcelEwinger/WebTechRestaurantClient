@@ -1,5 +1,5 @@
 .Product {
-    width: 100%;
+  flex: 0 0 90%;
     margin: 1rem;
   }
 
@@ -17,7 +17,7 @@
     background-color: red;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 460px) {
     .btnLike{
       position: relative;
       margin: 1rem;
