@@ -31,10 +31,25 @@ export class PaymentComponent implements OnInit {
 
   
  
-
+/**
+ * 
+ * @param productListService 
+ * @param dialog 
+ * @param localStorageServie 
+ * @param dbService 
+ * @param route 
+ * @param router 
+ * @param snackBar 
+ * @param sessionStorage 
+ * 
+ * Definiert benötigte externe Komponenten und Objekten
+ */
   constructor(private productListService :ProductListService, public dialog: MatDialog, private localStorageServie: LocalStorageService, private dbService: DbService, private route: ActivatedRoute,
      private router: Router, private snackBar: MatSnackBar, private sessionStorage: SessionStorageService) { }
 
+     /**
+      * Lädt den LocalStorage (falls vorthanden) und speichert die Tischnummer.
+      */
   ngOnInit() {
     this.getTabelNumber();
 
@@ -48,23 +63,37 @@ export class PaymentComponent implements OnInit {
     }
   }
   
+  /**
+   * Berechnet den Gesamtpreis des Warenkorbs.
+   */
   loadSum(){
     this.shoppingCart.forEach((element, index)=>{
       if(element.price != null)
       this.totalSum = this.totalSum + (element.price  * element.quantity);
      });
   
- 
 }
 
+/**
+ * 
+ * @returns Gibt den Gesamtpreis zurück.
+ */
 getTotalSum(){
   return this.totalSum.toFixed(2);
 }
 
+/**
+ * 
+ * @returns Gibt den Warenkorb zurück.
+ */
 loadShoppingCart(){
     return this.shoppingCart;
 }
 
+/**
+ * Prüft, ob der Warenkorb befüllt ist.
+ * Erstellt eine neues Payment-Objekt anhand der Daten aus dem Warenkorb.
+ */
 errorInPayment(){
   if(this.shoppingCart.length === 0){
     this.displaySnackbar('No Items in Order', 3000);
@@ -79,6 +108,9 @@ errorInPayment(){
  
 }
 
+/**
+ * Führt die Bezahlung der Bestellung durch, wenn der Warenkorb nicht leer ist.
+ */
 executePayment(){
   if(this.shoppingCart.length === 0){
     this.displaySnackbar('No Items in Order', 3000);
@@ -88,17 +120,14 @@ executePayment(){
     let returnValue =  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, this.paymentRefTrue), this.tableNumber);  
     this.paymentProcessing(returnValue);
     this.getOrderedProducts();
-   
-
-
   }
 }
+
 
 checkBevorPay(){
   let executePaymentSnackbar = this.snackBar.open('Do you really want to order?', 'Undo');
   executePaymentSnackbar.afterDismissed().subscribe(() => {
   });
-  
   
   executePaymentSnackbar.onAction().subscribe(() => {
   });
@@ -106,6 +135,9 @@ checkBevorPay(){
   executePaymentSnackbar.dismiss()
 }
 
+/**
+ * Fragt die Bestellten Produkte über den Server (Datenbank), über einen jwtToken ab.
+ */
 getOrderedProducts(){
   this.dbService.orderStarted = true;
     setInterval (() =>{
@@ -126,6 +158,14 @@ getOrderedProducts(){
     }, 10000)
 }
 
+/**
+ * 
+ * @param data 
+ * 
+ * Prüft, ob die Bezahlung erfolfreich war.
+ * Speichert den jwtToken über den Server in die Datenbank.
+ * Gibt aus, ob die Bezahlung erfolgreich war oder gescheitert ist.
+ */
 paymentProcessing(data: any){
   data.subscribe(
     (val: any) => {
@@ -147,17 +187,23 @@ paymentProcessing(data: any){
 }
 
 
-
+/**
+ * 
+ * @param text Text, welcher angezeigt werden soll.
+ * @param length Länge als Number
+ */
 displaySnackbar(text: string, length: number){
   this.snackBar.open(text, '', {
     duration: length
   });
 }
 
+/**
+ * Liest die Tischnummer aus der URl aus.
+ */
 getTabelNumber(){
   let href = this.router.url;
   const works = href.split('/');
   this.tableNumber = Number(works[1]);
-}
-
+  }
 }
