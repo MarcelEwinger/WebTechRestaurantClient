@@ -1,7 +1,10 @@
-.sectionCall{
-    position: absolute;
-    top: 4em;
-    left: 4em;
+
+.waiterCard{
+    margin-top: 20px;
+    padding: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    text-align: center;
 }
 
 .btnWaiter{
@@ -10,11 +13,8 @@
     font-weight: bold;
 }
 
-p{
-    position: fixed;
-    top: 5em;
-    left: 10em;
-    text-decoration: solid;
+.output{
+    margin-top: 1em;
     font-size: 2em;
     text-decoration: underline;
     color: red;
