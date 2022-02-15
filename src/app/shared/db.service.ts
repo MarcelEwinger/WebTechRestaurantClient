@@ -4,7 +4,7 @@ import { Order } from './../model/order';
 import { ActivatedRoute } from '@angular/router';
 import { Payment } from './../model/payment';
 import { Review } from './../model/review';
-import { HttpClient, HttpErrorResponse, JsonpClientBackend } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, JsonpClientBackend } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, Subject, throwError } from 'rxjs';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -108,11 +108,15 @@ getCallID(table: number): Observable<any>{
 getStatus(table: number, callId: number): Observable<any>{
   return this.http.get<String>(baseURL + "/" + table + "/getCallStatus/" + callId);
 }
+checkJWT(jwt: string, tableNumber: Number): Observable<any>{
+  const url = baseURL +  "/" + tableNumber+"/dashboard/payment/jwt";
+  const headers = new HttpHeaders().set('content-type', "application/json").set('authorization', 'Bearer ' + jwt);
+  return this.http.post<any>(url, JSON.stringify({accessToken: jwt}), {headers: headers})
+}
 
 setJWTToken(token: string){
   this.jwtToken = token;
   //console.log(this.jwtToken);
-
 }
 
 getJWTToken(): string{

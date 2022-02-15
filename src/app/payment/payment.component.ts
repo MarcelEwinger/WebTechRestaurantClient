@@ -1,3 +1,4 @@
+import { SessionStorageService } from './../shared/sessionStorage.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DbService } from './../shared/db.service';
@@ -29,10 +30,12 @@ export class PaymentComponent implements OnInit {
   tableNumber:number = 0;
  
 
-  constructor(private productListService :ProductListService, public dialog: MatDialog, private localStorageServie: LocalStorageService, private dbService: DbService, private route: ActivatedRoute, private router: Router, private snackBar: MatSnackBar) { }
+  constructor(private productListService :ProductListService, public dialog: MatDialog, private localStorageServie: LocalStorageService, private dbService: DbService, private route: ActivatedRoute,
+     private router: Router, private snackBar: MatSnackBar, private sessionStorage: SessionStorageService) { }
 
   ngOnInit() {
     this.getTabelNumber();
+    console.log(sessionStorage.getItem('jwt'));
    
 
     if(this.localStorageServie.getData() != null){
@@ -93,6 +96,25 @@ executePayment(){
   }
 }
 
+testJWT(){
+  let data = this.dbService.checkJWT(sessionStorage.getItem('jwt')!,this.tableNumber );
+  data.subscribe(
+    (val: any) => {
+        console.log("POST call successful value returned in body", 
+                    val);
+                    
+                   
+                    
+    },
+    (    response: any) => {
+        console.log("POST call in error", response);
+        this.displaySnackbar('JWT failure' , 3000);
+    },
+    () => {
+        console.log("The POST observable is now completed.");
+    });
+}
+
 paymentProcessing(data: any){
   data.subscribe(
     (val: any) => {
@@ -101,6 +123,7 @@ paymentProcessing(data: any){
                     if(val != ''){
                       this.dbService.setJWTToken(val);
                       this.displaySnackbar('Payment successful' , 3000);
+                      sessionStorage.setItem('jwt', this.dbService.getJWTToken());
                     }else{
                       this.displaySnackbar('Payment failure' , 3000);
                     }
@@ -113,8 +136,6 @@ paymentProcessing(data: any){
     () => {
         console.log("The POST observable is now completed.");
     });
-
-
 }
 
 
