@@ -42,7 +42,7 @@
     <!-- <app-product *ngFor="let product of filterByTitle(word)" [product]="product" (shoppingCartEmitter) = "sendProduct($event)"></app-product> -->
   <mat-card>
   <app-product *ngFor="let product of getTopSellers()" [product]="product"
-    (shoppingCartEmitter) = "sendProduct($event)">
+    (shoppingCartEmitter) = "sendProduct($event)" style="margin-bottom: 1rem;">
   </app-product>
   </mat-card>
   

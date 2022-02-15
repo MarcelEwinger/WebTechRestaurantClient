@@ -38,7 +38,6 @@ export class ProductsComponent{
     this.productListService.getProductList().subscribe((p) =>{
       let obj1 = p.menuItems;
       let obj2 = p.topSeller;
-      console.log(p.topSeller);
       let finalObj: Product[] = [];
       for(let x of obj1){
         finalObj.push(x);
@@ -58,11 +57,9 @@ export class ProductsComponent{
 
   onTabChange(event: MatTabChangeEvent) {
     this.tabName = event.tab.textLabel;
-    console.log(this.tabName);
   }
   
   getTopSellers(){
-    console.log(this.topSellers)
     return this.topSellers;
   }
  
