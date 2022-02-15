@@ -59,8 +59,14 @@ export class ProductsComponent{
     this.tabName = event.tab.textLabel;
   }
   
-  getTopSellers(){
-    return this.topSellers;
+  getTopSellers(word: string): Product[]{
+
+    if(word.length == 0){
+      return this.topSellers;
+    }else{
+      return this.productListService.filterProductsByTitle(word, this.topSellers);
+    }
+
   }
  
 
@@ -75,8 +81,18 @@ export class ProductsComponent{
     return this.productListService.filterProductsByTitle(word, this.products);
   }
 
-  filterByCategory(category: Category): Product[]{
-    return this.productListService.filterProductsByCategory(category, this.products);
+  filterByCategory(category: Category, word: string): Product[]{
+
+    if(word.length == 0){
+      return this.productListService.filterProductsByCategory(category, this.products);
+    }else{
+
+      let p: Product[] = this.productListService.filterProductsByCategory(category, this.products);
+
+      return this.productListService.filterProductsByTitle(word, p);
+    }
+
+    
 
 
   }
@@ -100,7 +116,6 @@ export class ProductsComponent{
     this.dbService.getCategories().subscribe((c : Category[]) =>{
       this.categories = c;
       this.categories.unshift(new Category(0, "Top Seller", "Top Seller"));
-      //console.log(this.categories);
     })
   }
   getCategories(){

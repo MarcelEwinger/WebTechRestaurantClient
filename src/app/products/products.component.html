@@ -3,18 +3,18 @@
 <div class="flexi-container">
   <head>Hallo</head>
 
-  <!-- Filter start
+  <!-- Filter start -->
     <div class="child-left-search">
     <button mat-button>
       <mat-icon>search</mat-icon>
       <mat-form-field class="example-full-width" >
         
         <input name="Filter"  matInput [(ngModel)]='word' 
-      (ngModelChange)="filterByTitle(word)">
+      >
       </mat-form-field>
     </button>
   </div>
- Filter end -->
+<!-- Filter end -->
 
   <div class="child-right-categories" id="categoriesTab">
     <mat-tab-group animationDuration="500ms" (selectedTabChange)="onTabChange($event)">
@@ -41,7 +41,7 @@
   
     <!-- <app-product *ngFor="let product of filterByTitle(word)" [product]="product" (shoppingCartEmitter) = "sendProduct($event)"></app-product> -->
   <mat-card>
-  <app-product *ngFor="let product of getTopSellers()" [product]="product"
+  <app-product *ngFor="let product of getTopSellers(word)" [product]="product"
     (shoppingCartEmitter) = "sendProduct($event)" style="margin-bottom: 1rem;">
   </app-product>
   </mat-card>
@@ -56,7 +56,7 @@
   <!-- <app-product *ngFor="let product of filterByTitle(word)" [product]="product" (shoppingCartEmitter) = "sendProduct($event)"></app-product> -->
 
 
-<app-product *ngFor="let product of filterByCategory(category)" [product]="product"
+<app-product *ngFor="let product of filterByCategory(category, word)" [product]="product"
   (shoppingCartEmitter) = "sendProduct($event)">
 </app-product>
  </div> 

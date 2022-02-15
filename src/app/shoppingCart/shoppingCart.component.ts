@@ -30,10 +30,7 @@ export class ShoppingCartComponent implements OnInit {
 
   private width: number = window.innerWidth;
 
-  public small: boolean = false;
-
-
-
+  public small: boolean = true;
 
   constructor(private productListService :ProductListService, public dialog: MatDialog, private localStorageServie: LocalStorageService, private observer: BreakpointObserver) {
     this.subscription = this.productListService.getProduct().subscribe(Product =>{
