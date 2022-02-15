@@ -28,6 +28,8 @@ export class PaymentComponent implements OnInit {
   paymentRefFalse:string = "00sd0sd";
   paymentRefTrue:string = "jsnuebgfglwh3u";
   tableNumber:number = 0;
+
+  
  
 
   constructor(private productListService :ProductListService, public dialog: MatDialog, private localStorageServie: LocalStorageService, private dbService: DbService, private route: ActivatedRoute,
@@ -36,6 +38,7 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {
     this.getTabelNumber();
     console.log(sessionStorage.getItem('jwt'));
+
    
 
     if(this.localStorageServie.getData() != null){
@@ -96,13 +99,27 @@ executePayment(){
   }
 }
 
+checkBevorPay(){
+  let executePaymentSnackbar = this.snackBar.open('Do you really want to order?', 'Undo');
+  executePaymentSnackbar.afterDismissed().subscribe(() => {
+    console.log('The snackbar was dismissed');
+  });
+  
+  
+  executePaymentSnackbar.onAction().subscribe(() => {
+    console.log('The snackbar action was triggered!');
+  });
+  
+  executePaymentSnackbar.dismiss()
+}
+
 testJWT(){
   let data = this.dbService.checkJWT(sessionStorage.getItem('jwt')!,this.tableNumber );
   data.subscribe(
     (val: any) => {
         console.log("POST call successful value returned in body", 
                     val);
-                    
+
                    
                     
     },

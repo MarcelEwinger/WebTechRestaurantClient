@@ -1,70 +1,71 @@
 <router-outlet>
 
-  <div class="container">
-
-    <mat-card class="child">
-      <mat-card-title id="txt">Your Order</mat-card-title>
-
-     
-
-      <mat-card class="card"
-      *ngFor="let s of loadShoppingCart()">
-
-    <mat-card-content>
-      <div class="child">
-
-      <div class="container">
-
-      <div class="child">
-        <p *ngIf="s.quantity">{{s.quantity}}</p>
-      </div>
-
-      <div class="child">
-        <p *ngIf="s.title"> {{s.title}}</p>
-      </div>
-
-      <div class="child">
-        <p *ngIf="s.price"> {{s.price}}</p>
-      </div>
-    </div>
+  <div class="flex-container">
+    <div class="flex-item-left">
+      <mat-card>
+        <mat-card-title id="txt">Payment Status</mat-card-title>
+          <mat-card-actions>
+            <button mat-raised-button   id="executePayment" (click)="executePayment()">Execute Payment</button>
+            <button mat-raised-button   id="errorInPayment" (click)="errorInPayment()">Error in Payment</button>
+          </mat-card-actions>
+          <div>
+            <p id="payment"></p>
+          </div>
+  
+          <mat-card-actions>
+          <button mat-raised-button  id="switchToOrder" [routerLink]="['../order']">Switch to Order</button>
+          <button mat-raised-button  id="switchToShoppingCart" [routerLink]="['../shoppingCart']" >Go to Shopping Cart</button>
+        </mat-card-actions>
+      </mat-card>
 
     </div>
-    
-    </mat-card-content>
-    </mat-card>
-
-
-    <mat-card class="sectionPay">
-      <p style="text-align: center;"> Total Sum {{this.getTotalSum()}} </p>
-    </mat-card>
-
-
-     
-     
-    </mat-card>
+    <div class="flex-item-right">
+      <mat-card>
+        <mat-card-title id="txt">Your Order</mat-card-title>
   
-  <mat-card class="child">
-    <mat-card-title id="txt">Payment Status</mat-card-title>
-
-    
-
-      <mat-card-actions class="container">
-        <button mat-raised-button  class="child"   style="background-color:rgb(151, 236, 24);" id="executePayment" (click)="executePayment()">Execute Payment</button>
-        <button mat-raised-button  class="child"  style="background-color:rgb(226, 49, 49);" id="errorInPayment" (click)="errorInPayment()">Error in Payment</button>
-      </mat-card-actions>
-
-      <div>
-        <p id="payment"></p>
-
+        <mat-card class="card"
+        *ngFor="let s of loadShoppingCart()">
+  
+      <mat-card-content>
+        
+  
+        <div class="container">
+  
+        <div class="child">
+          <p *ngIf="s.quantity">{{s.quantity}}</p>
+        </div>
+  
+        <div class="child">
+          <p *ngIf="s.title"> {{s.title}}</p>
+        </div>
+  
+        <div class="child">
+          <p *ngIf="s.price"> {{s.price}}</p>
+        </div>
       </div>
-      <mat-card-actions>
-      <button mat-raised-button   [routerLink]="['../order']">Switch to Order</button>
-      <button mat-raised-button   (click)="testJWT()">Check JWT</button>
-    </mat-card-actions>
-  </mat-card>
+  
+      </mat-card-content>
+      </mat-card>
   
   
+      <mat-card class="sectionPay">
+        <p style="text-align: center;"> Total Sum {{this.getTotalSum()}} </p>
+      </mat-card>
+  
+  
+      </mat-card>
+
+
+
+    </div>
   </div>
+
+   
+
+
+
+   
+ 
 
 
   
