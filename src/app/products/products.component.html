@@ -36,19 +36,16 @@
 <div *ngIf="tabName === 'Top Seller'; then topSellers else others"></div>
 
 <ng-template #topSellers>
-  <mat-card *ngFor="let category of getCategories()" style="margin-bottom: 1rem;">
-    <mat-card-title id= {{category.name}} style="margin-left: 1rem;">{{category.name}}</mat-card-title>
+  <!--<mat-card *ngFor="let category of getCategories()" style="margin-bottom: 1rem;">
+    <mat-card-title id= {{category.name}} style="margin-left: 1rem;">{{category.name}}</mat-card-title>-->
   
-
     <!-- <app-product *ngFor="let product of filterByTitle(word)" [product]="product" (shoppingCartEmitter) = "sendProduct($event)"></app-product> -->
-  
-  <app-product *ngFor="let product of filterByCategory(category)" [product]="product"
+  <mat-card>
+  <app-product *ngFor="let product of getTopSellers()" [product]="product"
     (shoppingCartEmitter) = "sendProduct($event)">
   </app-product>
-
-  
-  
   </mat-card>
+  
 </ng-template>
 
 <ng-template #others>

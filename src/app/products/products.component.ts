@@ -29,6 +29,8 @@ export class ProductsComponent{
 
   public tabName: string = "0";
 
+  private topSellers: Product[] = [];
+
   
 
   constructor(private productListService :ProductListService, private dbService: DbService) {
@@ -36,12 +38,15 @@ export class ProductsComponent{
     this.productListService.getProductList().subscribe((p) =>{
       let obj1 = p.menuItems;
       let obj2 = p.topSeller;
+      console.log(p.topSeller);
       let finalObj: Product[] = [];
       for(let x of obj1){
         finalObj.push(x);
       } 
       for(let x of obj2){
+        console.log("Top seller: " + x);
         finalObj.push(x);
+        this.topSellers.push(x);
 
       }
       console.log(finalObj);
@@ -56,6 +61,10 @@ export class ProductsComponent{
     console.log(this.tabName);
   }
   
+  getTopSellers(){
+    console.log(this.topSellers)
+    return this.topSellers;
+  }
  
 
 
