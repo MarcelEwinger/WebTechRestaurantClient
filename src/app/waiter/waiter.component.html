@@ -1,11 +1,9 @@
 <div class = "waiter">
-
-    <mat-card-actions class="sectionCall">
+<mat-card class = "waiterCard">
       <button mat-raised-button  class="btnWaiter"  id="btnWaiter"  (click)="callWaiter()" [disabled]="called">Get advice</button>
-   </mat-card-actions>
   
-<div>
-  <p *ngIf="called;">Waiting for advisory</p> 
-</div>
+  <div class="output" *ngIf="called;">Waiting for advisory</div> 
+
+</mat-card>
   </div>
   
