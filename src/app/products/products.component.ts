@@ -33,6 +33,13 @@ export class ProductsComponent{
 
   
 
+  /**
+   * 
+   * @param productListService Definiert ProductListService, um auf die Methoden der Klasse zuzugreifen.
+   * @param dbService Definiert DB-Service, um auf die Dienste des Service zuzugreifen.
+   * 
+   * Fragt die Prdoducte vom Server ab und speichert diese in finalObj und in topSellers.
+   */
   constructor(private productListService :ProductListService, private dbService: DbService) {
     this.loadCategories();
     this.productListService.getProductList().subscribe((p) =>{
@@ -52,11 +59,23 @@ export class ProductsComponent{
    
   }
 
-
+/**
+ * 
+ * @param event Event, wenn der Reiter gewchselt wird.
+ * 
+ * Wenn der Tab gewechselt wird, wird der akteulle Name des Tabs zurückgegeben.
+ */
   onTabChange(event: MatTabChangeEvent) {
     this.tabName = event.tab.textLabel;
   }
   
+  /**
+   * 
+   * @param word Filterkriterium
+   * @returns Gibt ein Product-Array von den Top-Sellern zurück.
+   * 
+   * Wenn ein Filterkriterium vorhanden ist, wird das gefilterte Product-Array zurückgegeben.
+   */
   getTopSellers(word: string): Product[]{
 
     if(word.length == 0){
@@ -68,17 +87,30 @@ export class ProductsComponent{
   }
  
 
-
+/**
+ * 
+ * @param product Übergabeparamter (Product), welcher gesendet wird.
+ */
   sendProduct(product: Product){
     this.productListService.sendProduct(product);
     
   }
 
-
+/**
+ * 
+ * @param word Filterkriterium
+ * @returns Gibt das Gefilterte Product-Array zurück.
+ */
   filterByTitle(word: string): Product[]{
     return this.productListService.filterProductsByTitle(word, this.products);
   }
 
+  /**
+   * 
+   * @param category Kategorie, nach der gefiltert werden soll.
+   * @param word Schlüsselwort nach dem gefiltert werden soll.
+   * @returns Das gefilterte Product-Array, anhand des Filterkriteriums Kategorie und Schlüsselwort (falls vorhanden).
+   */
   filterByCategory(category: Category, word: string): Product[]{
 
     if(word.length == 0){
@@ -90,30 +122,39 @@ export class ProductsComponent{
       return this.productListService.filterProductsByTitle(word, p);
     }
 
-    
-
-
   }
 
+  /**
+   * Ladet die Produkte hintereinander in das Product-Array.
+   */
   loadProducts(){
     this.productListService.getProductList().subscribe((p : Product[]) =>{
       this.products = p;
     });
   }
 
+  /**
+   * 
+   * @returns Prduct-Array der Klasse.
+   */
   getProducts(){
     return this.products;
   }
   
-
- 
-
+/**
+ * Ruft alle Kategorien vom Server (aus der DB) ab und speichert diese im Categories-Array.
+ */
   loadCategories(){
     this.dbService.getCategories().subscribe((c : Category[]) =>{
       this.categories = c;
       this.categories.unshift(new Category(0, "Top Seller", "Top Seller"));
     })
   }
+
+/**
+ * 
+ * @returns Categories-Array der Klasse.
+ */
   getCategories(){
     return this.categories;0
   }

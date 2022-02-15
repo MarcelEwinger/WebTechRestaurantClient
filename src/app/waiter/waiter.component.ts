@@ -19,6 +19,12 @@ export class WaiterComponent implements OnInit {
   private status: String = "";
   private href: String = "";
 
+  /**
+   * 
+   * @param http Definiert das HTTP-Client-Objekt, um eine Verbindung zum Server aufzubauen.
+   * @param router Definiert Router-Objekt, um die Tisch-ID aus der URl abzufragen.
+   * @param db Definiert DB Objekt, um auf die Methoden in DB zuzugreifen.
+   */
   constructor(private http: HttpClient, private router: Router, private db: DbService) {
     this.href = this.router.url;
 
@@ -28,10 +34,10 @@ export class WaiterComponent implements OnInit {
 
   }
 
+  /**
+   * Prüft beim öffnen der View, ob ein Waiter-Call bereits abgesetzt bzw. abgearbeitet wurde.
+   */
   ngOnInit() {
-
-
-
    var temp = window.localStorage.getItem("callId");
 
 
@@ -64,6 +70,9 @@ export class WaiterComponent implements OnInit {
     }
   }
 
+  /**
+   * Schickt eine Call-Waiter Anfrage an den Server und speichert diese in der DB.
+   */
   callWaiter() {
     this.called = true;
     this.http.post(baseURL + "/" + this.table + "/callWaiter", "").subscribe(
@@ -83,7 +92,5 @@ export class WaiterComponent implements OnInit {
         });
       });
   }
-
-
 
 }

@@ -32,6 +32,13 @@ export class ShoppingCartComponent implements OnInit {
 
   public small: boolean = true;
 
+  /**
+   * 
+   * @param productListService Wird definiert, um auf Methoden von productListService zuzugreifen.
+   * @param dialog Wird definiert, um auf den Dialog zuzugreifen.
+   * @param localStorageServie Wird definiert, um auf den Local Storage und dessen Methoden zuzugreifen.
+   * @param observer Wird definiert, um die Seitengröße zu bestimmen.
+   */
   constructor(private productListService :ProductListService, public dialog: MatDialog, private localStorageServie: LocalStorageService, private observer: BreakpointObserver) {
     this.subscription = this.productListService.getProduct().subscribe(Product =>{
       this.product = Product
@@ -49,7 +56,9 @@ export class ShoppingCartComponent implements OnInit {
    }
 
 
-
+/**
+ * Wenn bereits ein Warenkorb vorhanden ist, soll dieser aus dem LocalStorage geladen werden.
+ */
   ngOnInit() {
 
     if(this.localStorageServie.getData() != null){
@@ -59,15 +68,12 @@ export class ShoppingCartComponent implements OnInit {
       this.shoppingCart = obj;
       this.loadSum();
     }
-
-    
-    
-   
-     
-    
     
     }
 
+    /**
+     * Rechnet die Gesamtkosten des Warenkorbs zusammen und speihcert diese in totalSum.
+     */
     loadSum(){
         this.shoppingCart.forEach((element, index)=>{
           if(element.price != null)
@@ -76,15 +82,21 @@ export class ShoppingCartComponent implements OnInit {
       
     }
 
+    /**
+     * 
+     * @returns Gibt die Gesamtkosten der Bestellung zurück.
+     */
     getTotalSum(){
       return this.totalSum.toFixed(2);
     }
 
     
-    
-    
-  
-
+    /**
+     * 
+     * @param shoppingCart 
+     * 
+     * Stellt die Funktionalität bereit, um die Anzahl eines Produkts im ShoppingCart zu erhöhen.
+     */
   incrementProduct(shoppingCart : ShoppingCart){
     shoppingCart.quantity++;
     this.countSum(Number(shoppingCart.price));
@@ -93,6 +105,12 @@ export class ShoppingCartComponent implements OnInit {
 
   }
   
+  /**
+   * 
+   * @param shoppingCart 
+   * 
+   * Stellt die Funktionalität bereit, um die Anzahl eines Produkts im ShoppingCart zu verringern.
+   */
   decrementProduct(shoppingCart : ShoppingCart){
     this.shoppingCart.forEach((element, index)=>{
      if(element.itemid === shoppingCart.itemid){
@@ -111,6 +129,13 @@ export class ShoppingCartComponent implements OnInit {
     
     
   }
+  /**
+   * 
+   * @param product Product, welches zum ShoppingCart hinzugefügt werden soll.
+   * 
+   * Fügt das übergebene Product zum Shopping-Cart hinzu.
+   * Wenn das Produkt bereits vorhanden, wird die Anzahl des Produktes erhöht.
+   */
   addProduct(product : Product){
     let status:boolean = false
     //if list is empty
@@ -140,27 +165,47 @@ export class ShoppingCartComponent implements OnInit {
     }
   
 
+    /**
+     * 
+     * @returns Gibt den ShoppingCart zurück.
+     */
   loadShoppingCart(){
     return this.shoppingCart;
   }
 
+  /**
+   * Simuliert die Bezahlung der Bestellung.
+   */
   pay(){
     console.log("Test")
   
   }
-
+/**
+ * 
+ * @param price Fügt den übergeben Preis zu totalSum hinzu.
+ */
   countSum(price: number){
     if(price != null){
       this.totalSum = Number((this.totalSum +  price).toFixed(2));
     }  
   }
 
+  /**
+   * 
+   * @param price Zieht den Übergebenen Preis von der totalSum ab.
+   */
   decreseSum(price: number){
     if(price != null){
       this.totalSum = Number((this.totalSum -  price).toFixed(2));
     }  
   }
 
+  /**
+   * 
+   * @param event WindowResize Event.
+   * 
+   * Wenn die Größe der Seite geändert wird, soll die Größe geprüft und eventuell die Darstellung im HTML geändert werden.
+   */
   @HostListener('window:resize', ['$event'])
   onResize(event: ResizedEvent):void {
     this.width = window.innerWidth;

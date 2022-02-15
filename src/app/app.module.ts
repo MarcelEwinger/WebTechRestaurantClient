@@ -44,7 +44,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 
 
 
-
+/**
+ * Routen der GuestView definieren
+ */
 const routes: Routes = [
   {path: ':table/dashboard',
   component: DashboardGuestViewComponent,

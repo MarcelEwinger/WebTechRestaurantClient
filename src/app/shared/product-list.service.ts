@@ -69,17 +69,4 @@ getProductList(): Observable<any> {
   return this.http.get(baseURL + "/:table/dashboard/products/");
  }
 
-
-
- 
-
-
-
-
-
-
-
-
-
-  
 }

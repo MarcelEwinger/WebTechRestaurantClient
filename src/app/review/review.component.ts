@@ -26,11 +26,18 @@ export class ReviewComponent implements OnInit {
   ngOnInit() {
   }
   
+  /**
+   * 
+   * @returns Reviews, des Review-Arrays, welche aus der Datenbank abgerufen wurden.
+   */
   loadReviews(): Review[]{
     return this.reviews;
 
   }
 
+  /**
+   * Reviews werden aus der Datenbank abgerufen und in Review[] als Review-Objekt gespeichert.
+   */
   getReview(){
     this.dbService.getReviews().subscribe((p : Review[]) =>{
       this.reviews = p;
@@ -45,6 +52,11 @@ export class ReviewComponent implements OnInit {
       })
   }
 
+  /**
+   * 
+   * @param val Beinhaltet die Übergeben Input-Parameter (Name, Bewertung, Sterne)
+   * Die Übergebenen Daten werden geprüft und über den Server in die Datenbank gespeichert.
+   */
   checkInputs(val: any){
     let alertText: string[] = [];
     let status: boolean = true;
@@ -77,6 +89,15 @@ export class ReviewComponent implements OnInit {
    }
   }
 
+  /**
+   * 
+   * @param firstname Übergabeparamter: Vorname
+   * @param surename Übergabeparamter: Nachname
+   * @param stars Übergabeparamter: Anzahl Sterne
+   * @param txt Übergabeparamter: Bewertung
+   * 
+   * Methode, welche die Übermittlung der Daten an den Server übernimmt.
+   */
   addReview(firstname: string, surename: string, stars: string, txt: string){
     const reviewdate  = new Date().toISOString().slice(0, 10);
     let secureTxt = this.uwuifier.uwuifySentence(txt);

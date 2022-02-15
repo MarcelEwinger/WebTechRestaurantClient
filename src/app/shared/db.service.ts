@@ -24,9 +24,8 @@ export class DbService {
   orderStatus: boolean = false;
   orderStarted: boolean = false;
 
- 
-  
-constructor(private http: HttpClient, private route: ActivatedRoute, private snackBar: MatSnackBar) { 
+
+constructor(private http: HttpClient, private snackBar: MatSnackBar) { 
 
 }
  getReviews(): Observable<any> {
