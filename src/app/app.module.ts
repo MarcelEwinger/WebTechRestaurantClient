@@ -81,7 +81,7 @@ const routes: Routes = [
       component: ShoppingCartComponent
     }
   ]
-}
+},{path: '**', redirectTo: '404'}
 ]
 
 @NgModule({

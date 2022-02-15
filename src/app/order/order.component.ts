@@ -34,10 +34,7 @@ export class OrderComponent implements OnInit {
     }else{
       this.getOrder();
     }
-   
- 
   }
-
   ngOnInit() {
    
   }

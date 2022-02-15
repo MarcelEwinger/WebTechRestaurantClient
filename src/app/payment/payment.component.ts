@@ -29,6 +29,8 @@ export class PaymentComponent implements OnInit {
   paymentRefTrue:string = "jsnuebgfglwh3u";
   tableNumber:number = 0;
 
+  tableStatus!: boolean;
+
   
  
 /**
@@ -119,7 +121,17 @@ executePayment(){
     this.orderTotalSum = this.totalSum;
     let returnValue =  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, this.paymentRefTrue), this.tableNumber);  
     this.paymentProcessing(returnValue);
+<<<<<<< HEAD
+      this.getOrderedProducts();
+    
+    
+      
+=======
     this.getOrderedProducts();
+<<<<<<< Updated upstream
+=======
+>>>>>>> 6d5bdf19b30374304263b14bbee4c67cb567f724
+>>>>>>> Stashed changes
   }
 }
 
@@ -131,7 +143,6 @@ checkBevorPay(){
   
   executePaymentSnackbar.onAction().subscribe(() => {
   });
-  
   executePaymentSnackbar.dismiss()
 }
 
@@ -174,12 +185,16 @@ paymentProcessing(data: any){
                       this.displaySnackbar('Payment successful' , 3000);
                       sessionStorage.setItem('jwt', this.dbService.getJWTToken());
                       
+                      
                     }else{
                       this.displaySnackbar('Payment failure' , 3000);
+                     
                     }   
     },
     (    response: any) => {
+
         this.displaySnackbar('Payment failure' , 3000);
+        
     },
     () => {
         console.log("The POST observable is now completed.");
