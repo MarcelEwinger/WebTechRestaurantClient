@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { SessionStorageService } from './../shared/sessionStorage.service';
 import { Observable, Observer } from 'rxjs';
 import { OrderedItems } from './../model/ordereditems';
@@ -21,8 +22,15 @@ export class OrderComponent implements OnInit {
   order: Order[] = [];
 
   
-  constructor(private dbService: DbService, private sessionStorage: SessionStorageService) {
-   this.getOrder();
+  constructor(private dbService: DbService, private sessionStorage: SessionStorageService, private snackBar: MatSnackBar) {
+    this.getOrder();
+    if(this.order.length === 0){
+      this.displaySnackbar("Payment was not executed", 3000);
+
+    }else{
+      this.getOrder();
+    }
+   
  
   }
 
@@ -31,7 +39,13 @@ export class OrderComponent implements OnInit {
   }
 
   getOrder(){
-    return this.dbService.getOrder();
+    this.order = this.dbService.getOrder();
+    return this.order;
+  }
+  displaySnackbar(text: string, length: number){
+    this.snackBar.open(text, '', {
+      duration: length
+    });
   }
 
 }

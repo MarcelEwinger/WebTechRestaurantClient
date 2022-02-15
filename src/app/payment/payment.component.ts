@@ -115,7 +115,6 @@ checkBevorPay(){
 }
 
 getOrderedProducts(){
-
     setInterval (() =>{
       if(this.dbService.orderStatus === false){
         let data = this.dbService.checkJWT(sessionStorage.getItem('jwt')!,this.tableNumber );
@@ -135,7 +134,7 @@ getOrderedProducts(){
           });
       }
      
-    }, 3000)
+    }, 10000)
 }
 
 paymentProcessing(data: any){

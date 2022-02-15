@@ -115,12 +115,8 @@ getJWTToken(): string{
 }
 
 processInsertedItems(data: any){
-  console.log(data);
   let order = data.sendData1;
   let orderedItems = data.sendData2;
-  //console.log(order);
-  //console.log(orderedItems)
- 
   let orderedItemsObj: OrderedItems[] = [];
 
   for(let oi of orderedItems){
@@ -137,8 +133,6 @@ processInsertedItems(data: any){
     totalamount = i.totalamount;
     if(i.status === 'closed'){
       this.orderStatus = true;
-      console.log("Status closed")
-
     }
   }
   if(this.order.length === 0){
@@ -150,13 +144,10 @@ processInsertedItems(data: any){
    this.order = newOrder;
   
   }
-
-  
 }
 
 getOrder(){
   return this.order;
 }
-
 
 }
