@@ -32,7 +32,6 @@ export class ReviewComponent implements OnInit {
   }
 
   getReview(){
-    console.log("Load Reviews")
     this.dbService.getReviews().subscribe((p : Review[]) =>{
       this.reviews = p;
       for(let s of this.reviews){
@@ -72,7 +71,6 @@ export class ReviewComponent implements OnInit {
     }
 
    if(status === true){
-    console.log("Allright")
     this.addReview(firstname, surename, stars, txt)
    }else{
      alert(alertText);

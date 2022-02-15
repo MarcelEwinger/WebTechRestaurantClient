@@ -41,11 +41,9 @@ constructor(private http: HttpClient, private route: ActivatedRoute, private sna
 
  newReview(review: Review){
    const body = JSON.stringify(review);
-   console.log(body);
    this.http.post(baseURL + "/:table/dashboard/reviews", review) .subscribe(
     (val) => {
-        console.log("POST call successful value returned in body", 
-                    val);
+        
                     this.snackBar.open('Review added', '', {
                       duration: 3000
                     });
@@ -59,9 +57,7 @@ constructor(private http: HttpClient, private route: ActivatedRoute, private sna
  }
 
  askPayment(payment: Payment, tableNumber: Number): any{
-  console.log(payment);
   const body = JSON.stringify(payment);
-   console.log(body)
    return this.http.post(baseURL + "/" + tableNumber+"/dashboard/payment", payment);
     
  }
@@ -107,7 +103,6 @@ checkJWT(jwt: string, tableNumber: Number): Observable<any>{
 
 setJWTToken(token: string){
   this.jwtToken = token;
-  //console.log(this.jwtToken);
 }
 
 getJWTToken(): string{

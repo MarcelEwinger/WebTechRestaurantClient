@@ -21,20 +21,19 @@ export class WaiterComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router, private db: DbService) {
     this.href = this.router.url;
-    console.log("URL: " + this.router.url);
-    //storage = new LocalStorageService();
+
     let works: String[] = this.href.split('/');
-    console.log(works[1]);
+
     this.table = Number(works[1]);
-    console.log("Table: " + this.table);
+
   }
 
   ngOnInit() {
 
-    console.log(callId);
+
 
    var temp = window.localStorage.getItem("callId");
-    console.log("Temp: " + temp);
+
 
     if(temp != null){
       callId = parseInt(temp);
@@ -44,8 +43,7 @@ export class WaiterComponent implements OnInit {
 
       this.db.getStatus(this.table, callId).subscribe((status: any) => {
         this.status = status[Object.keys(status)[0]];
-        console.log(this.status);
-        console.log(callId);
+
 
         if (this.status == "waiting") {
           this.called = true;
@@ -64,7 +62,6 @@ export class WaiterComponent implements OnInit {
     }else{
       window.localStorage.removeItem("callId");
     }
-    console.log(this.called);
   }
 
   callWaiter() {
@@ -82,7 +79,6 @@ export class WaiterComponent implements OnInit {
 
         this.db.getCallID(this.table).subscribe((data: any) => {
           callId = parseInt(data[Object.keys(data)[0]], 10);
-          console.log(callId);
           window.localStorage.setItem("callId", callId.toString());
         });
       });

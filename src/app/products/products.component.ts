@@ -43,12 +43,10 @@ export class ProductsComponent{
         finalObj.push(x);
       } 
       for(let x of obj2){
-        console.log("Top seller: " + x);
         finalObj.push(x);
         this.topSellers.push(x);
 
       }
-      console.log(finalObj);
       this.products = finalObj;
     });
    
@@ -100,8 +98,6 @@ export class ProductsComponent{
   loadProducts(){
     this.productListService.getProductList().subscribe((p : Product[]) =>{
       this.products = p;
-     
-      console.log(this.products);
     });
   }
 

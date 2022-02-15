@@ -11,7 +11,6 @@ constructor() {
 
  setItem(key: string, value: string){
   sessionStorage.setItem(key, value);
-  console.log('Item was set');
 
  }
 
@@ -22,13 +21,11 @@ constructor() {
 
  removeItem(key:string){
    sessionStorage.removeItem(key);
-   console.log('Item was removed');
 
  }
 
  clearStorage(){
   sessionStorage.clear();
-  console.log('Session was cleared');
  }
 
 }

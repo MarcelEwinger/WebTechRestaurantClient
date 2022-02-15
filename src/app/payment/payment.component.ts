@@ -37,17 +37,13 @@ export class PaymentComponent implements OnInit {
 
   ngOnInit() {
     this.getTabelNumber();
-    console.log(sessionStorage.getItem('jwt'));
 
-   
 
     if(this.localStorageServie.getData() != null){
       var temp = this.localStorageServie.getData();
       if(temp !=null)
       var obj = JSON.parse(temp);
-      console.log(obj);
       this.shoppingCart = obj;
-      console.log(this.shoppingCart);
       this.loadSum();
     }
   }
@@ -71,7 +67,6 @@ loadShoppingCart(){
 
 errorInPayment(){
   if(this.shoppingCart.length === 0){
-    console.log("Empty Shopping Card")
     this.displaySnackbar('No Items in Order', 3000);
   }
     else{
@@ -86,7 +81,6 @@ errorInPayment(){
 
 executePayment(){
   if(this.shoppingCart.length === 0){
-    console.log("Empty Shopping Card")
     this.displaySnackbar('No Items in Order', 3000);
   }else{
     this.orderShoppingCart = this.shoppingCart;
@@ -103,12 +97,10 @@ executePayment(){
 checkBevorPay(){
   let executePaymentSnackbar = this.snackBar.open('Do you really want to order?', 'Undo');
   executePaymentSnackbar.afterDismissed().subscribe(() => {
-    console.log('The snackbar was dismissed');
   });
   
   
   executePaymentSnackbar.onAction().subscribe(() => {
-    console.log('The snackbar action was triggered!');
   });
   
   executePaymentSnackbar.dismiss()
@@ -120,17 +112,13 @@ getOrderedProducts(){
         let data = this.dbService.checkJWT(sessionStorage.getItem('jwt')!,this.tableNumber );
         data.subscribe(
           (val: any) => {
-              console.log("POST call successful value returned in body", 
-                          val);
                           this.dbService.processInsertedItems(val);
       
           },
           (    response: any) => {
-              console.log("POST call in error", response);
               this.displaySnackbar('JWT failure' , 3000);
           },
           () => {
-              console.log("The POST observable is now completed.");
           });
       }
      
@@ -140,8 +128,6 @@ getOrderedProducts(){
 paymentProcessing(data: any){
   data.subscribe(
     (val: any) => {
-        console.log("POST call successful value returned in body", 
-                    val);
                     if(val != ''){
                       this.dbService.setJWTToken(val);
                       this.displaySnackbar('Payment successful' , 3000);
@@ -152,7 +138,6 @@ paymentProcessing(data: any){
                     }   
     },
     (    response: any) => {
-        console.log("POST call in error", response);
         this.displaySnackbar('Payment failure' , 3000);
     },
     () => {
@@ -171,7 +156,6 @@ displaySnackbar(text: string, length: number){
 getTabelNumber(){
   let href = this.router.url;
   const works = href.split('/');
-  console.log(works[1]);
   this.tableNumber = Number(works[1]);
 }
 

@@ -30,7 +30,6 @@ export class DashboardGuestViewComponent{
 
   exit(){
     this.localStorageServie.clearData();
-    console.log("Local Storage empty");
     window.location.href = 'https://www.google.at/';
   }
 }

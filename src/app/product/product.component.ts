@@ -50,7 +50,6 @@ export class ProductComponent {
 
     //neue Likes in DB schreiben
     this.dbService.setLikesInDB(this.product.id);
-    console.log(this.product);
 
     this.rated = true;
   }

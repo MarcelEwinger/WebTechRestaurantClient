@@ -48,12 +48,10 @@ export class ProductListService {
   }
 
   likeProduct(product : Product): string{
-    console.log(product.likes);
     return  "<p>" + product.title + "was liked.</p>";  
   }
  
   dislikeProduct(product : Product): string{
-     console.log(product.dislikes);
      return "<p>" + product.title + "was disliked.</p>";
   }
 
