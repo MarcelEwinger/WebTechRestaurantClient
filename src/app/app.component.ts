@@ -9,11 +9,6 @@ export class AppComponent {
  
   title = 'WebTechProduct';
   
-
-
-  
-
-  
   constructor() {
   }
 

@@ -56,7 +56,6 @@ export class ShoppingCartComponent implements OnInit {
       var temp = this.localStorageServie.getData();
       if(temp !=null)
       var obj = JSON.parse(temp);
-      console.log(obj);
       this.shoppingCart = obj;
       this.loadSum();
     }
@@ -88,12 +87,9 @@ export class ShoppingCartComponent implements OnInit {
 
   incrementProduct(shoppingCart : ShoppingCart){
     shoppingCart.quantity++;
-    console.log(this.shoppingCart);
-    console.log(shoppingCart.price);
     this.countSum(Number(shoppingCart.price));
 
     this.localStorageServie.setInfo(this.shoppingCart);
-    console.log(this.shoppingCart);
 
   }
   
@@ -102,11 +98,9 @@ export class ShoppingCartComponent implements OnInit {
      if(element.itemid === shoppingCart.itemid){
        if(shoppingCart.quantity > 1){
         shoppingCart.quantity--;
-        console.log(this.shoppingCart)
        }else{
          this.shoppingCart.splice(index, 1);
          this.loadShoppingCart;
-         console.log(this.shoppingCart)
        }
      }
     });
@@ -121,13 +115,10 @@ export class ShoppingCartComponent implements OnInit {
     let status:boolean = false
     //if list is empty
     if(this.shoppingCart.length === 0){
-       //console.log("List empty")
        this.shoppingCart.push(new ShoppingCart(product.id, product.title, 1, product.price))
-       //console.log(this.shoppingCart)
        this.countSum(Number(product.price));
 
        this.localStorageServie.setInfo(this.shoppingCart);
-       console.log(this.shoppingCart)
        
 
     }else{
@@ -140,7 +131,6 @@ export class ShoppingCartComponent implements OnInit {
       
       if(status === false){
         this.shoppingCart.push(new ShoppingCart(product.id, product.title, 1, product.price))
-         //console.log(this.shoppingCart)
          this.countSum(Number(product.price));
 
          this.localStorageServie.setInfo(this.shoppingCart);
