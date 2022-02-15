@@ -182,6 +182,7 @@ processInsertedItems(data: any){
     totalamount = i.totalamount;
     if(i.status === 'closed'){
       this.orderStatus = true;
+      this.orderStarted = false;
     }
   }
   if(this.order.length === 0){

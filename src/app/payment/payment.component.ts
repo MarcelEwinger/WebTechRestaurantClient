@@ -117,26 +117,22 @@ executePayment(){
   if(this.shoppingCart.length === 0){
     this.displaySnackbar('No Items in Order', 3000);
   }else{
-    this.orderShoppingCart = this.shoppingCart;
-    this.orderTotalSum = this.totalSum;
-    let returnValue =  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, this.paymentRefTrue), this.tableNumber);  
-    this.paymentProcessing(returnValue);
+    if(this.dbService.orderStarted === false){
+      this.orderShoppingCart = this.shoppingCart;
+      this.orderTotalSum = this.totalSum;
+      let returnValue =  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, this.paymentRefTrue), this.tableNumber);  
+      this.paymentProcessing(returnValue);
       this.getOrderedProducts();
-    this.getOrderedProducts();
+      this.getOrderedProducts();
+      this.dbService.orderStarted = true;
+    }else{
+      this.displaySnackbar("You already ordered", 3000);
+    }
+   
 
   }
 }
 
-
-checkBevorPay(){
-  let executePaymentSnackbar = this.snackBar.open('Do you really want to order?', 'Undo');
-  executePaymentSnackbar.afterDismissed().subscribe(() => {
-  });
-  
-  executePaymentSnackbar.onAction().subscribe(() => {
-  });
-  executePaymentSnackbar.dismiss()
-}
 
 /**
  * Fragt die Bestellten Produkte über den Server (Datenbank), über einen jwtToken ab.
