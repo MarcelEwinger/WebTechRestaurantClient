@@ -24,21 +24,36 @@ export class DbService {
   orderStatus: boolean = false;
   orderStarted: boolean = false;
 
-
+/**
+ * 
+ * @param http Definiert HTTP-Client-Objekt, um Anfrage an den Server zu schicken.
+ * @param snackBar Definiert SnackBar-Objekt, um auf SnackBar Funktionen zuzugreifen.
+ */
 constructor(private http: HttpClient, private snackBar: MatSnackBar) { 
 
 }
+
+/**
+ * 
+ * @returns Gibt die alle Reviews über den Server zurück.
+ */
  getReviews(): Observable<any> {
   return this.http.get(baseURL + "/:table/dashboard/reviews");
  }
 
+ /**
+  * 
+  * @returns Gibt alle Kategorien über den Server zurück.
+  */
  getCategories(): Observable<any> {
    return this.http.get(baseURL + "/categories");
 
  }
 
- 
-
+ /**
+  * 
+  * @param review Schickt das neue Review an den Server (und speichert es in der DB).
+  */
  newReview(review: Review){
    const body = JSON.stringify(review);
    this.http.post(baseURL + "/:table/dashboard/reviews", review) .subscribe(
@@ -56,12 +71,23 @@ constructor(private http: HttpClient, private snackBar: MatSnackBar) {
     });
  }
 
+ /**
+  * 
+  * @param payment Payment-Objekt
+  * @param tableNumber Tischnummer
+  * @returns Schickt einen Payment-Request an den Server und gibt den Rückgabewert zurück.
+  */
  askPayment(payment: Payment, tableNumber: Number): any{
   const body = JSON.stringify(payment);
    return this.http.post(baseURL + "/" + tableNumber+"/dashboard/payment", payment);
     
  }
 
+ /**
+  * 
+  * @param id ID des Prdukts, welches geliked werden soll.
+  * Schikt den Like an den Server und erhöht die Likes in der DB (anhand der Product ID).
+  */
  setLikesInDB(id: number){
   this.http.put(baseURL + "/menuItem/like/" + id, "").subscribe(
     (val) => {
@@ -74,6 +100,11 @@ constructor(private http: HttpClient, private snackBar: MatSnackBar) {
     );
 }
 
+/**
+  * 
+  * @param id ID des Prdukts, welches geliked werden soll.
+  * Schikt den Dislike an den Server und erhöht die Dislikes in der DB (anhand der Product ID).
+  */
 setDislikesInDB(id: number){
   this.http.put(baseURL + "/menuItem/dislike/" + id, "").subscribe(
     (val) => {
@@ -86,10 +117,21 @@ setDislikesInDB(id: number){
     );
 }
 
+/**
+ * 
+ * @param table Tischnummer
+ * @returns Gibt die ID der Waiter-Consultation vom Server zurück.
+ */
 getCallID(table: number): Observable<any>{
   return this.http.get<number>(baseURL + "/" + table + "/getCallID");
 }
 
+/**
+ * 
+ * @param table Tischnummer
+ * @param callId Waiter-Consultation ID
+ * @returns Gibt den Status der Consultation aus der DB über den Server zurück.
+ */
 getStatus(table: number, callId: number): Observable<any>{
   return this.http.get<String>(baseURL + "/" + table + "/getCallStatus/" + callId);
 }
@@ -100,15 +142,26 @@ checkJWT(jwt: string, tableNumber: Number): Observable<any>{
 
 }
 
-
+/**
+ * 
+ * @param token Stetzt den jwtToken.
+ */
 setJWTToken(token: string){
   this.jwtToken = token;
 }
 
+/**
+ * 
+ * @returns Gibt den jwtToken zurück.
+ */
 getJWTToken(): string{
   return this.jwtToken;
 }
 
+/**
+ * 
+ * Erstellt eine neue Order.
+ */
 processInsertedItems(data: any){
   this.orderStarted = true;
   let order = data.sendData1;
@@ -142,6 +195,10 @@ processInsertedItems(data: any){
   }
 }
 
+/**
+ * 
+ * @returns Gibt die Bestellung zurück.
+ */
 getOrder(){
   return this.order;
 }
