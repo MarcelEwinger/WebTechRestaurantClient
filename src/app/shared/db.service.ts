@@ -22,6 +22,7 @@ export class DbService {
 
   order: Order[] = [];
   orderStatus: boolean = false;
+  orderStarted: boolean = false;
 
  
   
@@ -115,6 +116,7 @@ getJWTToken(): string{
 }
 
 processInsertedItems(data: any){
+  this.orderStarted = true;
   let order = data.sendData1;
   let orderedItems = data.sendData2;
   let orderedItemsObj: OrderedItems[] = [];

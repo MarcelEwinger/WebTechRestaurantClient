@@ -115,6 +115,7 @@ checkBevorPay(){
 }
 
 getOrderedProducts(){
+  this.dbService.orderStarted = true;
     setInterval (() =>{
       if(this.dbService.orderStatus === false){
         let data = this.dbService.checkJWT(sessionStorage.getItem('jwt')!,this.tableNumber );

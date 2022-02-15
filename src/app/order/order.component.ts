@@ -24,7 +24,7 @@ export class OrderComponent implements OnInit {
   
   constructor(private dbService: DbService, private sessionStorage: SessionStorageService, private snackBar: MatSnackBar) {
     this.getOrder();
-    if(this.order.length === 0){
+    if(this.dbService.orderStarted === false){
       this.displaySnackbar("Payment was not executed", 3000);
 
     }else{
