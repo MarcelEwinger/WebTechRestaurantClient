@@ -1,23 +1,29 @@
 
-<p id="errorMessage"></p>
-<div *ngFor="let s of loadOrder()">
-<mat-accordion>
-  <mat-expansion-panel hideToggle>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        {{s.tableid}}
-      </mat-panel-title>
-      <mat-panel-description>
-        {{s.status}}
-      </mat-panel-description>
-      <mat-panel-description>
-        {{s.totalamount}}
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-   <p *ngFor="let s of this.loadOrderedItems()">
-      {{s.title}},{{s.status}}
-    </p>
-  </mat-expansion-panel>
- 
-</mat-accordion>
-</div>
+
+   
+    <div *ngFor="let s of  this.getOrder()" class="order">
+      <mat-accordion>
+        <mat-expansion-panel hideToggle  [expanded]="true" >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{s.tableid}}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{s.status}}
+            </mat-panel-description>
+            <mat-panel-description>
+              {{s.totalamount}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+         <p *ngFor="let x of s.orderedItems">
+            {{x.title}},{{x.status}}
+          </p>
+        </mat-expansion-panel>
+      </mat-accordion>
+      </div>
+
+
+    
+
+
+

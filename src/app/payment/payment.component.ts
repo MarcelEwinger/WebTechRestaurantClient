@@ -93,6 +93,7 @@ executePayment(){
     this.orderTotalSum = this.totalSum;
     let returnValue =  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, this.paymentRefTrue), this.tableNumber);  
     this.paymentProcessing(returnValue);
+    this.getOrderedProducts();
    
 
 
@@ -113,23 +114,28 @@ checkBevorPay(){
   executePaymentSnackbar.dismiss()
 }
 
-testJWT(){
-  let data = this.dbService.checkJWT(sessionStorage.getItem('jwt')!,this.tableNumber );
-  data.subscribe(
-    (val: any) => {
-        console.log("POST call successful value returned in body", 
-                    val);
+getOrderedProducts(){
 
-                   
-                    
-    },
-    (    response: any) => {
-        console.log("POST call in error", response);
-        this.displaySnackbar('JWT failure' , 3000);
-    },
-    () => {
-        console.log("The POST observable is now completed.");
-    });
+    setInterval (() =>{
+      if(this.dbService.orderStatus === false){
+        let data = this.dbService.checkJWT(sessionStorage.getItem('jwt')!,this.tableNumber );
+        data.subscribe(
+          (val: any) => {
+              console.log("POST call successful value returned in body", 
+                          val);
+                          this.dbService.processInsertedItems(val);
+      
+          },
+          (    response: any) => {
+              console.log("POST call in error", response);
+              this.displaySnackbar('JWT failure' , 3000);
+          },
+          () => {
+              console.log("The POST observable is now completed.");
+          });
+      }
+     
+    }, 3000)
 }
 
 paymentProcessing(data: any){
@@ -141,10 +147,10 @@ paymentProcessing(data: any){
                       this.dbService.setJWTToken(val);
                       this.displaySnackbar('Payment successful' , 3000);
                       sessionStorage.setItem('jwt', this.dbService.getJWTToken());
+                      
                     }else{
                       this.displaySnackbar('Payment failure' , 3000);
-                    }
-                    
+                    }   
     },
     (    response: any) => {
         console.log("POST call in error", response);

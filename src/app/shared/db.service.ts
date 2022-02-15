@@ -19,26 +19,15 @@ export class DbService {
   jwtToken:string = '';
   orderId: number = 0;
   orderStatusToken:number = 0;
-  
-  
-  
 
+  order: Order[] = [];
+  orderStatus: boolean = false;
+
+ 
+  
 constructor(private http: HttpClient, private route: ActivatedRoute, private snackBar: MatSnackBar) { 
 
 }
-
-
-
-
-
-
- getOrder(id:number):Observable<any>{
-   return this.http.get(baseURL + "/1/getOrder/"+id);
-  }
-  getOrderedItems(id:number):Observable<any>{
-    return this.http.get(baseURL + "/1/getOrderedItems/"+id);
- }
-
  getReviews(): Observable<any> {
   return this.http.get(baseURL + "/:table/dashboard/reviews");
  }
@@ -112,7 +101,9 @@ checkJWT(jwt: string, tableNumber: Number): Observable<any>{
   const url = baseURL +  "/" + tableNumber+"/dashboard/payment/jwt";
   const headers = new HttpHeaders().set('content-type', "application/json").set('authorization', 'Bearer ' + jwt);
   return this.http.post<any>(url, JSON.stringify({accessToken: jwt}), {headers: headers})
+
 }
+
 
 setJWTToken(token: string){
   this.jwtToken = token;
@@ -122,5 +113,50 @@ setJWTToken(token: string){
 getJWTToken(): string{
   return this.jwtToken;
 }
+
+processInsertedItems(data: any){
+  console.log(data);
+  let order = data.sendData1;
+  let orderedItems = data.sendData2;
+  //console.log(order);
+  //console.log(orderedItems)
+ 
+  let orderedItemsObj: OrderedItems[] = [];
+
+  for(let oi of orderedItems){
+    orderedItemsObj.push(oi);
+  }
+
+  let tableid = 0;
+  let status = '';
+  let totalamount = '';
+
+  for(let i of order){
+    tableid = i.tableid;
+    status = i.status;
+    totalamount = i.totalamount;
+    if(i.status === 'closed'){
+      this.orderStatus = true;
+      console.log("Status closed")
+
+    }
+  }
+  if(this.order.length === 0){
+    this.order.push(new Order(tableid, status, totalamount, orderedItemsObj));
+  }else{
+   let newOrder: Order[] = [];
+   newOrder.push(new Order(tableid, status, totalamount, orderedItemsObj));
+   this.order = [];
+   this.order = newOrder;
+  
+  }
+
+  
+}
+
+getOrder(){
+  return this.order;
+}
+
 
 }
