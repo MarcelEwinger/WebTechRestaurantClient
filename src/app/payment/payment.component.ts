@@ -121,17 +121,9 @@ executePayment(){
     this.orderTotalSum = this.totalSum;
     let returnValue =  this.dbService.askPayment(new Payment(this.orderTotalSum, this.orderShoppingCart, this.paymentRefTrue), this.tableNumber);  
     this.paymentProcessing(returnValue);
-<<<<<<< HEAD
       this.getOrderedProducts();
-    
-    
-      
-=======
     this.getOrderedProducts();
-<<<<<<< Updated upstream
-=======
->>>>>>> 6d5bdf19b30374304263b14bbee4c67cb567f724
->>>>>>> Stashed changes
+
   }
 }
 
